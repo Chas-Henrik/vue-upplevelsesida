@@ -23,11 +23,10 @@ const handleBook = () => {
 <template>
   <div class="excursion-card">
     <div class="card-image">
-      <img 
+      <NuxtImg 
         :src="`/data/images/excursionImages/${excursion.id}.png`" 
-        :alt="excursion.title"
+        :alt="`/data/images/excursionImages/${excursion.id}.png image not found`"
         class="image"
-        loading="lazy"
       />
       <div class="season-badge">{{ excursion.season }}</div>
     </div>
