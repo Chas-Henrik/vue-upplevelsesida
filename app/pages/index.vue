@@ -5,7 +5,7 @@ const handleCardClick = (buttonType: 'readMore' | 'book', excursionId: string) =
   if (buttonType === 'readMore') {
     navigateTo(`/excursion/${excursionId}`)
   } else if (buttonType === 'book') {
-    navigateTo(`/booking?id=${excursionId}`)
+    navigateTo(`/booking/${excursionId}`)
   }
 }
 </script>

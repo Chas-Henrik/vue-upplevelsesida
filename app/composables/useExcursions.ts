@@ -47,12 +47,17 @@ export const useExcursions = () => {
     return excursions.value.filter(excursion => excursion.season === season)
   }
 
+  const getExcursionsByAgeCategory = (ageCategory: 'Child 0-12' | 'Adult 13-64' | 'Senior 65+') => {
+    return excursions.value.filter(excursion => excursion.ageCategory === ageCategory)
+  }
+
   return {
     excursions: readonly(excursions),
     loading: readonly(loading),
     error: readonly(error),
     loadExcursions,
     getExcursionById,
-    getExcursionsBySeason
+    getExcursionsBySeason,
+    getExcursionsByAgeCategory
   }
 }

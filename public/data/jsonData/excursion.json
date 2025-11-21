@@ -5,7 +5,8 @@
       "title": "Northern Lights Snowmobile Safari",
       "season": "Winter",
       "price": 1495,
-      "description": "A guided evening snowmobile tour through Fjällhäll’s snowy valleys under a sky glowing in green and violet.",
+      "description": "A guided evening snowmobile tour through Fjällhäll's snowy valleys under a sky glowing in green and violet.",
+      "ageCategory": "Adult 13-64",
       "packages": [
         { "id": "pkg-1a", "title": "Northern Lights Photographer", "price": 395 },
         { "id": "pkg-1b", "title": "Wilderness Snack", "price": 120 },
@@ -19,6 +20,7 @@
       "season": "Winter",
       "price": 1295,
       "description": "A high-energy dog sled ride across open snowfields and gentle mountain terrain.",
+      "ageCategory": "Child 0-12",
       "packages": [
         { "id": "pkg-2a", "title": "Dog Cuddle Time", "price": 95 },
         { "id": "pkg-2b", "title": "Lavvu Lunch", "price": 160 },
@@ -31,7 +33,8 @@
       "title": "Fjällhäll Ski Weekend – 2 Days",
       "season": "Winter",
       "price": 2295,
-      "description": "Two days of skiing, stunning views, and après-ski in Fjällhäll’s most popular slopes.",
+      "description": "Two days of skiing, stunning views, and après-ski in Fjällhäll's most popular slopes.",
+      "ageCategory": "Adult 13-64",
       "packages": [
         { "id": "pkg-3a", "title": "Ski Rental", "price": 350 },
         { "id": "pkg-3b", "title": "Premium Lift Pass", "price": 540 },
@@ -45,6 +48,7 @@
       "season": "Winter",
       "price": 995,
       "description": "An outdoor spa experience surrounded by snow, including a warm spring and a snow-heated sauna.",
+      "ageCategory": "Senior 65+",
       "packages": [
         { "id": "pkg-4a", "title": "30-Minute Massage", "price": 350 },
         { "id": "pkg-4b", "title": "Champagne Package", "price": 280 },
@@ -57,7 +61,8 @@
       "title": "Kayaking on Glimmer Lake",
       "season": "Summer",
       "price": 895,
-      "description": "A peaceful paddle across Fjällhäll’s clearest lake, surrounded by lush summer nature.",
+      "description": "A peaceful paddle across Fjällhäll's clearest lake, surrounded by lush summer nature.",
+      "ageCategory": "Adult 13-64",
       "packages": [
         { "id": "pkg-5a", "title": "Local Food Picnic", "price": 145 },
         { "id": "pkg-5b", "title": "Guided Tour", "price": 220 },
@@ -70,7 +75,8 @@
       "title": "Hike to Solklippan",
       "season": "Summer",
       "price": 695,
-      "description": "A scenic hike to Fjällhäll’s iconic lookout point with panoramic valley views.",
+      "description": "A scenic hike to Fjällhäll's iconic lookout point with panoramic valley views.",
+      "ageCategory": "Senior 65+",
       "packages": [
         { "id": "pkg-6a", "title": "Hiking Poles", "price": 60 },
         { "id": "pkg-6b", "title": "Guided Hike", "price": 200 },
@@ -84,6 +90,7 @@
       "season": "Summer",
       "price": 1295,
       "description": "A fast-paced downhill biking adventure with trails for beginners and experts.",
+      "ageCategory": "Adult 13-64",
       "packages": [
         { "id": "pkg-7a", "title": "Bike Rental", "price": 320 },
         { "id": "pkg-7b", "title": "Protective Gear", "price": 180 },
@@ -97,6 +104,7 @@
       "season": "Summer",
       "price": 1795,
       "description": "A unique 24-hour nature retreat featuring meditation, forest bathing, and complete relaxation.",
+      "ageCategory": "Adult 13-64",
       "packages": [
         { "id": "pkg-8a", "title": "Nature Guide", "price": 260 },
         { "id": "pkg-8b", "title": "Meal Package", "price": 140 },
