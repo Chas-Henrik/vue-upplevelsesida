@@ -1,8 +1,7 @@
-import ExcursionFilter from "./components/ExcursionFilter.vue";
-
 <template>
   <div>
-    <NuxtRouteAnnouncer />
-    <NuxtWelcome />
+    <NuxtPage />
+    <!-- <NuxtRouteAnnouncer />
+    <NuxtWelcome /> -->
   </div>
 </template>
