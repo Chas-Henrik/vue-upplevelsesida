@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom theme variables below */
+:root {
+  --font-primary: "Inter", sans-serif;
+  --font-secondary: "Roboto", sans-serif;
+
+  --color-primary: #1e3a8a;
+  --color-secondary: #10b981;
+  --color-bg: #f9fafb;
+  --color-text: #111827;
+
+  --radius-base: 0.5rem;
+  --shadow-base: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+body {
+  font-family: var(--font-primary);
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-secondary);
+  margin-bottom: 1rem;
+}
