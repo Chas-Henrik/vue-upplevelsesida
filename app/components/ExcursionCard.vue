@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Excursion } from '~/types/excursion'
+import type { Excursion } from '~/types'
 
 interface Props {
   excursion: Excursion

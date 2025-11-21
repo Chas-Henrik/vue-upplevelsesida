@@ -1,5 +1,5 @@
 import { ref, readonly } from 'vue'
-import type { Excursion, ExcursionFilters } from '~/types/excursion'
+import type { Excursion, ExcursionFilters } from '~/types'
 
 interface ExcursionData {
   excursion: Excursion[]
