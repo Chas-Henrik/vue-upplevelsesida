@@ -2,15 +2,17 @@
   "articles": [
     {
       "id": "art-1",
-      "title": "Chasing Fjällhäll’s Northern Lights – A Magical Winter Spectacle",
+      "title": "Chasing Fjällhäll's Northern Lights – A Magical Winter Spectacle",
       "season": "Winter",
+      "ageCategory": "Adult 13-64",
       "linkedExperienceId": "exp-1",
       "content": "When winter settles over Fjällhäll National Park, the area transforms into one of Sweden’s most stunning places to witness the northern lights. On clear nights, the sky comes alive with shifting colors dancing above the valleys, creating a natural light show that stays with you long after you return home. Our popular snowmobile safari takes you deep into the wilderness, where silence and starlight make the experience even more unforgettable."
     },
     {
       "id": "art-2",
-      "title": "Dog Sledding Across Fjällhäll’s White Wilderness",
+      "title": "Dog Sledding Across Fjällhäll's White Wilderness",
       "season": "Winter",
+      "ageCategory": "Child 0-12",
       "linkedExperienceId": "exp-2",
       "content": "A dog sled gliding across Fjällhäll’s snow-covered plains is one of the region’s most cherished winter adventures. The tour takes you through open valleys, frozen lakes, and gently rolling mountain terrain where the broad landscape and fresh air create a calm, almost meditative feeling. The crunch of snow under the sled and the strength of the dogs make the journey both peaceful and energizing."
     },
@@ -18,6 +20,7 @@
       "id": "art-3",
       "title": "High-Altitude Skiing – Where Fjällhäll Shows Its Power",
       "season": "Winter",
+      "ageCategory": "Adult 13-64",
       "linkedExperienceId": "exp-3",
       "content": "Fjällhäll’s ski area is known for its wide slopes, crisp snow, and breathtaking views. Whether you prefer a relaxed pace or carving down steeper runs, there is something for every skier. After a full day on the mountain, the village offers cozy après-ski, warm food, and the glow of fire pits and lanterns to complete the atmosphere."
     },
@@ -25,6 +28,7 @@
       "id": "art-4",
       "title": "A Summer Gem: The Hike to Solklippan",
       "season": "Summer",
+      "ageCategory": "Senior 65+",
       "linkedExperienceId": "exp-6",
       "content": "When the snow melts, Fjällhäll’s lush summer landscape emerges. Solklippan is one of the park’s most iconic viewpoints — a place where you can see miles of valleys, lakes, and surrounding peaks. The hike is easy to moderate and suits both families and adventure seekers. Reaching the top at sunset offers a view that is truly unforgettable."
     }
