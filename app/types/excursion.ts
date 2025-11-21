@@ -19,6 +19,7 @@ export interface Excursion {
   season: Season
   price: number
   description: string
+  details: string
   ageCategory: AgeCategory
   packages: Package[]
 }
