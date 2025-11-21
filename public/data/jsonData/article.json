@@ -2,34 +2,31 @@
   "articles": [
     {
       "id": "art-1",
-      "title": "Jakten på Fjällhälls Norrsken – Ett Magiskt Vinterskådespel",
-      "season": "Vinter",
+      "title": "Chasing Fjällhäll’s Northern Lights – A Magical Winter Spectacle",
+      "season": "Winter",
       "linkedExperienceId": "exp-1",
-      "content": "När vintern lägger sig över Fjällhäll National Park förvandlas området till en av de bästa platserna i Sverige för att uppleva norrsken. Under klara nätter dansar ljusen över dalarna och skapar ett naturligt ljusspel som dröjer sig kvar i minnet långt efter att du kommit hem. Vår populära snöskotersafari tar dig djupt in i vildmarken, där tystnaden och stjärnhimlen gör upplevelsen ännu mer magisk."
+      "content": "When winter settles over Fjällhäll National Park, the area transforms into one of Sweden’s most stunning places to witness the northern lights. On clear nights, the sky comes alive with shifting colors dancing above the valleys, creating a natural light show that stays with you long after you return home. Our popular snowmobile safari takes you deep into the wilderness, where silence and starlight make the experience even more unforgettable."
     },
-
     {
-        "id": "art-2",
-        "title": "Hundspann genom Fjällhälls vita vidder",
-        "season": "Vinter",
-        "linkedExperienceId": "exp-2",
-        "content": "Ett hundspann som far fram över Fjällhälls snötäckta vidder är en av områdets mest uppskattade vinterupplevelser. Turen tar dig genom öppna dalar, frusna sjöar och lätt kuperad fjällterräng där tystnaden och det breda landskapet skapar en lugn, nästan meditativ känsla. Den friska luften, ljudet av snö under medarna och kraften hos hundarna gör resan både rofylld och energigivande." 
+      "id": "art-2",
+      "title": "Dog Sledding Across Fjällhäll’s White Wilderness",
+      "season": "Winter",
+      "linkedExperienceId": "exp-2",
+      "content": "A dog sled gliding across Fjällhäll’s snow-covered plains is one of the region’s most cherished winter adventures. The tour takes you through open valleys, frozen lakes, and gently rolling mountain terrain where the broad landscape and fresh air create a calm, almost meditative feeling. The crunch of snow under the sled and the strength of the dogs make the journey both peaceful and energizing."
     },
-
     {
       "id": "art-3",
-      "title": "Skidåkning på Hög Höjd – Där Fjällhäll Visar Sin Kraft",
-      "season": "Vinter",
+      "title": "High-Altitude Skiing – Where Fjällhäll Shows Its Power",
+      "season": "Winter",
       "linkedExperienceId": "exp-3",
-      "content": "Fjällhälls skidområde är känt för sina breda backar, gnistrande snö och fantastiska vyer. Oavsett om du föredrar ett lugnt tempo eller att kasta dig ner för brantare pister, finns det något för alla. Efter en dag på berget väntar after-ski och värmande fjällmat i det lilla bergstorget, där mysiga ljusslingor och sprakande brasor sätter stämningen."
+      "content": "Fjällhäll’s ski area is known for its wide slopes, crisp snow, and breathtaking views. Whether you prefer a relaxed pace or carving down steeper runs, there is something for every skier. After a full day on the mountain, the village offers cozy après-ski, warm food, and the glow of fire pits and lanterns to complete the atmosphere."
     },
-
     {
       "id": "art-4",
-      "title": "Sommarens Pärla: Vandringen till Solklippan",
-      "season": "Sommar",
+      "title": "A Summer Gem: The Hike to Solklippan",
+      "season": "Summer",
       "linkedExperienceId": "exp-6",
-      "content": "När snön smälter framträder Fjällhälls frodiga sommarlandskap. Solklippan är en av parkens mest kända utsiktspunkter – en plats där du kan se flera mil över dalar, sjöar och bergstoppar. Vandringen dit är lätt till medelsvår och passar både familjer och äventyrssökare. Att nå toppen vid solnedgång ger en utsikt som slår det mesta."
+      "content": "When the snow melts, Fjällhäll’s lush summer landscape emerges. Solklippan is one of the park’s most iconic viewpoints — a place where you can see miles of valleys, lakes, and surrounding peaks. The hike is easy to moderate and suits both families and adventure seekers. Reaching the top at sunset offers a view that is truly unforgettable."
     }
   ]
 }

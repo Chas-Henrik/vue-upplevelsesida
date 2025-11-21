@@ -2,201 +2,105 @@
   "excursion": [
     {
       "id": "exp-1",
-      "title": "Norrskenssafari med Snöskoter",
-      "season": "Vinter",
+      "title": "Northern Lights Snowmobile Safari",
+      "season": "Winter",
       "price": 1495,
-      "description": "En guidad kvällstur med snöskoter genom Fjällhälls snötäckta dalar, där himlen dansar i grönt och violett.",
+      "description": "A guided evening snowmobile tour through Fjällhäll’s snowy valleys under a sky glowing in green and violet.",
       "packages": [
-        {
-          "id": "pkg-1a",
-          "title": "Norrskensfotograf",
-          "price": 395
-        },
-        {
-          "id": "pkg-1b",
-          "title": "Vildmarksfika",
-          "price": 120
-        },
-        {
-          "id": "pkg-1c",
-          "title": "Varm Overall & Stövlar",
-          "price": 180
-        }
+        { "id": "pkg-1a", "title": "Northern Lights Photographer", "price": 395 },
+        { "id": "pkg-1b", "title": "Wilderness Snack", "price": 120 },
+        { "id": "pkg-1c", "title": "Warm Suit & Boots", "price": 180 }
       ]
     },
 
     {
       "id": "exp-2",
-      "title": "Hundspannstur till Isklyftan",
-      "season": "Vinter",
+      "title": "Dog Sled Adventure",
+      "season": "Winter",
       "price": 1295,
-      "description": "En fartfylld hundspannstur genom skogar och öppna vidder, med stopp vid den unika isgrottan Isklyftan.",
+      "description": "A high-energy dog sled ride across open snowfields and gentle mountain terrain.",
       "packages": [
-        {
-          "id": "pkg-2a",
-          "title": "Hundgos-tid efter turen",
-          "price": 95
-        },
-        {
-          "id": "pkg-2b",
-          "title": "Lunch i Lavvu",
-          "price": 160
-        },
-        {
-          "id": "pkg-2c",
-          "title": "Fotografpaket",
-          "price": 220
-        }
+        { "id": "pkg-2a", "title": "Dog Cuddle Time", "price": 95 },
+        { "id": "pkg-2b", "title": "Lavvu Lunch", "price": 160 },
+        { "id": "pkg-2c", "title": "Photo Package", "price": 220 }
       ]
     },
 
     {
       "id": "exp-3",
-      "title": "Fjällhälls Skidweekend – 2 dagar",
-      "season": "Vinter",
+      "title": "Fjällhäll Ski Weekend – 2 Days",
+      "season": "Winter",
       "price": 2295,
-      "description": "Två dagar med skidåkning, fjällutsikt och after-ski i Fjällhälls mest populära backar.",
+      "description": "Two days of skiing, stunning views, and après-ski in Fjällhäll’s most popular slopes.",
       "packages": [
-        {
-          "id": "pkg-3a",
-          "title": "Skiduthyrning",
-          "price": 350
-        },
-        {
-          "id": "pkg-3b",
-          "title": "Liftkort Premium",
-          "price": 540
-        },
-        {
-          "id": "pkg-3c",
-          "title": "After-ski Middag",
-          "price": 290
-        }
+        { "id": "pkg-3a", "title": "Ski Rental", "price": 350 },
+        { "id": "pkg-3b", "title": "Premium Lift Pass", "price": 540 },
+        { "id": "pkg-3c", "title": "Après-ski Dinner", "price": 290 }
       ]
     },
 
     {
       "id": "exp-4",
-      "title": "Vildmarksspa & Snöbastu",
-      "season": "Vinter",
+      "title": "Wilderness Spa & Snow Sauna",
+      "season": "Winter",
       "price": 995,
-      "description": "Utomhus-spa omgivet av snö, med varm källa och bastu som värms av gnistrande snöblock.",
+      "description": "An outdoor spa experience surrounded by snow, including a warm spring and a snow-heated sauna.",
       "packages": [
-        {
-          "id": "pkg-4a",
-          "title": "Massage 30 min",
-          "price": 350
-        },
-        {
-          "id": "pkg-4b",
-          "title": "Champagnepaket",
-          "price": 280
-        },
-        {
-          "id": "pkg-4c",
-          "title": "Vedeldad Bastu",
-          "price": 150
-        }
+        { "id": "pkg-4a", "title": "30-Minute Massage", "price": 350 },
+        { "id": "pkg-4b", "title": "Champagne Package", "price": 280 },
+        { "id": "pkg-4c", "title": "Wood-Fired Sauna", "price": 150 }
       ]
     },
 
     {
       "id": "exp-5",
-      "title": "Kajakpaddling på Glimmer Lake",
-      "season": "Sommar",
+      "title": "Kayaking on Glimmer Lake",
+      "season": "Summer",
       "price": 895,
-      "description": "Paddla över Fjällhälls mest kristallklara sjö, omgiven av sommargrönska och stillhet.",
+      "description": "A peaceful paddle across Fjällhäll’s clearest lake, surrounded by lush summer nature.",
       "packages": [
-        {
-          "id": "pkg-5a",
-          "title": "Matsäck med Lokala Råvaror",
-          "price": 145
-        },
-        {
-          "id": "pkg-5b",
-          "title": "Guidad Tur",
-          "price": 220
-        },
-        {
-          "id": "pkg-5c",
-          "title": "Dubbelkajak",
-          "price": 80
-        }
+        { "id": "pkg-5a", "title": "Local Food Picnic", "price": 145 },
+        { "id": "pkg-5b", "title": "Guided Tour", "price": 220 },
+        { "id": "pkg-5c", "title": "Double Kayak", "price": 80 }
       ]
     },
 
     {
       "id": "exp-6",
-      "title": "Vandring till Solklippan",
-      "season": "Sommar",
+      "title": "Hike to Solklippan",
+      "season": "Summer",
       "price": 695,
-      "description": "En naturskön vandring upp till Solklippan, Fjällhälls ikoniska utsiktspunkt med panoramavyer.",
+      "description": "A scenic hike to Fjällhäll’s iconic lookout point with panoramic valley views.",
       "packages": [
-        {
-          "id": "pkg-6a",
-          "title": "Hiking-stavar",
-          "price": 60
-        },
-        {
-          "id": "pkg-6b",
-          "title": "Guidad Tur",
-          "price": 200
-        },
-        {
-          "id": "pkg-6c",
-          "title": "Fotografpaket",
-          "price": 250
-        }
+        { "id": "pkg-6a", "title": "Hiking Poles", "price": 60 },
+        { "id": "pkg-6b", "title": "Guided Hike", "price": 200 },
+        { "id": "pkg-6c", "title": "Photo Package", "price": 250 }
       ]
     },
 
     {
       "id": "exp-7",
-      "title": "Mountainbike Downhill i Gråberget",
-      "season": "Sommar",
+      "title": "Mountain Bike Downhill at Gray Mountain",
+      "season": "Summer",
       "price": 1295,
-      "description": "Fartfylld cykling nerför Gråbergets leder, med alternativ för både nybörjare och avancerade åkare.",
+      "description": "A fast-paced downhill biking adventure with trails for beginners and experts.",
       "packages": [
-        {
-          "id": "pkg-7a",
-          "title": "Cykeluthyrning",
-          "price": 320
-        },
-        {
-          "id": "pkg-7b",
-          "title": "Skyddsutrustning",
-          "price": 180
-        },
-        {
-          "id": "pkg-7c",
-          "title": "Tekniklektion",
-          "price": 295
-        }
+        { "id": "pkg-7a", "title": "Bike Rental", "price": 320 },
+        { "id": "pkg-7b", "title": "Protective Gear", "price": 180 },
+        { "id": "pkg-7c", "title": "Technique Lesson", "price": 295 }
       ]
     },
 
     {
       "id": "exp-8",
-      "title": "Fjällhälls Vildmarksretreat – 24 timmar",
-      "season": "Sommar",
+      "title": "Fjällhäll Wilderness Retreat – 24 Hours",
+      "season": "Summer",
       "price": 1795,
-      "description": "En unik 24-timmars naturupplevelse med meditation, skogsbad och total avkoppling.",
+      "description": "A unique 24-hour nature retreat featuring meditation, forest bathing, and complete relaxation.",
       "packages": [
-        {
-          "id": "pkg-8a",
-          "title": "Naturguide",
-          "price": 260
-        },
-        {
-          "id": "pkg-8b",
-          "title": "Matpaket",
-          "price": 140
-        },
-        {
-          "id": "pkg-8c",
-          "title": "Yoga-pass",
-          "price": 180
-        }
+        { "id": "pkg-8a", "title": "Nature Guide", "price": 260 },
+        { "id": "pkg-8b", "title": "Meal Package", "price": 140 },
+        { "id": "pkg-8c", "title": "Yoga Session", "price": 180 }
       ]
     }
   ]
