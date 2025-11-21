@@ -1,5 +1,5 @@
 import { ref, readonly } from 'vue'
-import type { Excursion } from '~/types/excursion'
+import type { Excursion, ExcursionFilters } from '~/types/excursion'
 
 interface ExcursionData {
   excursion: Excursion[]
@@ -43,12 +43,12 @@ export const useExcursions = () => {
     return excursions.value.find(excursion => excursion.id === id)
   }
 
-  const getExcursionsBySeason = (season: 'Winter' | 'Summer') => {
-    return excursions.value.filter(excursion => excursion.season === season)
-  }
-
-  const getExcursionsByAgeCategory = (ageCategory: 'Child 0-12' | 'Adult 13-64' | 'Senior 65+') => {
-    return excursions.value.filter(excursion => excursion.ageCategory === ageCategory)
+  const filterExcursions = (filters: ExcursionFilters) => {
+    return excursions.value.filter(excursion => {
+      const matchesSeason = !filters.season || excursion.season === filters.season
+      const matchesAgeCategory = !filters.ageCategory || excursion.ageCategory === filters.ageCategory
+      return matchesSeason && matchesAgeCategory
+    })
   }
 
   return {
@@ -57,7 +57,6 @@ export const useExcursions = () => {
     error: readonly(error),
     loadExcursions,
     getExcursionById,
-    getExcursionsBySeason,
-    getExcursionsByAgeCategory
+    filterExcursions
   }
 }

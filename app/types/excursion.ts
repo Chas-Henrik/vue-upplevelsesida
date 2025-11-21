@@ -4,12 +4,19 @@ export interface Package {
   price: number
 }
 
+export type Season = 'Winter' | 'Summer'
+
 export type AgeCategory = 'Child 0-12' | 'Adult 13-64' | 'Senior 65+'
+
+export interface ExcursionFilters {
+  ageCategory?: AgeCategory
+  season?: Season
+}
 
 export interface Excursion {
   id: string
   title: string
-  season: string
+  season: Season
   price: number
   description: string
   ageCategory: AgeCategory
