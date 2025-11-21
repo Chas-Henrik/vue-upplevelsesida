@@ -22,3 +22,17 @@ export interface Excursion {
   ageCategory: AgeCategory
   packages: Package[]
 }
+
+export interface ArticleFilters {
+  season?: Season
+  ageCategory?: AgeCategory
+}
+
+export interface Article {
+  id: string
+  title: string
+  season: Season
+  ageCategory: AgeCategory
+  linkedExperienceId: string
+  content: string
+}

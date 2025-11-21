@@ -1,6 +1,10 @@
 export default defineNuxtPlugin(async () => {
   const { loadExcursions } = useExcursions()
+  const { loadArticles } = useArticles()
   
-  // Load excursions data when app initializes
-  await loadExcursions()
+  // Load excursions and articles data when app initializes
+  await Promise.all([
+    loadExcursions(),
+    loadArticles()
+  ])
 })

@@ -27,6 +27,7 @@ const handleBook = () => {
         :src="`/data/images/excursionImages/${excursion.id}.png`" 
         :alt="excursion.title"
         class="image"
+        loading="lazy"
       />
       <div class="season-badge">{{ excursion.season }}</div>
     </div>
