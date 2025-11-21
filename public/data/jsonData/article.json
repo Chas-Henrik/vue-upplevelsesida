@@ -1,0 +1,35 @@
+{
+  "articles": [
+    {
+      "id": "art-1",
+      "title": "Jakten på Fjällhälls Norrsken – Ett Magiskt Vinterskådespel",
+      "season": "Vinter",
+      "linkedExperienceId": "exp-1",
+      "content": "När vintern lägger sig över Fjällhäll National Park förvandlas området till en av de bästa platserna i Sverige för att uppleva norrsken. Under klara nätter dansar ljusen över dalarna och skapar ett naturligt ljusspel som dröjer sig kvar i minnet långt efter att du kommit hem. Vår populära snöskotersafari tar dig djupt in i vildmarken, där tystnaden och stjärnhimlen gör upplevelsen ännu mer magisk."
+    },
+
+    {
+        "id": "art-2",
+        "title": "Hundspann genom Fjällhälls vita vidder",
+        "season": "Vinter",
+        "linkedExperienceId": "exp-2",
+        "content": "Ett hundspann som far fram över Fjällhälls snötäckta vidder är en av områdets mest uppskattade vinterupplevelser. Turen tar dig genom öppna dalar, frusna sjöar och lätt kuperad fjällterräng där tystnaden och det breda landskapet skapar en lugn, nästan meditativ känsla. Den friska luften, ljudet av snö under medarna och kraften hos hundarna gör resan både rofylld och energigivande." 
+    },
+
+    {
+      "id": "art-3",
+      "title": "Skidåkning på Hög Höjd – Där Fjällhäll Visar Sin Kraft",
+      "season": "Vinter",
+      "linkedExperienceId": "exp-3",
+      "content": "Fjällhälls skidområde är känt för sina breda backar, gnistrande snö och fantastiska vyer. Oavsett om du föredrar ett lugnt tempo eller att kasta dig ner för brantare pister, finns det något för alla. Efter en dag på berget väntar after-ski och värmande fjällmat i det lilla bergstorget, där mysiga ljusslingor och sprakande brasor sätter stämningen."
+    },
+
+    {
+      "id": "art-4",
+      "title": "Sommarens Pärla: Vandringen till Solklippan",
+      "season": "Sommar",
+      "linkedExperienceId": "exp-6",
+      "content": "När snön smälter framträder Fjällhälls frodiga sommarlandskap. Solklippan är en av parkens mest kända utsiktspunkter – en plats där du kan se flera mil över dalar, sjöar och bergstoppar. Vandringen dit är lätt till medelsvår och passar både familjer och äventyrssökare. Att nå toppen vid solnedgång ger en utsikt som slår det mesta."
+    }
+  ]
+}
