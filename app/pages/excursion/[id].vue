@@ -142,7 +142,7 @@ const handleBook = () => {
 .season-badge {
   position: absolute;
   top: 1rem;
-  left: 1rem;
+  right: 1rem;
   background: rgba(255, 255, 255, 0.95);
   color: var(--color-primary);
   padding: 0.5rem 1rem;
@@ -158,7 +158,7 @@ const handleBook = () => {
 .price-badge {
   position: absolute;
   top: 1rem;
-  right: 1rem;
+  left: 1rem;
   background: var(--color-accent);
   color: white;
   padding: 0.5rem 1rem;
