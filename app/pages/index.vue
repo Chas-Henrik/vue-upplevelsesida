@@ -13,7 +13,6 @@ const handleCardClick = (buttonType: 'readMore' | 'book', excursionId: string) =
 
 <template>
   <div class="home-page">
-
     <div class="container">
       <!-- Loading state -->
       <div v-if="excursionsLoading" class="loading-state">
@@ -90,7 +89,7 @@ const handleCardClick = (buttonType: 'readMore' | 'book', excursionId: string) =
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem 4rem;
+  padding: 2rem 2rem 4rem;
 }
 
 .excursions-grid {
