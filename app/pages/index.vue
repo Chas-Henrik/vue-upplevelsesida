@@ -1,5 +1,6 @@
 <script setup lang="ts">
-const { excursions, loading, error } = useExcursions()
+const { excursions, excursionsLoading, excursionsError } = useExcursions()
+const { articles, articlesLoading, articlesError } = useArticles()
 
 const handleCardClick = (buttonType: 'readMore' | 'book', excursionId: string) => {
   if (buttonType === 'readMore') {
@@ -15,13 +16,13 @@ const handleCardClick = (buttonType: 'readMore' | 'book', excursionId: string) =
 
     <div class="container">
       <!-- Loading state -->
-      <div v-if="loading" class="loading-state">
+      <div v-if="excursionsLoading" class="loading-state">
         <p>Loading excursions...</p>
       </div>
 
       <!-- Error state -->
-      <div v-else-if="error" class="error-state">
-        <p>{{ error }}</p>
+      <div v-else-if="excursionsError" class="error-state">
+        <p>{{ excursionsError }}</p>
       </div>
 
       <!-- Excursions grid -->
@@ -32,6 +33,30 @@ const handleCardClick = (buttonType: 'readMore' | 'book', excursionId: string) =
           :excursion="excursion"
           @click="handleCardClick"
         />
+      </div>
+
+      <!-- Articles Section -->
+      <div class="articles-section">
+        <h2 class="section-title">Articles</h2>
+        
+        <!-- Articles Loading state -->
+        <div v-if="articlesLoading" class="loading-state">
+          <p>Loading articles...</p>
+        </div>
+
+        <!-- Articles Error state -->
+        <div v-else-if="articlesError" class="error-state">
+          <p>{{ articlesError }}</p>
+        </div>
+
+        <!-- Articles list -->
+        <div v-else class="articles-list">
+          <Article 
+            v-for="article in articles" 
+            :key="article.id"
+            :article="article"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -85,6 +110,24 @@ const handleCardClick = (buttonType: 'readMore' | 'book', excursionId: string) =
   color: #dc2626;
 }
 
+.articles-section {
+  margin-top: 4rem;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0 0 2rem 0;
+  text-align: center;
+}
+
+.articles-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
 @media (max-width: 768px) {
   .hero-title {
     font-size: 2rem;
@@ -96,6 +139,10 @@ const handleCardClick = (buttonType: 'readMore' | 'book', excursionId: string) =
   
   .excursions-grid {
     grid-template-columns: 1fr;
+  }
+
+  .section-title {
+    font-size: 2rem;
   }
 }
 </style>

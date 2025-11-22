@@ -57,8 +57,8 @@ export const useArticles = () => {
 
   return {
     articles: readonly(articles),
-    loading: readonly(loading),
-    error: readonly(error),
+    articlesLoading: readonly(loading),
+    articlesError: readonly(error),
     loadArticles,
     getArticleById,
     getArticlesByExperienceId,

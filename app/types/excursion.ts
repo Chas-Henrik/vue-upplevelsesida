@@ -21,7 +21,7 @@ export interface Excursion {
   description: string
   details: string
   ageCategory: AgeCategory
-  packages: Package[]
+  packages: readonly Package[]
 }
 
 export interface ArticleFilters {

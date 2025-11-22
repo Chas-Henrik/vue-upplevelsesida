@@ -53,8 +53,8 @@ export const useExcursions = () => {
 
   return {
     excursions: readonly(excursions),
-    loading: readonly(loading),
-    error: readonly(error),
+    excursionsLoading: readonly(loading),
+    excursionsError: readonly(error),
     loadExcursions,
     getExcursionById,
     filterExcursions
