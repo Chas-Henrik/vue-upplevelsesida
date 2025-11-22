@@ -13,7 +13,7 @@ const props = defineProps<Props>()
     <div class="article-image">
       <NuxtImg 
         :src="`/data/images/excursionImages/${article.linkedExperienceId}.png`" 
-        :alt="`/data/images/excursionImages/${article.linkedExperienceId}.png image not found`"
+        :alt="article.title"
         class="image"
       />
     </div>
