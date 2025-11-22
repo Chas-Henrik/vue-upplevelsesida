@@ -16,7 +16,6 @@ const props = defineProps<Props>()
         :alt="`/data/images/excursionImages/${article.linkedExperienceId}.png image not found`"
         class="image"
       />
-      <div class="season-badge">{{ article.season }}</div>
     </div>
     
     <div class="article-content">
@@ -59,21 +58,6 @@ const props = defineProps<Props>()
 
 .article-card:hover .image {
   transform: scale(1.05);
-}
-
-.season-badge {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  background: rgba(255, 255, 255, 0.95);
-  color: var(--color-primary);
-  padding: 0.5rem 1rem;
-  border-radius: var(--radius-md);
-  font-weight: 600;
-  font-size: 0.875rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  box-shadow: var(--shadow-sm);
 }
 
 .article-content {
