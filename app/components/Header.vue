@@ -10,13 +10,8 @@ const menuItems = [
   { id: 'home', label: 'Home', url: '/' }
 ]
 
-// Emit event when menu item is clicked
-const emit = defineEmits<{
-  menuClick: [buttonId: string, url: string]
-}>()
-
-const handleMenuClick = (buttonId: string, url: string) => {
-  emit('menuClick', buttonId, url)
+const handleMenuClick = (url: string) => {
+  navigateTo(url)
   isMobileMenuOpen.value = false // Close menu after navigation
 }
 
@@ -52,7 +47,7 @@ const toggleMobileMenu = () => {
         <button
           v-for="item in menuItems"
           :key="item.id"
-          @click="handleMenuClick(item.id, item.url)"
+          @click="handleMenuClick(item.url)"
           class="menu-btn"
         >
           {{ item.label }}

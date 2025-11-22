@@ -1,12 +1,6 @@
-<script setup lang="ts">
-const handleMenuClick = (buttonId: string, url: string) => {
-  navigateTo(url)
-}
-</script>
-
 <template>
   <div>
-    <Header @menu-click="handleMenuClick" />
+    <Header />
     <slot />
   </div>
 </template>
