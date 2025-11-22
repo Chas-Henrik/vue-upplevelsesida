@@ -25,7 +25,7 @@ const handleBook = () => {
     <div class="card-image">
       <NuxtImg 
         :src="`/data/images/excursionImages/${excursion.id}.png`" 
-        :alt="`/data/images/excursionImages/${excursion.id}.png image not found`"
+        :alt="excursion.title"
         class="image"
       />
       <div class="season-badge">{{ excursion.season }}</div>
