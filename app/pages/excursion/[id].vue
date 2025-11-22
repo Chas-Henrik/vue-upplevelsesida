@@ -54,17 +54,17 @@ const handleBook = () => {
             <p class="details-text">{{ excursion.details }}</p>
           </div>
 
-          <!-- Packages -->
-          <div v-if="excursion.packages.length > 0" class="packages-section">
+          <!-- Offers -->
+          <div v-if="excursion.offers.length > 0" class="offers-section">
             <h2>Available Add-ons</h2>
-            <div class="packages-list">
+            <div class="offers-list">
               <div 
-                v-for="pkg in excursion.packages" 
-                :key="pkg.id"
-                class="package-item"
+                v-for="offer in excursion.offers" 
+                :key="offer.id"
+                class="offer-item"
               >
-                <span class="package-title"><strong>{{ pkg.title }}</strong></span>
-                <span class="package-price">+{{ pkg.price }} SEK</span>
+                <span class="offer-title"><strong>{{ offer.title }}</strong></span>
+                <span class="offer-price">+{{ offer.price }} SEK</span>
               </div>
             </div>
           </div>
@@ -88,7 +88,7 @@ const handleBook = () => {
 
 .error-container {
   max-width: 600px;
-  margin: 4rem auto;
+  margin: 2rem auto 2rem;
   padding: 2rem;
   text-align: center;
 }
@@ -223,14 +223,14 @@ const handleBook = () => {
 .description-section h2,
 .description-section h3,
 .info-section h2,
-.packages-section h2 {
+.offers-section h2 {
   font-size: 1.75rem;
   font-weight: 700;
   color: var(--color-text);
   margin: 0 0 1rem 0;
 }
 
-.packages-section h2 {
+.offers-section h2 {
   text-align: center;
 }
 
@@ -254,14 +254,14 @@ const handleBook = () => {
   font-size: 1.0625rem;
 }
 
-.packages-list {
+.offers-list {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 1rem;
 }
 
-.package-item {
+.offer-item {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -276,17 +276,17 @@ const handleBook = () => {
   gap: 0.5rem;
 }
 
-.package-title {
+.offer-title {
   font-weight: 500;
   color: var(--color-text);
 }
 
-.package-price {
+.offer-price {
   font-weight: 600;
   color: var(--color-primary);
 }
 
-.packages-section {
+.offers-section {
   background: white;
   max-width: 1200px;
   margin: 0 auto 2rem;
@@ -355,7 +355,7 @@ const handleBook = () => {
   .description-section h2,
   .description-section h3,
   .info-section h2,
-  .packages-section h2 {
+  .offers-section h2 {
     font-size: 1.5rem;
   }
 

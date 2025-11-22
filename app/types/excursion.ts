@@ -1,4 +1,4 @@
-export interface Package {
+export interface Offer {
   id: string
   title: string
   price: number
@@ -21,7 +21,7 @@ export interface Excursion {
   description: string
   details: string
   ageCategory: AgeCategory
-  packages: readonly Package[]
+  offers: readonly Offer[]
 }
 
 export interface ArticleFilters {
