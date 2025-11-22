@@ -5,7 +5,9 @@
       "title": "Northern Lights Snowmobile Safari",
       "season": "Winter",
       "price": 1495,
-      "description": "A guided evening snowmobile tour through Fjällhäll’s snowy valleys under a sky glowing in green and violet.",
+      "description": "A guided evening snowmobile tour through Fjällhäll's snowy valleys under a sky glowing in green and violet.",
+      "details": "Experience the magic of the Arctic night on this unforgettable snowmobile safari. Your journey begins at dusk as you set out across pristine snow-covered landscapes, guided by experienced locals who know exactly where to find the best viewing spots. As darkness falls, the northern lights begin their spectacular dance across the sky in shimmering shades of green, violet, and sometimes even red. The tour includes warm beverages and traditional snacks served in a cozy wilderness shelter, where your guide shares fascinating stories about the aurora borealis and the region's winter traditions. No previous snowmobile experience is required, as you'll receive thorough instruction before departure. The entire experience lasts approximately 4 hours, including a 2-hour ride through the wilderness.",
+      "ageCategory": "Adult 13-64",
       "packages": [
         { "id": "pkg-1a", "title": "Northern Lights Photographer", "price": 395 },
         { "id": "pkg-1b", "title": "Wilderness Snack", "price": 120 },
@@ -19,6 +21,8 @@
       "season": "Winter",
       "price": 1295,
       "description": "A high-energy dog sled ride across open snowfields and gentle mountain terrain.",
+      "details": "Meet our pack of enthusiastic Alaskan huskies and learn about their incredible endurance and friendly nature. After a warm welcome and safety briefing, you'll help harness the dogs – a fun and educational experience for the whole family. Once you're settled in the sled, the dogs will eagerly pull you across the snowy landscape, their paws creating a rhythmic sound that complements the peaceful surroundings. The route takes you through open valleys and along frozen streams, offering stunning views of the surrounding peaks. Children especially love the chance to interact with the dogs before and after the ride, and there's plenty of time for photos and cuddles. The adventure includes hot chocolate and cookies at our kennel, where you can warm up and learn more about dog sledding traditions. Duration: approximately 3 hours.",
+      "ageCategory": "Child 0-12",
       "packages": [
         { "id": "pkg-2a", "title": "Dog Cuddle Time", "price": 95 },
         { "id": "pkg-2b", "title": "Lavvu Lunch", "price": 160 },
@@ -31,7 +35,9 @@
       "title": "Fjällhäll Ski Weekend – 2 Days",
       "season": "Winter",
       "price": 2295,
-      "description": "Two days of skiing, stunning views, and après-ski in Fjällhäll’s most popular slopes.",
+      "description": "Two days of skiing, stunning views, and après-ski in Fjällhäll's most popular slopes.",
+      "details": "Immerse yourself in two full days of world-class skiing at Fjällhäll's premier winter resort. With over 40 slopes ranging from gentle beginner runs to challenging black diamond descents, there's something for every skill level. The resort features modern lift systems minimizing wait times, and the snow quality is consistently excellent thanks to state-of-the-art snow-making equipment. Day one starts with first tracks on freshly groomed slopes, followed by a hearty mountain lunch at one of our slope-side restaurants. In the evening, experience authentic Scandinavian après-ski culture with live music, local craft beers, and traditional dishes. Day two includes access to our off-piste areas with optional guide service. The package includes two-day lift passes and equipment storage. Accommodation not included but can be arranged separately.",
+      "ageCategory": "Adult 13-64",
       "packages": [
         { "id": "pkg-3a", "title": "Ski Rental", "price": 350 },
         { "id": "pkg-3b", "title": "Premium Lift Pass", "price": 540 },
@@ -45,6 +51,8 @@
       "season": "Winter",
       "price": 995,
       "description": "An outdoor spa experience surrounded by snow, including a warm spring and a snow-heated sauna.",
+      "details": "Discover the ultimate relaxation in our unique wilderness spa, where hot and cold create the perfect harmony. Begin your journey with a traditional Finnish sauna heated by a wood-burning stove, where the gentle heat prepares your body for the experience ahead. Step outside into the crisp winter air and immerse yourself in our naturally heated spring pool, where water bubbles up from deep beneath the mountain at a perfect 38°C. The contrast between the warm water and the snow-covered surroundings creates a surreal and deeply relaxing experience. The facility includes comfortable changing rooms, showers, and a relaxation lounge with panoramic windows overlooking the pristine wilderness. Herbal teas and light refreshments are provided throughout your visit. We recommend booking for 3-4 hours to fully enjoy all amenities. Robes and towels included.",
+      "ageCategory": "Senior 65+",
       "packages": [
         { "id": "pkg-4a", "title": "30-Minute Massage", "price": 350 },
         { "id": "pkg-4b", "title": "Champagne Package", "price": 280 },
@@ -57,7 +65,9 @@
       "title": "Kayaking on Glimmer Lake",
       "season": "Summer",
       "price": 895,
-      "description": "A peaceful paddle across Fjällhäll’s clearest lake, surrounded by lush summer nature.",
+      "description": "A peaceful paddle across Fjällhäll's clearest lake, surrounded by lush summer nature.",
+      "details": "Glide across the mirror-like surface of Glimmer Lake, named for the way it reflects the surrounding mountains in its crystal-clear waters. This guided kayaking tour is perfect for beginners and experienced paddlers alike. Your journey begins with basic paddling instruction and safety briefing at our lakeside facility. As you paddle, you'll explore hidden coves, observe local wildlife including waterfowl and possibly even moose coming to drink at the shore, and learn about the area's geology and ecosystem from your knowledgeable guide. The route includes several stops at scenic spots perfect for swimming (weather permitting) and photography. All equipment is provided, including high-quality sit-on-top kayaks, paddles, life jackets, and dry bags for your belongings. The tour covers approximately 6 kilometers and takes 3-4 hours including breaks. Suitable for ages 13 and up.",
+      "ageCategory": "Adult 13-64",
       "packages": [
         { "id": "pkg-5a", "title": "Local Food Picnic", "price": 145 },
         { "id": "pkg-5b", "title": "Guided Tour", "price": 220 },
@@ -70,7 +80,9 @@
       "title": "Hike to Solklippan",
       "season": "Summer",
       "price": 695,
-      "description": "A scenic hike to Fjällhäll’s iconic lookout point with panoramic valley views.",
+      "description": "A scenic hike to Fjällhäll's iconic lookout point with panoramic valley views.",
+      "details": "Embark on a memorable journey to Solklippan (Sun Cliff), the most photographed viewpoint in the Fjällhäll region. This moderate 8-kilometer round-trip hike follows a well-maintained trail through diverse landscapes, from lush birch forests to alpine meadows bursting with wildflowers in summer. The gentle ascent allows for a comfortable pace with plenty of opportunities to stop and appreciate the changing scenery. Your experienced guide will point out native plants, share local legends, and ensure everyone stays together and safe. Upon reaching the summit plateau, you're rewarded with a breathtaking 360-degree panorama encompassing three valleys and dozens of peaks. This is an ideal spot for a packed lunch (not included) and photography. The descent follows the same route, typically taking less time. Total duration: 5-6 hours. Recommended fitness level: moderate. Bring sturdy hiking boots, layers, and plenty of water.",
+      "ageCategory": "Senior 65+",
       "packages": [
         { "id": "pkg-6a", "title": "Hiking Poles", "price": 60 },
         { "id": "pkg-6b", "title": "Guided Hike", "price": 200 },
@@ -84,6 +96,8 @@
       "season": "Summer",
       "price": 1295,
       "description": "A fast-paced downhill biking adventure with trails for beginners and experts.",
+      "details": "Get your adrenaline pumping on Gray Mountain's purpose-built downhill bike park, featuring over 15 trails spanning all difficulty levels. Start your day with a chairlift ride to the summit, where you'll be fitted with a premium full-suspension mountain bike and protective gear. Our bike park offers everything from flowy green trails perfect for building confidence, to technical blue runs with jumps and berms, to extreme black diamond courses that will challenge even expert riders. Each trail is expertly maintained and clearly marked with difficulty ratings. Professional instructors are available throughout the day to offer tips and guidance. The park also features a skills area where you can practice techniques before hitting the trails. A full day pass gives you unlimited uplift access, allowing you to maximize your riding time. On-site bike shop and repair station available. Minimum age 13, all participants must wear provided safety equipment.",
+      "ageCategory": "Adult 13-64",
       "packages": [
         { "id": "pkg-7a", "title": "Bike Rental", "price": 320 },
         { "id": "pkg-7b", "title": "Protective Gear", "price": 180 },
@@ -97,6 +111,8 @@
       "season": "Summer",
       "price": 1795,
       "description": "A unique 24-hour nature retreat featuring meditation, forest bathing, and complete relaxation.",
+      "details": "Disconnect from the modern world and reconnect with nature during this transformative 24-hour wilderness retreat. Your experience begins in the late afternoon with a mindful walk to our secluded forest camp, where comfortable glamping tents await. The evening program includes guided forest bathing (Shinrin-yoku), a Japanese practice of mindful presence in nature, followed by a meditation session as the sun sets. Enjoy a nutritious dinner prepared with local, organic ingredients around the campfire. After stargazing and quiet reflection time, retire to your comfortable tent equipped with quality sleeping bags and mats. Wake naturally with the forest, start your day with sunrise yoga, and enjoy a wholesome breakfast. The morning continues with a nature awareness workshop where you'll learn wilderness skills and deepen your connection to the environment. The retreat concludes around noon. Maximum 8 participants ensures personalized attention. Led by certified meditation and yoga instructors. All equipment is included.",
+      "ageCategory": "Adult 13-64",
       "packages": [
         { "id": "pkg-8a", "title": "Nature Guide", "price": 260 },
         { "id": "pkg-8b", "title": "Meal Package", "price": 140 },
