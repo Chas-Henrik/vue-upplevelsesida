@@ -11,7 +11,7 @@ const excursionId = computed(() => route.params.excursionId as string)
 
 const handleSubmit = (booking: Booking) => {
   cartStore.addExcursion(booking)
-  router.push('/cart')
+  router.push('/')
 }
 </script>
 
