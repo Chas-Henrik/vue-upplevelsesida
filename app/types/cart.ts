@@ -1,4 +1,4 @@
-import type { PersonBookingField } from "./bookingItem"
+import type { PersonBookingField } from "./booking"
 
 export interface CartItem {
   excursionId: string
