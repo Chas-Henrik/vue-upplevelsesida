@@ -21,6 +21,13 @@ const selectedOfferIds = ref<string[]>(
   props.bookingItem.bookingField.selectedOffers.map(offer => offer.id)
 )
 
+// Watch for bookingField changes (when excursion changes)
+watch(() => props.bookingItem.bookingField, (newField) => {
+  name.value = newField.name
+  selectedAgeCategory.value = newField.ageCategory
+  selectedOfferIds.value = newField.selectedOffers.map(offer => offer.id)
+}, { deep: true })
+
 // Available age categories
 const ageCategories: AgeCategory[] = ['Child 0-12', 'Adult 13-64', 'Senior 65+']
 

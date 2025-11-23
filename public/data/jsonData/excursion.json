@@ -16,7 +16,10 @@
       "offers": [
         { "id": "offer-1a", "title": "Northern Lights Photographer", "price": 395 },
         { "id": "offer-1b", "title": "Wilderness Snack", "price": 120 },
-        { "id": "offer-1c", "title": "Warm Suit & Boots", "price": 180 }
+        { "id": "offer-1c", "title": "Warm Suit & Boots", "price": 180 },
+        { "id": "offer-1d", "title": "Aurora Forecast App", "price": 45 },
+        { "id": "offer-1e", "title": "Thermal Flask", "price": 85 },
+        { "id": "offer-1f", "title": "Extra Snowmobile Hour", "price": 450 }
       ]
     },
 
@@ -56,7 +59,11 @@
       "offers": [
         { "id": "offer-3a", "title": "Ski Rental", "price": 350 },
         { "id": "offer-3b", "title": "Premium Lift Pass", "price": 540 },
-        { "id": "offer-3c", "title": "Après-ski Dinner", "price": 290 }
+        { "id": "offer-3c", "title": "Après-ski Dinner", "price": 290 },
+        { "id": "offer-3d", "title": "Ski Lessons (2h)", "price": 420 },
+        { "id": "offer-3e", "title": "Locker & Storage", "price": 65 },
+        { "id": "offer-3f", "title": "Mountain Restaurant Voucher", "price": 150 },
+        { "id": "offer-3g", "title": "Helmet & Goggles", "price": 95 }
       ]
     },
 
@@ -96,7 +103,9 @@
       "offers": [
         { "id": "offer-5a", "title": "Local Food Picnic", "price": 145 },
         { "id": "offer-5b", "title": "Guided Tour", "price": 220 },
-        { "id": "offer-5c", "title": "Double Kayak", "price": 80 }
+        { "id": "offer-5c", "title": "Double Kayak", "price": 80 },
+        { "id": "offer-5d", "title": "Waterproof Camera", "price": 120 },
+        { "id": "offer-5e", "title": "Wetsuit Rental", "price": 110 }
       ]
     },
 
@@ -136,7 +145,10 @@
       "offers": [
         { "id": "offer-7a", "title": "Bike Rental", "price": 320 },
         { "id": "offer-7b", "title": "Protective Gear", "price": 180 },
-        { "id": "offer-7c", "title": "Technique Lesson", "price": 295 }
+        { "id": "offer-7c", "title": "Technique Lesson", "price": 295 },
+        { "id": "offer-7d", "title": "GoPro Mount & Camera", "price": 240 },
+        { "id": "offer-7e", "title": "Premium Bike Upgrade", "price": 185 },
+        { "id": "offer-7f", "title": "Energy Drink Pack", "price": 75 }
       ]
     },
 
