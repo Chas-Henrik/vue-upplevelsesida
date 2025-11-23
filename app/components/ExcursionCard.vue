@@ -37,7 +37,7 @@ const handleBook = () => {
       
       <div class="card-price">
         <span class="price-label">From</span>
-        <span class="price-value">{{ excursion.price }} SEK</span>
+        <span class="price-value">{{ excursion.prices.find(p => p.ageCategory === 'Adult 13-64')?.price }} SEK</span>
       </div>
       
       <div class="card-actions">

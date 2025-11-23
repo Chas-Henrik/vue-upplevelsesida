@@ -46,8 +46,8 @@ export const useExcursions = () => {
   const filterExcursions = (filters: ExcursionFilters) => {
     return excursions.value.filter(excursion => {
       const matchesSeason = !filters.season || excursion.season === filters.season
-      const matchesAgeCategory = !filters.ageCategory || excursion.ageCategory === filters.ageCategory
-      return matchesSeason && matchesAgeCategory
+      const matchesRecommendedAge = !filters.recommendedAge || excursion.recommendedAge === filters.recommendedAge
+      return matchesSeason && matchesRecommendedAge
     })
   }
 

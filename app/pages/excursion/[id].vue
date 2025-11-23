@@ -33,12 +33,12 @@ const handleBook = () => {
         <div class="season-badge">{{ excursion.season }}</div>
         <div class="price-badge">
           <div class="price-badge-label">From:</div>
-          <div class="price-badge-value">{{ excursion.price }} SEK</div>
+          <div class="price-badge-value">{{ excursion.prices.find(p => p.ageCategory === 'Adult 13-64')?.price }} SEK</div>
         </div>
         <div class="hero-overlay">
           <div class="hero-content">
             <h1 class="hero-title">{{ excursion.title }}</h1>
-            <p class="hero-info"><strong>Recommended for:</strong> {{ excursion.ageCategory }}</p>
+            <p class="hero-info"><strong>Recommended for:</strong> {{ excursion.recommendedAge }}</p>
           </div>
         </div>
       </div>

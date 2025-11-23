@@ -43,15 +43,15 @@ export const useArticles = () => {
     return articles.value.find(article => article.id === id)
   }
 
-  const getArticlesByExperienceId = (experienceId: string) => {
-    return articles.value.filter(article => article.linkedExperienceId === experienceId)
+  const getArticlesByExcursionId = (excursionId: string) => {
+    return articles.value.filter(article => article.linkedExcursionId === excursionId)
   }
 
   const filterArticles = (filters: ArticleFilters) => {
     return articles.value.filter(article => {
       const matchesSeason = !filters.season || article.season === filters.season
-      const matchesAgeCategory = !filters.ageCategory || article.ageCategory === filters.ageCategory
-      return matchesSeason && matchesAgeCategory
+      const matchesRecommendedAge = !filters.recommendedAge || article.recommendedAge === filters.recommendedAge
+      return matchesSeason && matchesRecommendedAge
     })
   }
 
@@ -61,7 +61,7 @@ export const useArticles = () => {
     articlesError: readonly(error),
     loadArticles,
     getArticleById,
-    getArticlesByExperienceId,
+    getArticlesByExcursionId,
     filterArticles
   }
 }
