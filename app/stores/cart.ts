@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import type { CartItem } from '~/types/cart'
+import type { Booking } from '~/types'
 
 export const useCartStore = defineStore('cart', () => {
-  const items = ref<CartItem[]>([])
+  const items = ref<Booking[]>([])
 
   const isEmpty = computed(() => {
     return items.value.length === 0
@@ -13,11 +13,10 @@ export const useCartStore = defineStore('cart', () => {
     return items.value.length
   })
 
-  const addExcursion = (excursion: CartItem) => {
+  const addExcursion = (excursion: Booking) => {
     const existingIndex = items.value.findIndex(
       e => e.excursionId === excursion.excursionId && 
-          e.startDate === excursion.startDate && 
-          e.endDate === excursion.endDate
+          e.date === excursion.date
     )
     
     // If the excursion with the same ID and dates exists, update it; otherwise, add new
@@ -28,9 +27,9 @@ export const useCartStore = defineStore('cart', () => {
     }
   }
 
-  const removeExcursion = (excursionId: string, startDate: string) => {
+  const removeExcursion = (excursionId: string, date: string) => {
     items.value = items.value.filter(
-      exc => !(exc.excursionId === excursionId && exc.startDate === startDate)
+      exc => !(exc.excursionId === excursionId && exc.date === date)
     )
   }
 

@@ -1,13 +1,22 @@
 import type { AgeCategory, Excursion, Offer } from "./excursion";
 
-export interface PersonBookingField {
+export interface BookingField {
   name: string;
   ageCategory: AgeCategory
   excursionPrice: number
   selectedOffers: Offer[]
 }
 
-export interface PersonBookingItem {
+export interface BookingItem {
   excursion: Excursion
-  person: PersonBookingField
+  person: BookingField
+}
+
+export interface Booking {
+  excursionId: string
+  title: string
+  date: string
+  duration: string
+  numberOfPersons: number
+  personBookingFields: BookingField[]
 }

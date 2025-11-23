@@ -26,6 +26,7 @@ export interface Excursion {
   readonly description: string
   readonly details: string
   readonly recommendedAge: AgeCategory
+  readonly duration: string
   readonly offers: readonly Offer[]
 }
 
@@ -40,5 +41,6 @@ export interface Article {
   readonly season: Season
   readonly recommendedAge: AgeCategory
   readonly linkedExcursionId: string
+  readonly duration: string
   readonly content: string
 }
