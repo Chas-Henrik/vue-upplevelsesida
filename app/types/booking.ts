@@ -9,7 +9,7 @@ export interface BookingField {
 
 export interface BookingItem {
   excursion: Excursion
-  person: BookingField
+  bookingField: BookingField
 }
 
 export interface Booking {
