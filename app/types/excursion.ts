@@ -8,32 +8,39 @@ export type Season = 'Winter' | 'Summer'
 
 export type AgeCategory = 'Child 0-12' | 'Adult 13-64' | 'Senior 65+'
 
+export interface PriceByAge {
+  ageCategory: AgeCategory
+  price: number
+}
+
 export interface ExcursionFilters {
-  ageCategory?: AgeCategory
+  recommendedAge?: AgeCategory
   season?: Season
 }
 
 export interface Excursion {
-  id: string
-  title: string
-  season: Season
-  price: number
-  description: string
-  details: string
-  ageCategory: AgeCategory
-  offers: readonly Offer[]
+  readonly id: string
+  readonly title: string
+  readonly season: Season
+  readonly prices: readonly PriceByAge[]
+  readonly description: string
+  readonly details: string
+  readonly recommendedAge: AgeCategory
+  readonly duration: string
+  readonly offers: readonly Offer[]
 }
 
 export interface ArticleFilters {
   season?: Season
-  ageCategory?: AgeCategory
+  recommendedAge?: AgeCategory
 }
 
 export interface Article {
-  id: string
-  title: string
-  season: Season
-  ageCategory: AgeCategory
-  linkedExperienceId: string
-  content: string
+  readonly id: string
+  readonly title: string
+  readonly season: Season
+  readonly recommendedAge: AgeCategory
+  readonly linkedExcursionId: string
+  readonly duration: string
+  readonly content: string
 }

@@ -1,17 +1,5 @@
-export interface Person {
-  name: string
-  age: number
-  selectedOffers: string[] // Offer IDs
-}
-
-export interface CartItem {
-  excursionId: string
-  numberOfPersons: number
-  startDate: string
-  endDate: string
-  persons: Person[]
-}
+import type { Booking } from "./booking"
 
 export interface Cart {
-  items: CartItem[]
+  items: Booking[]
 }
