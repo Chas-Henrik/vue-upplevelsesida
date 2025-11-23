@@ -39,10 +39,9 @@ const bookingFields = computed<BookingField[]>(() => {
     
     if (existing) {
       // Update price if excursion changed
-      const priceObj = selectedExcursion.value?.prices.find(p => p.ageCategory === existing.ageCategory)
       fields.push({
         ...existing,
-        excursionPrice: priceObj?.price || 0
+        excursionPrice: selectedExcursion.value?.prices.find(p => p.ageCategory === existing.ageCategory)?.price || 0
       })
     } else {
       // Create new field with default values
@@ -204,7 +203,7 @@ onMounted(async () => {
         :key="index"
         :booking-item="item"
         :index="index"
-        @change="handleFieldChange(index, $event)"
+        @change="(updatedField) => handleFieldChange(index, updatedField)"
       />
     </div>
 
