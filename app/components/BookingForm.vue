@@ -29,17 +29,6 @@ const selectedExcursion = computed<Excursion | undefined>(() => {
 // Booking fields data storage
 const bookingFieldsData = ref<Map<number, BookingField>>(new Map())
 
-// Watch selected excursion to clear offers when changed
-watch(selectedExcursionId, () => {
-  // Clear selected offers for all booking fields when excursion changes
-  bookingFieldsData.value.forEach((field, index) => {
-    bookingFieldsData.value.set(index, {
-      ...field,
-      selectedOffers: []
-    })
-  })
-})
-
 // Computed booking fields based on number of persons
 const bookingFields = computed<BookingField[]>(() => {
   const fields: BookingField[] = []
