@@ -18,5 +18,5 @@ export interface Booking {
   date: string
   duration: string
   numberOfPersons: number
-  personBookingFields: BookingField[]
+  bookingFields: BookingField[]
 }
