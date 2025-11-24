@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue'
 import type { BookingItem, BookingField } from '~/types/booking'
-import type { AgeCategory, Offer } from '~/types/excursion'
+import type { AgeCategory } from '~/types/excursion'
 
 interface Props {
   bookingItem: BookingItem
