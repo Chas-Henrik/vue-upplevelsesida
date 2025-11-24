@@ -66,20 +66,23 @@
           </NuxtLink>
         </div>
       </div>
-      <p class="text-xl mb-8">Total price: <span class="font-sans font-semibold text-primary">{{ total }} SEK</span></p>
+      <div>
+        <p class="flex justify-end w-full text-xl mb-8"><strong>Total price: </strong><span class="flex self-end ml-1 font-sans font-semibold text-primary">{{ total }} SEK</span></p>
+      </div>
+      
       <!-- Actions -->
       <div v-if="bookings.length > 0" class="flex gap-4 mb-8">
         <button 
           type="button" 
           @click="clearCart"
-          class="flex-1 bg-gray-200 text-text px-6 py-3 font-sans font-semibold hover:bg-gray-300 transition-colors shadow-md hover:shadow-lg"
+          class="flex-1 bg-gray-200 text-text px-6 py-3 font-sans font-semibold hover:bg-gray-300 transition-colors cursor-pointer shadow-md hover:shadow-lg"
           style="border-radius: var(--radius-md)"
         >
           Clear Cart
         </button>
         <button 
           type="button" 
-          class="flex-1 bg-secondary text-white px-6 py-3 font-sans font-semibold hover:bg-green-700 transition-colors shadow-lg hover:shadow-xl disabled:bg-gray-400 disabled:cursor-not-allowed disabled:shadow-md"
+          class="flex-1 bg-secondary text-white px-6 py-3 font-sans font-semibold hover:bg-green-700 transition-colors shadow-lg hover:shadow-xl cursor-pointer disabled:bg-gray-400 disabled:cursor-not-allowed disabled:shadow-md"
           style="border-radius: var(--radius-md)"
           @click="handleCheckout"
         >
