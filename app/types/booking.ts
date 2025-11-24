@@ -16,8 +16,3 @@ export interface BookingField {
   excursionPrice: number
   selectedOffers: Offer[]
 }
-
-export interface BookingItem {
-  excursion: Excursion
-  bookingField: BookingField
-}

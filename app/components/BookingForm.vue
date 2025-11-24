@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, computed, watch, onMounted } from 'vue'
-import type { Booking, BookingField, BookingItem } from '~/types/booking'
+import { ref, computed, onMounted } from 'vue'
+import type { Booking, BookingField } from '~/types/booking'
 import type { Excursion } from '~/types/excursion'
 import BookingFieldComponent from './BookingField.vue'
 import { shortCryptoId } from '~/utils/helpers'
@@ -56,16 +56,6 @@ const bookingFields = computed<BookingField[]>(() => {
   }
   
   return fields
-})
-
-// Create BookingItem for each person
-const bookingItems = computed<BookingItem[]>(() => {
-  if (!selectedExcursion.value) return []
-  
-  return bookingFields.value.map(field => ({
-    excursion: selectedExcursion.value!,
-    bookingField: field
-  }))
 })
 
 // Handle booking field changes
@@ -198,12 +188,13 @@ onMounted(async () => {
     </div>
 
     <!-- Booking Fields -->
-    <div v-if="selectedExcursion && bookingItems.length > 0" class="form-section">
+    <div v-if="selectedExcursion && bookingFields.length > 0" class="form-section">
       <h2 class="section-title">Participant Information</h2>
       <BookingFieldComponent
-        v-for="(item, index) in bookingItems"
+        v-for="(field, index) in bookingFields"
         :key="index"
-        :booking-item="item"
+        :excursion="selectedExcursion"
+        :booking-field="field"
         :index="index"
         @change="(updatedField) => handleFieldChange(index, updatedField)"
       />
