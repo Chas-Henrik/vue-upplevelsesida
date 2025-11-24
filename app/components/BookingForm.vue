@@ -3,6 +3,7 @@ import { ref, computed, watch, onMounted } from 'vue'
 import type { Booking, BookingField, BookingItem } from '~/types/booking'
 import type { Excursion } from '~/types/excursion'
 import BookingFieldComponent from './BookingField.vue'
+import { shortCryptoId } from '~/utils/helpers'
 
 interface Props {
   excursionId?: string
@@ -93,6 +94,7 @@ const handleSubmit = () => {
   if (!isFormValid.value || !selectedExcursion.value) return
   
   const booking: Booking = {
+    bookingId: shortCryptoId(),
     excursionId: selectedExcursion.value.id,
     title: selectedExcursion.value.title,
     date: selectedDate.value,

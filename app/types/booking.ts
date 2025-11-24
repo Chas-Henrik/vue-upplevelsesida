@@ -13,6 +13,7 @@ export interface BookingItem {
 }
 
 export interface Booking {
+  bookingId: string
   excursionId: string
   title: string
   date: string
