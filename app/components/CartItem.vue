@@ -87,7 +87,7 @@
               <ul class="space-y-2">
                 <li v-for="offer in person.selectedOffers" :key="offer.id" class="flex items-center justify-between text-sm">
                   <span class="font-sans text-gray-700">{{ offer.title }}</span>
-                  <span class="font-sans text-accent font-semibold">+{{ offer.price }} SEK</span>
+                  <span class="font-sans text-primary font-semibold">+{{ offer.price }} SEK</span>
                 </li>
               </ul>
             </div>

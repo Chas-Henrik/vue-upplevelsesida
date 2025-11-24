@@ -32,6 +32,10 @@
     } else return
   } 
 
+  function handleCheckout() {
+    navigateTo("/confirmation")
+  }
+
   let keyId = 0
 
 </script>
@@ -62,7 +66,7 @@
           </NuxtLink>
         </div>
       </div>
-      <p>Total price{{ total }}</p>
+      <p class="text-xl mb-8">Total price: <span class="font-sans font-semibold text-primary">{{ total }} SEK</span></p>
       <!-- Actions -->
       <div v-if="bookings.length > 0" class="flex gap-4 mb-8">
         <button 
@@ -75,9 +79,9 @@
         </button>
         <button 
           type="button" 
-          :disabled="cartStore.isEmpty"
           class="flex-1 bg-secondary text-white px-6 py-3 font-sans font-semibold hover:bg-green-700 transition-colors shadow-lg hover:shadow-xl disabled:bg-gray-400 disabled:cursor-not-allowed disabled:shadow-md"
           style="border-radius: var(--radius-md)"
+          @click="handleCheckout"
         >
           Go to Checkout
         </button>
@@ -92,3 +96,4 @@ button {
   transition: all 0.2s ease;
 }
 </style>
+
