@@ -66,7 +66,7 @@
           </NuxtLink>
         </div>
       </div>
-      <div>
+      <div class="w-full pr-7">
         <p class="flex justify-end w-full text-xl mb-8"><strong>Total price: </strong><span class="flex self-end ml-1 font-sans font-semibold text-primary">{{ total }} SEK</span></p>
       </div>
       
