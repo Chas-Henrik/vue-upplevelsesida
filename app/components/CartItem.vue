@@ -41,7 +41,7 @@
       <button 
         type="button" 
         @click="$emit('click', props.booking)"
-        class="inline-flex items-center justify-center w-8 h-8 text-white bg-red-500 hover:bg-red-600 transition-colors font-semibold"
+        class="inline-flex items-center justify-center w-8 h-8 text-white bg-red-500 hover:bg-red-600 transition-colors cursor-pointer font-semibold"
         style="border-radius: var(--radius-md)"
         aria-label="Remove from cart"
       >
@@ -87,7 +87,7 @@
               <ul class="space-y-2">
                 <li v-for="offer in person.selectedOffers" :key="offer.id" class="flex items-center justify-between text-sm">
                   <span class="font-sans text-gray-700">{{ offer.title }}</span>
-                  <span class="font-sans text-accent font-semibold">+{{ offer.price }} SEK</span>
+                  <span class="font-sans text-primary font-semibold">+{{ offer.price }} SEK</span>
                 </li>
               </ul>
             </div>
