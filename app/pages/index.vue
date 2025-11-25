@@ -5,14 +5,35 @@ const route = useRoute()
 const { excursions, excursionsLoading, excursionsError } = useExcursions()
 const { articles, articlesLoading, articlesError } = useArticles()
 
-// Extract query params
-const date = computed(() => route.query.date as string | undefined)
-const duration = computed(() => route.query.duration as string | undefined)
+// Extract query params with validation
+const date = computed(() => {
+  const value = route.query.date as string | undefined
+  if (!value) return undefined
+  const inputDate = new Date(value)
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+  return inputDate >= today ? value : undefined
+})
+
+const duration = computed(() => {
+  const value = route.query.duration as string | undefined
+  if (!value) return undefined
+  // Validate format: 'xh' (e.g., '4h') or 'x days' (e.g., '2 days')
+  const validFormat = /^\d+h$|^\d+ days?$/.test(value)
+  return validFormat ? value : undefined
+})
+
 const noPersons = computed(() => {
   const value = route.query['no-persons']
-  return value ? Number(value) : undefined
+  const num = value ? Number(value) : undefined
+  return num && num >= 1 && num <= 10 ? num : undefined
 })
-const ageCategory = computed(() => route.query['age-category'] as AgeCategory | undefined)
+
+const ageCategory = computed(() => {
+  const value = route.query['age-category'] as string
+  const validCategories: AgeCategory[] = ['Child 0-12', 'Adult 13-64', 'Senior 65+']
+  return validCategories.includes(value as AgeCategory) ? value as AgeCategory : undefined
+})
 
 const handleCardClick = (buttonType: 'readMore' | 'book', excursionId: string) => {
   // Build query params

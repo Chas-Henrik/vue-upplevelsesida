@@ -10,13 +10,27 @@ const cartStore = useCartStore()
 
 const excursionId = computed(() => route.params.excursionId as string)
 
-// Extract query params
-const date = computed(() => route.query.date as string | undefined)
+// Extract query params with validation
+const date = computed(() => {
+  const value = route.query.date as string | undefined
+  if (!value) return undefined
+  const inputDate = new Date(value)
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+  return inputDate >= today ? value : undefined
+})
+
 const noPersons = computed(() => {
   const value = route.query['no-persons']
-  return value ? Number(value) : undefined
+  const num = value ? Number(value) : undefined
+  return num && num >= 1 && num <= 10 ? num : undefined
 })
-const ageCategory = computed(() => route.query['age-category'] as AgeCategory | undefined)
+
+const ageCategory = computed(() => {
+  const value = route.query['age-category'] as string
+  const validCategories: AgeCategory[] = ['Child 0-12', 'Adult 13-64', 'Senior 65+']
+  return validCategories.includes(value as AgeCategory) ? value as AgeCategory : undefined
+})
 
 const handleSubmit = (booking: Booking) => {
   cartStore.addExcursion(booking)
