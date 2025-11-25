@@ -2,15 +2,27 @@
 import { ref, computed, watch } from 'vue'
 import type { BookingField } from '~/types/booking'
 import type { AgeCategory, Excursion } from '~/types/excursion'
+import type { PropType } from 'vue'
 
-interface Props {
-  excursion: Excursion
-  bookingField: BookingField
-  ageCategory?: AgeCategory
-  index: number
-}
-
-const props = defineProps<Props>()
+const props = defineProps({
+  excursion: {
+    type: Object as PropType<Excursion>,
+    required: true
+  },
+  bookingField: {
+    type: Object as PropType<BookingField>,
+    required: true
+  },
+  ageCategory: {
+    type: String as PropType<AgeCategory>,
+    required: false,
+    validator: (value: string) => ['Child 0-12', 'Adult 13-64', 'Senior 65+'].includes(value)
+  },
+  index: {
+    type: Number,
+    required: true
+  }
+})
 
 const emit = defineEmits<{
   change: [bookingField: BookingField]

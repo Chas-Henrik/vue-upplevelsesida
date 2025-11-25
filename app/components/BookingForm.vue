@@ -2,17 +2,38 @@
 import { ref, computed, onMounted } from 'vue'
 import type { Booking, BookingField } from '~/types/booking'
 import type { AgeCategory, Excursion } from '~/types/excursion'
+import type { PropType } from 'vue'
 import BookingFieldComponent from './BookingField.vue'
 import { shortCryptoId } from '~/utils/helpers'
 
-interface Props {
-  excursionId?: string
-  date?: string
-  noPersons?: number
-  ageCategory?: AgeCategory
-}
-
-const props = defineProps<Props>()
+const props = defineProps({
+  excursionId: {
+    type: String,
+    required: false
+  },
+  date: {
+    type: String,
+    required: false,
+    validator: (value: string) => {
+      if (!value) return true // Allow undefined/empty
+      const inputDate = new Date(value)
+      const today = new Date()
+      today.setHours(0, 0, 0, 0) // Reset time to start of day
+      return inputDate >= today
+    }
+  },
+  noPersons: {
+    type: Number,
+    required: false,
+    default: 1,
+    validator: (value: number) => value >= 1 && value <= 10
+  },
+  ageCategory: {
+    type: String as PropType<AgeCategory>,
+    required: false,
+    validator: (value: string) => ['Child 0-12', 'Adult 13-64', 'Senior 65+'].includes(value)
+  }
+})
 
 const emit = defineEmits<{
   submit: [booking: Booking]
