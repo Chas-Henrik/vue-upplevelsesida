@@ -1,15 +1,39 @@
 <script setup lang="ts">
-import { ref, computed, watch, onMounted } from 'vue'
-import type { Booking, BookingField, BookingItem } from '~/types/booking'
-import type { Excursion } from '~/types/excursion'
+import { ref, computed, onMounted } from 'vue'
+import type { Booking, BookingField } from '~/types/booking'
+import type { AgeCategory, Excursion } from '~/types/excursion'
+import type { PropType } from 'vue'
 import BookingFieldComponent from './BookingField.vue'
 import { shortCryptoId } from '~/utils/helpers'
 
-interface Props {
-  excursionId?: string
-}
-
-const props = defineProps<Props>()
+const props = defineProps({
+  excursionId: {
+    type: String,
+    required: false
+  },
+  date: {
+    type: String,
+    required: false,
+    validator: (value: string) => {
+      if (!value) return true // Allow undefined/empty
+      const inputDate = new Date(value)
+      const today = new Date()
+      today.setHours(0, 0, 0, 0) // Reset time to start of day
+      return inputDate >= today
+    }
+  },
+  noPersons: {
+    type: Number,
+    required: false,
+    default: 1,
+    validator: (value: number) => value >= 1 && value <= 10
+  },
+  ageCategory: {
+    type: String as PropType<AgeCategory>,
+    required: false,
+    validator: (value: string) => ['Child 0-12', 'Adult 13-64', 'Senior 65+'].includes(value)
+  }
+})
 
 const emit = defineEmits<{
   submit: [booking: Booking]
@@ -19,8 +43,8 @@ const { excursions, loadExcursions } = useExcursions()
 
 // Form state
 const selectedExcursionId = ref<string>('')
-const selectedDate = ref<string>('')
-const numberOfPersons = ref<number>(1)
+const selectedDate = ref<string>(props.date || '')
+const numberOfPersons = ref<number>(props.noPersons || 1)
 
 // Selected excursion computed
 const selectedExcursion = computed<Excursion | undefined>(() => {
@@ -46,26 +70,17 @@ const bookingFields = computed<BookingField[]>(() => {
       })
     } else {
       // Create new field with default values
+      const defaultAgeCategory = (i === 0 && props.ageCategory) ? props.ageCategory : 'Adult 13-64'
       fields.push({
         name: '',
-        ageCategory: 'Adult 13-64',
-        excursionPrice: selectedExcursion.value?.prices.find(p => p.ageCategory === 'Adult 13-64')?.price || 0,
+        ageCategory: defaultAgeCategory,
+        excursionPrice: selectedExcursion.value?.prices.find(p => p.ageCategory === defaultAgeCategory)?.price || 0,
         selectedOffers: []
       })
     }
   }
   
   return fields
-})
-
-// Create BookingItem for each person
-const bookingItems = computed<BookingItem[]>(() => {
-  if (!selectedExcursion.value) return []
-  
-  return bookingFields.value.map(field => ({
-    excursion: selectedExcursion.value!,
-    bookingField: field
-  }))
 })
 
 // Handle booking field changes
@@ -198,12 +213,14 @@ onMounted(async () => {
     </div>
 
     <!-- Booking Fields -->
-    <div v-if="selectedExcursion && bookingItems.length > 0" class="form-section">
+    <div v-if="selectedExcursion && bookingFields.length > 0" class="form-section">
       <h2 class="section-title">Participant Information</h2>
       <BookingFieldComponent
-        v-for="(item, index) in bookingItems"
+        v-for="(field, index) in bookingFields"
         :key="index"
-        :booking-item="item"
+        :excursion="selectedExcursion"
+        :booking-field="field"
+        :age-category="index === 0 ? ageCategory : undefined"
         :index="index"
         @change="(updatedField) => handleFieldChange(index, updatedField)"
       />

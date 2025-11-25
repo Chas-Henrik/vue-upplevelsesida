@@ -1,12 +1,57 @@
 <script setup lang="ts">
+import type { AgeCategory } from '~/types/excursion'
+
+const route = useRoute()
 const { excursions, excursionsLoading, excursionsError } = useExcursions()
 const { articles, articlesLoading, articlesError } = useArticles()
 
+// Extract query params with validation (and silently ignore invalid ones)
+const date = computed(() => {
+  const value = route.query.date as string | undefined
+  if (!value) return undefined
+  const inputDate = new Date(value)
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+  return inputDate >= today ? value : undefined
+})
+
+const duration = computed(() => {
+  const value = route.query.duration as string | undefined
+  if (!value) return undefined
+  // Validate format: 'xh' (e.g., '4h') or 'x days' (e.g., '2 days')
+  const validFormat = /^\d+h$|^\d+ days?$/.test(value)
+  return validFormat ? value : undefined
+})
+
+const noPersons = computed(() => {
+  const value = route.query['no-persons']
+  const num = value ? Number(value) : undefined
+  return num && num >= 1 && num <= 10 ? num : undefined
+})
+
+const ageCategory = computed(() => {
+  const value = route.query['age-category'] as string
+  const validCategories: AgeCategory[] = ['Child 0-12', 'Adult 13-64', 'Senior 65+']
+  return validCategories.includes(value as AgeCategory) ? value as AgeCategory : undefined
+})
+
 const handleCardClick = (buttonType: 'readMore' | 'book', excursionId: string) => {
+  // Build query params
+  const queryParams = new URLSearchParams()
+  
+  if (date.value) queryParams.append('date', date.value)
+  if (duration.value) queryParams.append('duration', duration.value)
+  if (noPersons.value) queryParams.append('no-persons', noPersons.value.toString())
+  if (ageCategory.value) queryParams.append('age-category', ageCategory.value)
+  
+  const queryString = queryParams.toString()
+  
   if (buttonType === 'readMore') {
-    navigateTo(`/excursion/${excursionId}`)
+    const url = queryString ? `/excursion/${excursionId}?${queryString}` : `/excursion/${excursionId}`
+    navigateTo(url)
   } else if (buttonType === 'book') {
-    navigateTo(`/booking/${excursionId}`)
+    const url = queryString ? `/booking/${excursionId}?${queryString}` : `/booking/${excursionId}`
+    navigateTo(url)
   }
 }
 </script>

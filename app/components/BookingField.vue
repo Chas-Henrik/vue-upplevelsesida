@@ -1,39 +1,53 @@
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue'
-import type { BookingItem, BookingField } from '~/types/booking'
-import type { AgeCategory, Offer } from '~/types/excursion'
+import type { BookingField } from '~/types/booking'
+import type { AgeCategory, Excursion } from '~/types/excursion'
+import type { PropType } from 'vue'
 
-interface Props {
-  bookingItem: BookingItem
-  index: number
-}
-
-const props = defineProps<Props>()
+const props = defineProps({
+  excursion: {
+    type: Object as PropType<Excursion>,
+    required: true
+  },
+  bookingField: {
+    type: Object as PropType<BookingField>,
+    required: true
+  },
+  ageCategory: {
+    type: String as PropType<AgeCategory>,
+    required: false,
+    validator: (value: string) => ['Child 0-12', 'Adult 13-64', 'Senior 65+'].includes(value)
+  },
+  index: {
+    type: Number,
+    required: true
+  }
+})
 
 const emit = defineEmits<{
   change: [bookingField: BookingField]
 }>()
 
-// Initialize reactive state from bookingField
-const name = ref(props.bookingItem.bookingField.name)
-const selectedAgeCategory = ref<AgeCategory>(props.bookingItem.bookingField.ageCategory)
+// Initialize reactive state from bookingField (use ageCategory prop as override for default)
+const name = ref(props.bookingField.name)
+const selectedAgeCategory = ref<AgeCategory>(props.ageCategory || props.bookingField.ageCategory)
 const selectedOfferIds = ref<string[]>(
-  props.bookingItem.bookingField.selectedOffers.map(offer => offer.id)
+  props.bookingField.selectedOffers.map(offer => offer.id)
 )
 
-// Watch for bookingField changes (when excursion changes)
-watch(() => props.bookingItem.bookingField, (newField) => {
-  name.value = newField.name
-  selectedAgeCategory.value = newField.ageCategory
-  selectedOfferIds.value = newField.selectedOffers.map(offer => offer.id)
-}, { deep: true })
+// Watch for excursion changes (by watching excursion.id)
+watch(() => props.excursion.id, () => {
+  name.value = props.bookingField.name
+  selectedAgeCategory.value = props.ageCategory || props.bookingField.ageCategory
+  selectedOfferIds.value = props.bookingField.selectedOffers.map(offer => offer.id)
+})
 
 // Available age categories
 const ageCategories: AgeCategory[] = ['Child 0-12', 'Adult 13-64', 'Senior 65+']
 
 // Compute excursion price based on selected age category
 const excursionPrice = computed(() => {
-  const priceObj = props.bookingItem.excursion.prices.find(
+  const priceObj = props.excursion.prices.find(
     p => p.ageCategory === selectedAgeCategory.value
   )
   return priceObj?.price || 0
@@ -41,7 +55,7 @@ const excursionPrice = computed(() => {
 
 // Get selected offer objects from IDs
 const selectedOffers = computed(() => {
-  return props.bookingItem.excursion.offers.filter(
+  return props.excursion.offers.filter(
     offer => selectedOfferIds.value.includes(offer.id)
   )
 })
@@ -114,11 +128,11 @@ watch([name, selectedAgeCategory, selectedOfferIds], () => {
       </div>
 
       <!-- Offers Selection -->
-      <div v-if="bookingItem.excursion.offers.length > 0" class="form-group">
+      <div v-if="excursion.offers.length > 0" class="form-group">
         <label class="form-label">Add-ons (optional)</label>
         <div class="offers-list">
           <div
-            v-for="offer in bookingItem.excursion.offers"
+            v-for="offer in excursion.offers"
             :key="offer.id"
             class="offer-item"
           >

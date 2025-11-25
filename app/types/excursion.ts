@@ -27,6 +27,7 @@ export interface Excursion {
   readonly details: string
   readonly recommendedAge: AgeCategory
   readonly duration: string
+  readonly maxGroupSize: number
   readonly offers: readonly Offer[]
 }
 
