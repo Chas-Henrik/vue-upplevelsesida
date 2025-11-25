@@ -74,6 +74,7 @@ const handleBook = () => {
           class="hero-image"
         />
         <div class="season-badge">{{ excursion.season }}</div>
+        <div class="duration-badge">⏱️ {{ excursion.duration }}</div>
         <div class="price-badge">
           <div class="price-badge-label">From:</div>
           <div class="price-badge-value">{{ excursion.prices.find(p => p.ageCategory === 'Adult 13-64')?.price }} SEK</div>
@@ -81,7 +82,10 @@ const handleBook = () => {
         <div class="hero-overlay">
           <div class="hero-content">
             <h1 class="hero-title">{{ excursion.title }}</h1>
-            <p class="hero-info"><strong>Recommended for:</strong> {{ excursion.recommendedAge }}</p>
+            <div class="hero-info-row">
+              <p class="hero-info"><strong>Recommended for:</strong> {{ excursion.recommendedAge }}</p>
+              <p class="hero-info"><strong>Max Group Size:</strong> {{ excursion.maxGroupSize }}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -225,6 +229,24 @@ const handleBook = () => {
   font-weight: 700;
 }
 
+.duration-badge {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--color-primary);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.875rem;
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  z-index: 10;
+}
+
 .hero-title {
   font-size: 2.5rem;
   font-weight: 700;
@@ -232,6 +254,12 @@ const handleBook = () => {
   margin: 0;
   line-height: 1.2;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.hero-info-row {
+  display: flex;
+  column-gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .hero-info {
@@ -385,6 +413,11 @@ const handleBook = () => {
 
   .hero-info {
     font-size: 0.75rem;
+  }
+
+  .hero-info-row {
+    row-gap: 0rem;
+    column-gap: 0.5rem
   }
 
   .hero-content {
