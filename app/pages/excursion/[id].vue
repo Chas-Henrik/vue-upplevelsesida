@@ -7,7 +7,7 @@ const { getExcursionById } = useExcursions()
 const excursionId = route.params.id as string
 const excursion = computed(() => getExcursionById(excursionId))
 
-// Extract query params with validation
+// Extract query params with validation (and silently ignore invalid ones)
 const date = computed(() => {
   const value = route.query.date as string | undefined
   if (!value) return undefined

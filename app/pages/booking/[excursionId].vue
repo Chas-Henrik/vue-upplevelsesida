@@ -10,7 +10,7 @@ const cartStore = useCartStore()
 
 const excursionId = computed(() => route.params.excursionId as string)
 
-// Extract query params with validation
+// Extract query params with validation (and silently ignore invalid ones)
 const date = computed(() => {
   const value = route.query.date as string | undefined
   if (!value) return undefined

@@ -5,7 +5,7 @@ const route = useRoute()
 const { excursions, excursionsLoading, excursionsError } = useExcursions()
 const { articles, articlesLoading, articlesError } = useArticles()
 
-// Extract query params with validation
+// Extract query params with validation (and silently ignore invalid ones)
 const date = computed(() => {
   const value = route.query.date as string | undefined
   if (!value) return undefined
