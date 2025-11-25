@@ -1,12 +1,36 @@
 <script setup lang="ts">
+import type { AgeCategory } from '~/types/excursion'
+
+const route = useRoute()
 const { excursions, excursionsLoading, excursionsError } = useExcursions()
 const { articles, articlesLoading, articlesError } = useArticles()
 
+// Extract query params
+const date = computed(() => route.query.date as string | undefined)
+const duration = computed(() => route.query.duration as string | undefined)
+const noPersons = computed(() => {
+  const value = route.query['no-persons']
+  return value ? Number(value) : undefined
+})
+const ageCategory = computed(() => route.query['age-category'] as AgeCategory | undefined)
+
 const handleCardClick = (buttonType: 'readMore' | 'book', excursionId: string) => {
+  // Build query params
+  const queryParams = new URLSearchParams()
+  
+  if (date.value) queryParams.append('date', date.value)
+  if (duration.value) queryParams.append('duration', duration.value)
+  if (noPersons.value) queryParams.append('no-persons', noPersons.value.toString())
+  if (ageCategory.value) queryParams.append('age-category', ageCategory.value)
+  
+  const queryString = queryParams.toString()
+  
   if (buttonType === 'readMore') {
-    navigateTo(`/excursion/${excursionId}`)
+    const url = queryString ? `/excursion/${excursionId}?${queryString}` : `/excursion/${excursionId}`
+    navigateTo(url)
   } else if (buttonType === 'book') {
-    navigateTo(`/booking/${excursionId}`)
+    const url = queryString ? `/booking/${excursionId}?${queryString}` : `/booking/${excursionId}`
+    navigateTo(url)
   }
 }
 </script>

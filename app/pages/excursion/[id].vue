@@ -1,12 +1,34 @@
 <script setup lang="ts">
+import type { AgeCategory } from '~/types/excursion'
+
 const route = useRoute()
 const { getExcursionById } = useExcursions()
 
 const excursionId = route.params.id as string
 const excursion = computed(() => getExcursionById(excursionId))
 
+// Extract query params
+const date = computed(() => route.query.date as string | undefined)
+const duration = computed(() => route.query.duration as string | undefined)
+const noPersons = computed(() => {
+  const value = route.query['no-persons']
+  return value ? Number(value) : undefined
+})
+const ageCategory = computed(() => route.query['age-category'] as AgeCategory | undefined)
+
 const handleBook = () => {
-  navigateTo(`/booking/${excursionId}`)
+  // Build query params
+  const queryParams = new URLSearchParams()
+  
+  if (date.value) queryParams.append('date', date.value)
+  if (duration.value) queryParams.append('duration', duration.value)
+  if (noPersons.value) queryParams.append('no-persons', noPersons.value.toString())
+  if (ageCategory.value) queryParams.append('age-category', ageCategory.value)
+  
+  const queryString = queryParams.toString()
+  const url = queryString ? `/booking/${excursionId}?${queryString}` : `/booking/${excursionId}`
+  
+  navigateTo(url)
 }
 </script>
 
