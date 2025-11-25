@@ -6,6 +6,7 @@ import type { AgeCategory, Excursion } from '~/types/excursion'
 interface Props {
   excursion: Excursion
   bookingField: BookingField
+  ageCategory?: AgeCategory
   index: number
 }
 
@@ -15,19 +16,19 @@ const emit = defineEmits<{
   change: [bookingField: BookingField]
 }>()
 
-// Initialize reactive state from bookingField
+// Initialize reactive state from bookingField (use ageCategory prop as override for default)
 const name = ref(props.bookingField.name)
-const selectedAgeCategory = ref<AgeCategory>(props.bookingField.ageCategory)
+const selectedAgeCategory = ref<AgeCategory>(props.ageCategory || props.bookingField.ageCategory)
 const selectedOfferIds = ref<string[]>(
   props.bookingField.selectedOffers.map(offer => offer.id)
 )
 
-// Watch for bookingField changes (when excursion changes)
-watch(() => props.bookingField, (newField) => {
-  name.value = newField.name
-  selectedAgeCategory.value = newField.ageCategory
-  selectedOfferIds.value = newField.selectedOffers.map(offer => offer.id)
-}, { deep: true })
+// Watch for excursion changes (by watching excursion.id)
+watch(() => props.excursion.id, () => {
+  name.value = props.bookingField.name
+  selectedAgeCategory.value = props.ageCategory || props.bookingField.ageCategory
+  selectedOfferIds.value = props.bookingField.selectedOffers.map(offer => offer.id)
+})
 
 // Available age categories
 const ageCategories: AgeCategory[] = ['Child 0-12', 'Adult 13-64', 'Senior 65+']

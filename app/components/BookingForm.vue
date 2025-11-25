@@ -1,12 +1,16 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import type { Booking, BookingField } from '~/types/booking'
-import type { Excursion } from '~/types/excursion'
+import type { AgeCategory, Excursion } from '~/types/excursion'
 import BookingFieldComponent from './BookingField.vue'
 import { shortCryptoId } from '~/utils/helpers'
 
 interface Props {
   excursionId?: string
+  date?: string
+  duration?: string
+  noPersons?: number
+  ageCategory?: AgeCategory
 }
 
 const props = defineProps<Props>()
@@ -19,8 +23,8 @@ const { excursions, loadExcursions } = useExcursions()
 
 // Form state
 const selectedExcursionId = ref<string>('')
-const selectedDate = ref<string>('')
-const numberOfPersons = ref<number>(1)
+const selectedDate = ref<string>(props.date || '')
+const numberOfPersons = ref<number>(props.noPersons || 1)
 
 // Selected excursion computed
 const selectedExcursion = computed<Excursion | undefined>(() => {
@@ -46,10 +50,11 @@ const bookingFields = computed<BookingField[]>(() => {
       })
     } else {
       // Create new field with default values
+      const defaultAgeCategory = (i === 0 && props.ageCategory) ? props.ageCategory : 'Adult 13-64'
       fields.push({
         name: '',
-        ageCategory: 'Adult 13-64',
-        excursionPrice: selectedExcursion.value?.prices.find(p => p.ageCategory === 'Adult 13-64')?.price || 0,
+        ageCategory: defaultAgeCategory,
+        excursionPrice: selectedExcursion.value?.prices.find(p => p.ageCategory === defaultAgeCategory)?.price || 0,
         selectedOffers: []
       })
     }
@@ -195,6 +200,7 @@ onMounted(async () => {
         :key="index"
         :excursion="selectedExcursion"
         :booking-field="field"
+        :age-category="index === 0 ? ageCategory : undefined"
         :index="index"
         @change="(updatedField) => handleFieldChange(index, updatedField)"
       />
