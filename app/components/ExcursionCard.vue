@@ -18,6 +18,11 @@ const handleReadMore = () => {
 const handleBook = () => {
   emit('click', 'book', props.excursion.id)
 }
+
+const formatRecommendedAge = (age: string) => {
+  // Extract just the age category name (Child, Adult, Senior)
+  return age.split(' ')[0]
+}
 </script>
 
 <template>
@@ -28,6 +33,7 @@ const handleBook = () => {
         :alt="excursion.title"
         class="image"
       />
+      <div class="duration-badge">⏱️ {{ excursion.duration }}</div>
       <div class="season-badge">{{ excursion.season }}</div>
     </div>
     
@@ -36,8 +42,16 @@ const handleBook = () => {
       <p class="card-description">{{ excursion.description }}</p>
       
       <div class="card-price">
-        <span class="price-label">From</span>
-        <span class="price-value">{{ excursion.prices.find(p => p.ageCategory === 'Adult 13-64')?.price }} SEK</span>
+        <div class="price-info">
+          <span class="price-label">From</span>
+          <span class="price-value">{{ excursion.prices.find(p => p.ageCategory === 'Adult 13-64')?.price }} SEK</span>
+        </div>
+        <div class="info-column">
+          <span class="info-icon" title="Recommended for">🎯</span>
+          <span class="info-text">{{ formatRecommendedAge(excursion.recommendedAge) }}</span>
+          <span class="group-icon" title="Max group size">👥</span>
+          <span class="group-text">Max {{ excursion.maxGroupSize }}</span>
+        </div>
       </div>
       
       <div class="card-actions">
@@ -95,17 +109,35 @@ const handleBook = () => {
 
 .season-badge {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 0.75rem;
+  right: 0.75rem;
   background: rgba(255, 255, 255, 0.95);
   color: var(--color-primary);
-  padding: 0.5rem 1rem;
+  padding: 0.375rem 0.75rem;
   border-radius: var(--radius-md);
   font-weight: 600;
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(4px);
+}
+
+.duration-badge {
+  position: absolute;
+  bottom: 0.75rem;
+  right: 0.75rem;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--color-primary);
+  padding: 0.375rem 0.75rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 0.75rem;
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
 }
 
 .card-content {
@@ -132,11 +164,61 @@ const handleBook = () => {
 
 .card-price {
   display: flex;
-  align-items: baseline;
-  gap: 0.5rem;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 1.5rem;
   padding-top: 1rem;
   border-top: 1px solid #e5e7eb;
+}
+
+.price-info {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.info-column {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+  gap: 0.25rem 0.375rem;
+  align-items: center;
+}
+
+.info-icon {
+  font-size: 1rem;
+  grid-column: 1;
+  grid-row: 1;
+  text-align: center;
+  cursor: help;
+}
+
+.info-text {
+  white-space: nowrap;
+  color: #6b7280;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.group-icon {
+  font-size: 1rem;
+  grid-column: 1;
+  grid-row: 2;
+  text-align: center;
+  cursor: help;
+}
+
+.group-text {
+  white-space: nowrap;
+  color: #6b7280;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  grid-column: 2;
+  grid-row: 2;
 }
 
 .price-label {
