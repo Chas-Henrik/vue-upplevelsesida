@@ -8,7 +8,6 @@ import { shortCryptoId } from '~/utils/helpers'
 interface Props {
   excursionId?: string
   date?: string
-  duration?: string
   noPersons?: number
   ageCategory?: AgeCategory
 }

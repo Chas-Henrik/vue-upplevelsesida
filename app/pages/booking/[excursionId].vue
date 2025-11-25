@@ -12,7 +12,6 @@ const excursionId = computed(() => route.params.excursionId as string)
 
 // Extract query params
 const date = computed(() => route.query.date as string | undefined)
-const duration = computed(() => route.query.duration as string | undefined)
 const noPersons = computed(() => {
   const value = route.query['no-persons']
   return value ? Number(value) : undefined
@@ -47,7 +46,6 @@ const handleSubmit = (booking: Booking) => {
       <BookingForm 
         :excursion-id="excursionId"
         :date="date"
-        :duration="duration"
         :no-persons="noPersons"
         :age-category="ageCategory"
         @submit="handleSubmit"
