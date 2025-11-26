@@ -31,6 +31,7 @@ const props = defineProps({
   ageCategory: {
     type: String as PropType<AgeCategory>,
     required: false,
+    default: 'Adult 13-64',
     validator: (value: string) => ['Child 0-12', 'Adult 13-64', 'Senior 65+'].includes(value)
   }
 })
@@ -70,7 +71,7 @@ const bookingFields = computed<BookingField[]>(() => {
       })
     } else {
       // Create new field with default values
-      const defaultAgeCategory = (i === 0 && props.ageCategory) ? props.ageCategory : 'Adult 13-64'
+      const defaultAgeCategory = i === 0 ? props.ageCategory : ('Adult 13-64' as AgeCategory)
       fields.push({
         name: '',
         ageCategory: defaultAgeCategory,

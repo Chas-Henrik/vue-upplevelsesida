@@ -15,7 +15,9 @@ export interface PriceByAge {
 
 export interface ExcursionFilters {
   recommendedAge?: AgeCategory
-  season?: Season
+  date?: string
+  duration?: string
+  noPersons?: number
 }
 
 export interface Excursion {
