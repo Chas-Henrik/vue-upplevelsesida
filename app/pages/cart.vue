@@ -7,16 +7,21 @@
 
   const bookings = computed(() => cartStore.items)
 
-  const total = computed(() => 
-    cartStore.items.reduce((bookSum, book) => {
-      return bookSum + book.bookingFields.reduce((fSum, field) => {
-        const offerSum = field.selectedOffers.reduce((oSum, offer) => 
-          oSum + offer.price
-        , 0)
-        return fSum + offerSum + field.excursionPrice
-      }, 0)
+  const total = computed(() => {
+  return cartStore.items.reduce((bookSum, book) => {
+    return bookSum + book.bookingFields.reduce((fSum, field) => {
+      const offerSum = field.selectedOffers.reduce((oSum, offer) =>
+        oSum + offer.price
+      , 0)
+      return fSum + offerSum + field.excursionPrice
     }, 0)
-  )
+  }, 0)
+})
+
+const vat = computed(() => total.value - total.value / 1.25)
+
+const priceWithoutVat = computed(() => total.value / 1.25)
+
 
   function clearCart() {
     if (bookings.value.length > 0) {
@@ -66,9 +71,27 @@
           </NuxtLink>
         </div>
       </div>
-      <div class="w-full pr-7">
-        <p class="flex justify-end w-full text-xl mb-8"><strong>Total price: </strong><span class="flex self-end ml-1 font-sans font-semibold text-primary">{{ total }} SEK</span></p>
+
+      <div class="grid grid-cols-[max-content_auto] gap-x-4 gap-y-2 w-auto justify-end mr-10">
+
+
+        <!-- VAT -->
+        <p class="text-sm font-normal text-gray-600">VAT (25% included):</p>
+        <p class="text-right text-sm font-sans font-light text-primary">
+          {{ vat }} SEK
+        </p>
+
+        <!-- Total amount -->
+        <p class="text-xl font-semibold mt-1">Total amount:</p>
+        <p class="text-right text-xl font-sans font-bold text-primary mt-1 mb-4">
+          {{ total }} SEK
+        </p>
+
       </div>
+
+
+
+
       
       <!-- Actions -->
       <div v-if="bookings.length > 0" class="flex gap-4 mb-8">
