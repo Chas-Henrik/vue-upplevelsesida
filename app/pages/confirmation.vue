@@ -22,7 +22,11 @@
         return fieldTotal + offerSum + field.excursionPrice
       }, 0);
     }, 0)
-  ); 
+  );
+
+  const totalVat = computed(() => {
+    return Math.round(totalPrice.value * (0.25 / 1.25))
+  })
 
 </script>
 
@@ -92,8 +96,8 @@
         </section>
 
         <div class="total-row">
-          <div class="total-label">Total amount:</div>
-          <div class="total-amount">{{ totalPrice }} SEK</div>
+            <div class="total-label">Total amount:             <span class="total-amount">{{ totalPrice }} SEK</span></div>
+          <div class="total-vat">VAT (25% included): <span class="total-vat-amount">{{ totalVat }} SEK</span></div>
         </div>
 
         <div class="actions">
@@ -199,15 +203,17 @@
 /* TOTAL */
 .total-row {
   display:flex;
+  flex-direction: column;
   justify-content:flex-end;
   gap:1rem;
-  align-items:center;
+  align-items: flex-end;
   margin-top:1rem;
   padding:0 1rem;
 }
 
-.total-label { color:#374151; font-weight:700; }
+.total-label, .total-vat { color:#374151; font-weight:700; }
 .total-amount { font-size:1.25rem; font-weight:800; color:var(--color-primary); }
+.total-vat-amount{ font-size:1rem; font-weight:700; color:var(--color-primary); }
 
 /* BUTTONS */
 .actions {
