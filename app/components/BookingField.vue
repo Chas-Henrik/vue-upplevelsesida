@@ -16,6 +16,7 @@ const props = defineProps({
   ageCategory: {
     type: String as PropType<AgeCategory>,
     required: false,
+    default: 'Adult 13-64',
     validator: (value: string) => ['Child 0-12', 'Adult 13-64', 'Senior 65+'].includes(value)
   },
   index: {
