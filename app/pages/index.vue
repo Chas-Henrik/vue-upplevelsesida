@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { AgeCategory } from '~/types/excursion'
+import ExcursionFilter from '~/components/ExcursionFilter.vue'
 
 const route = useRoute()
 const { excursions, excursionsLoading, excursionsError } = useExcursions()
@@ -54,11 +55,77 @@ const handleCardClick = (buttonType: 'readMore' | 'book', excursionId: string) =
     navigateTo(url)
   }
 }
+
+// Typ för filters
+type FilterOptions = {
+  season: string;
+  priceSort: string;
+  durationSort: string;
+}
+
+// State för filters
+const filters = ref<FilterOptions>({
+  season: '',
+  priceSort: '',
+  durationSort: ''
+})
+
+// Ta emot filters från child
+function applyFilters(newFilters: FilterOptions) {
+  filters.value = newFilters
+}
+
+// Konvertera duration till timmar
+function durationToHours(duration: string) {
+  if (!duration) return 0
+  if (duration.endsWith("h")) return parseInt(duration)
+  if (duration.includes("day")) return parseInt(duration) * 24
+  return 0
+}
+
+// Hämta adult price
+function getAdultPrice(exc: any) {
+  const adult = exc.prices.find((p: any) => p.ageCategory === "Adult 13-64")
+  return adult ? adult.price : 0
+}
+
+// Filtrera och sortera excursions
+const filteredExcursions = computed(() => {
+  if (!excursions.value) return []
+
+  let list = [...excursions.value]
+
+  if (filters.value.season) {
+    list = list.filter(exc => exc.season === filters.value.season)
+  }
+
+  if (filters.value.priceSort === "high") {
+    list.sort((a, b) => getAdultPrice(b) - getAdultPrice(a))
+  }
+
+  if (filters.value.priceSort === "low") {
+    list.sort((a, b) => getAdultPrice(a) - getAdultPrice(b))
+  }
+
+  if (filters.value.durationSort === "long") {
+    list.sort((a, b) => durationToHours(b.duration) - durationToHours(a.duration))
+  }
+
+  if (filters.value.durationSort === "short") {
+    list.sort((a, b) => durationToHours(a.duration) - durationToHours(b.duration))
+  }
+  
+  return list
+})
 </script>
+
 
 <template>
   <div class="home-page">
     <div class="container">
+      <!-- filter component -->
+      <ExcursionFilter @update:filters="applyFilters" />
+
       <!-- Loading state -->
       <div v-if="excursionsLoading" class="loading-state">
         <p>Loading excursions...</p>
@@ -72,7 +139,7 @@ const handleCardClick = (buttonType: 'readMore' | 'book', excursionId: string) =
       <!-- Excursions grid -->
       <div v-else class="excursions-grid">
         <ExcursionCard 
-          v-for="excursion in excursions" 
+          v-for="excursion in filteredExcursions" 
           :key="excursion.id"
           :excursion="excursion"
           @click="handleCardClick"
