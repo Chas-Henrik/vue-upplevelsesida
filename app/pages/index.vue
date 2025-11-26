@@ -56,14 +56,13 @@ const handleCardClick = (buttonType: 'readMore' | 'book', excursionId: string) =
   }
 }
 
-// Typ för filters
 type FilterOptions = {
   season: string;
   priceSort: string;
   durationSort: string;
 }
 
-// State för filters
+
 const filters = ref<FilterOptions>({
   season: '',
   priceSort: '',
@@ -83,7 +82,7 @@ function durationToHours(duration: string) {
   return 0
 }
 
-// Hämta adult price
+// Hämta adult price som standard för sortering
 function getAdultPrice(exc: any) {
   const adult = exc.prices.find((p: any) => p.ageCategory === "Adult 13-64")
   return adult ? adult.price : 0
