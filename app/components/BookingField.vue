@@ -222,6 +222,7 @@ watch([name, selectedAgeCategory, selectedOfferIds], () => {
   font-family: inherit;
   transition: all 0.2s ease;
   background: white;
+  height: 3rem;
 }
 
 .form-input:focus,
