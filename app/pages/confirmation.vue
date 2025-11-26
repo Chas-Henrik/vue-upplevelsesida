@@ -54,6 +54,7 @@
               <div class="summary-left">
                 <div class="order-title">{{ b.title }}</div>
                 <div class="order-meta">{{ b.date }} · {{ b.numberOfPersons }} person(s)</div>
+                <div class="order-meta">Order number: {{ b.bookingId }}</div>
               </div>
 
               <div class="summary-right">
