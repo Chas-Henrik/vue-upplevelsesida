@@ -7,16 +7,21 @@
 
   const bookings = computed(() => cartStore.items)
 
-  const total = computed(() => 
-    cartStore.items.reduce((bookSum, book) => {
-      return bookSum + book.bookingFields.reduce((fSum, field) => {
-        const offerSum = field.selectedOffers.reduce((oSum, offer) => 
-          oSum + offer.price
-        , 0)
-        return fSum + offerSum + field.excursionPrice
-      }, 0)
+  const baseTotal = computed(() => 
+  cartStore.items.reduce((bookSum, book) => {
+    return bookSum + book.bookingFields.reduce((fSum, field) => {
+      const offerSum = field.selectedOffers.reduce((oSum, offer) => 
+        oSum + offer.price
+      , 0)
+      return fSum + offerSum + field.excursionPrice
     }, 0)
-  )
+  }, 0)
+)
+
+const vat = computed(() => baseTotal.value * 0.25)
+
+const totalWithVat = computed(() => baseTotal.value + vat.value)
+
 
   function clearCart() {
     if (bookings.value.length > 0) {
@@ -66,9 +71,34 @@
           </NuxtLink>
         </div>
       </div>
-      <div class="w-full pr-7">
-        <p class="flex justify-end w-full text-xl mb-8"><strong>Total price: </strong><span class="flex self-end ml-1 font-sans font-semibold text-primary">{{ total }} SEK</span></p>
-      </div>
+      <div class="w-full pr-7 space-y-2">
+
+<!-- Base price -->
+<p class="flex justify-end w-full text-lg">
+  <span class="font-medium">Price (excl. VAT):</span>
+  <span class="flex self-end ml-2 font-sans font-semibold text-primary">
+    {{ baseTotal }} SEK
+  </span>
+</p>
+
+<!-- VAT 25% -->
+<p class="flex justify-end w-full text-sm text-gray-600">
+  <span class="font-normal">VAT (25%):</span>
+  <span class="flex self-end ml-2 font-sans font-light text-primary">
+    {{ vat }} SEK
+  </span>
+</p>
+
+<!-- Total price including VAT -->
+<h3 class="flex justify-end w-full text-xl mt-2">
+  <span class="font-semibold">Total price:</span>
+  <span class="flex self-end ml-2 font-sans font-bold text-primary">
+    {{ totalWithVat }} SEK
+  </span>
+</h3>
+
+</div>
+
       
       <!-- Actions -->
       <div v-if="bookings.length > 0" class="flex gap-4 mb-8">
