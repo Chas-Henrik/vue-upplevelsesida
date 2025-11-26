@@ -72,7 +72,7 @@ const priceWithoutVat = computed(() => total.value / 1.25)
         </div>
       </div>
 
-      <div class="grid grid-cols-[max-content_auto] gap-x-4 gap-y-2 w-full justify-end">
+      <div class="grid grid-cols-[max-content_auto] gap-x-4 gap-y-2 w-auto justify-end mr-10">
 
 
         <!-- VAT -->
