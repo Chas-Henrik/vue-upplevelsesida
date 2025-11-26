@@ -7,7 +7,7 @@
 
   const bookings = computed(() => cartStore.items)
 
-  const baseTotal = computed(() => {
+  const total = computed(() => {
   return cartStore.items.reduce((bookSum, book) => {
     return bookSum + book.bookingFields.reduce((fSum, field) => {
       const offerSum = field.selectedOffers.reduce((oSum, offer) =>
@@ -18,9 +18,9 @@
   }, 0)
 })
 
-const vat = computed(() => baseTotal.value - baseTotal.value / 1.25)
+const vat = computed(() => total.value - total.value / 1.25)
 
-const priceWithoutVat = computed(() => baseTotal.value / 1.25)
+const priceWithoutVat = computed(() => total.value / 1.25)
 
 
   function clearCart() {
@@ -84,7 +84,7 @@ const priceWithoutVat = computed(() => baseTotal.value / 1.25)
         <!-- Total amount -->
         <p class="text-xl font-semibold mt-1">Total amount:</p>
         <p class="text-right text-xl font-sans font-bold text-primary mt-1 mb-4">
-          {{ baseTotal }} SEK
+          {{ total }} SEK
         </p>
 
       </div>
