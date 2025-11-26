@@ -12,7 +12,7 @@
       return navigateTo('/')
     }
 
-    cartStore.clearCart()
+    // cartStore.clearCart()
   })
 
   const totalPrice = computed(() =>
@@ -96,10 +96,14 @@
           </details>
         </section>
 
-        <div class="total-row">
-            <div class="total-label">Total amount:             <span class="total-amount">{{ totalPrice }} SEK</span></div>
-          <div class="total-vat">VAT (25% included): <span class="total-vat-amount">{{ totalVat }} SEK</span></div>
-        </div>
+<div class="total-row">
+  <div class="total-label">VAT (25% included):</div>
+  <div class="total-vat-amount">{{ totalVat }} SEK</div>
+
+  <div class="total-label">Total amount:</div>
+  <div class="total-amount">{{ totalPrice }} SEK</div>
+</div>
+
 
         <div class="actions">
           <a class="btn btn-primary" href="/">Home</a>
@@ -203,13 +207,15 @@
 
 /* TOTAL */
 .total-row {
-  display:flex;
-  flex-direction: column;
-  justify-content:flex-end;
-  gap:1rem;
-  align-items: flex-end;
-  margin-top:1rem;
-  padding:0 1rem;
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 1rem;
+  row-gap: 0.5rem;
+  justify-content: end;
+  align-items: center;
+  margin-top: 1rem;
+  padding: 0 1rem;
+  text-align: right;
 }
 
 .total-label, .total-vat { color:#374151; font-weight:700; }
