@@ -71,33 +71,28 @@ const priceWithoutVat = computed(() => baseTotal.value / 1.25)
           </NuxtLink>
         </div>
       </div>
-      <div class="w-full pr-7 space-y-2">
+      <div class="grid grid-cols-2 gap-y-2 gap-x-4 w-full pr-7">
 
 <!-- Price excluding VAT -->
-<p class="flex justify-end w-full text-lg">
-  <span class="font-medium">Price (excl. VAT):</span>
-  <span class="ml-2 font-sans font-semibold text-primary">
-    {{ priceWithoutVat }} SEK
-  </span>
+<p class="text-left text-lg font-medium">Price (excl. VAT):</p>
+<p class="text-right text-lg font-sans font-semibold text-primary">
+  {{ priceWithoutVat }} SEK
 </p>
 
 <!-- VAT (calculated backwards) -->
-<p class="flex justify-end w-full text-sm text-gray-600">
-  <span class="font-normal">VAT (25%):</span>
-  <span class="ml-2 font-sans font-light text-primary">
-    {{ vat }} SEK
-  </span>
+<p class="text-left text-sm font-normal text-gray-600">VAT (25%):</p>
+<p class="text-right text-sm font-sans font-light text-primary">
+  {{ vat }} SEK
 </p>
 
 <!-- Total price including VAT -->
-<h3 class="flex justify-end w-full text-xl mt-2">
-  <span class="font-semibold">Total price:</span>
-  <span class="ml-2 font-sans font-bold text-primary">
-    {{ baseTotal }} SEK
-  </span>
-</h3>
+<p class="text-left text-xl font-semibold mt-1 mb-4">Total price:</p>
+<p class="text-right text-xl font-sans font-bold text-primary mt-1">
+  {{ baseTotal }} SEK
+</p>
 
 </div>
+
 
       
       <!-- Actions -->
