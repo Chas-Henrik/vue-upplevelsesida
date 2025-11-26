@@ -12,7 +12,7 @@
       return navigateTo('/')
     }
 
-    // cartStore.clearCart()
+    cartStore.clearCart()
   })
 
   const totalPrice = computed(() =>
@@ -79,7 +79,7 @@
                   </div>
 
                   <div class="person-pricing">
-                    <div class="base-price">Base price: <strong>{{ f.excursionPrice }} SEK</strong></div>
+                    <div class="base-price">Excursion Price: <strong>{{ f.excursionPrice }} SEK</strong></div>
 
                     <div v-if="f.selectedOffers && f.selectedOffers.length" class="offers">
                       <small>Add-ons:</small>
