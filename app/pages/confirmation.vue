@@ -7,7 +7,12 @@
 
   onMounted(() => {
     bookings.value = [...cartStore.items]
-    // cartStore.clearCart()
+
+    if (bookings.value.length === 0) {
+      return navigateTo('/')
+    }
+
+    cartStore.clearCart()
   })
 
   const totalPrice = computed(() =>
@@ -18,7 +23,7 @@
       }, 0);
     }, 0)
   ); 
-  
+
 </script>
 
 <template>
@@ -33,12 +38,7 @@
       <h1 class="success-title">Thank you for your payment</h1>
       <p class="success-lead">Your booking has been completed successfully. Below is a summary of your purchase.</p>
 
-      <div v-if="bookings.length === 0" class="empty">
-        <p>Your cart is empty.</p>
-        <a class="btn" href="/">Back to home</a>
-      </div>
-
-      <div v-else class="order-list">
+      <div class="order-list">
         <section class="orders">
           <details
             v-for="(b, idx) in bookings"
@@ -97,8 +97,7 @@
         </div>
 
         <div class="actions">
-          <button class="btn" @click="window.print()">Print receipt</button>
-          <a class="btn btn-primary" href="/">Continue shopping</a>
+          <a class="btn btn-primary" href="/">Home</a>
         </div>
       </div>
     </div>
@@ -220,7 +219,8 @@
 }
 
 .btn {
-  padding:0.6rem 1rem;
+  margin-top: 1rem;
+  padding:0.6rem 2rem;
   border-radius:6px;
   border:1px solid #e5e7eb;
   background:white;
