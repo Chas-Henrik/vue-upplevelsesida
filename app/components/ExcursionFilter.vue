@@ -1,123 +1,128 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from "vue";
+import { useRoute } from "vue-router";
 
-const emit = defineEmits(['update:filters'])
+const emit = defineEmits(["update:filters"]);
+const route = useRoute();
 
+// Filter State
 const filters = ref({
-  season: '',
-  priceSort: '',
-  durationSort: ''
-})
+  date: "",
+  duration: "",
+  noPersons: "",
+  ageCategory: ""
+});
 
-// Emit updated filters
+// Load filter from query params on mount
+onMounted(() => {
+  filters.value.date = (route.query.date as string) || "";
+  filters.value.duration = (route.query.duration as string) || "";
+  filters.value.noPersons = route.query["no-persons"]
+    ? String(route.query["no-persons"])
+    : "";
+  filters.value.ageCategory = (route.query["age-category"] as string) || "";
+
+  emit("update:filters", filters.value);
+});
+
+
 function updateFilters() {
-  emit('update:filters', { ...filters.value })
+  emit("update:filters", filters.value);
 }
 
-// Single dropdown controller:
-const open = ref("")
 
-function toggleMenu(type: string) {
-  open.value = open.value === type ? "" : type
-}
-
-// Setters close the dropdown automatically
-function setSeason(v: string) {
-  filters.value.season = v
-  updateFilters()
-  open.value = ""
-}
-
-function setPrice(v: string) {
-  filters.value.priceSort = v
-  updateFilters()
-  open.value = ""
-}
-
-function setDuration(v: string) {
-  filters.value.durationSort = v
-  updateFilters()
-  open.value = ""
+function resetFilters() {
+  filters.value = {
+    date: "",
+    duration: "",
+    noPersons: "",
+    ageCategory: ""
+  };
+  emit("update:filters", filters.value);
 }
 </script>
 
 <template>
-  <div class="flex flex-wrap gap-4 mb-8">
+  <div class="flex items-center gap-4 flex-wrap mb-5">
 
-    <!-- SEASON -->
-    <div class="relative">
+<!-- Date -->
+<div>
+  <label class="mr-1 font-semibold">Date</label>
+  <input 
+    type="date"
+    class="px-5 py-2.5 rounded-full bg-gray-200 text-gray-700 font-medium 
+           focus:outline-none appearance-none"
+  />
+</div>
+
+<!-- Duration -->
+<div class="relative">
+  <label class="mr-1 font-semibold">Duration</label>
+  <select
+    class="px-5 py-2.5 rounded-full bg-gray-200 text-gray-700 font-medium
+           pr-10 focus:outline-none appearance-none"
+  >
+    <option>Any</option>
+    <option>3h</option>
+    <option>4h</option>
+    <option>6h</option>
+  </select>
+
+  <!-- FIXED SVG -->
+  <svg 
+    class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-600 pointer-events-none"
+    viewBox="0 0 20 20" fill="currentColor"
+  >
+    <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd" />
+  </svg>
+</div>
+
+<!-- Persons -->
+<div class="relative">
+  <label class="mr-1 font-semibold">Persons</label>
+  <select class="px-5 py-2.5 rounded-full bg-gray-200 text-gray-700 font-medium pr-10 focus:outline-none appearance-none">
+    <option>Any</option>
+    <option>1</option>
+    <option>2</option>
+    <option>10</option>
+  </select>
+
+  <!-- FIXED SVG -->
+  <svg 
+    class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-600 pointer-events-none"
+    viewBox="0 0 20 20" fill="currentColor"
+  >
+    <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd" />
+  </svg>
+</div>
+
+<!-- Age Category -->
+<div class="relative">
+  <label class="mr-1 font-semibold">Age Category</label>
+  <select class="px-5 py-2.5 rounded-full bg-gray-200 text-gray-700 font-medium pr-10 focus:outline-none appearance-none">
+    <option>Any</option>
+    <option>Child 0-12</option>
+    <option>Adult 13-64</option>
+    <option>Senior 65+</option>
+  </select>
+
+  <!-- FIXED SVG -->
+  <svg 
+    class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-600 pointer-events-none"
+    viewBox="0 0 20 20" fill="currentColor"
+  >
+    <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd" />
+  </svg>
+</div>
+
+    <!-- RESET BUTTON -->
+    <div class="flex items-end">
       <button
-        @click="toggleMenu('season')"
-        class="px-6 py-2 bg-gray-100 rounded-xl text-center font-semibold text-gray-700 shadow-sm hover:bg-gray-200 transition"
+        class="bg-[var(--color-primary)] ml-auto px-4 py-2 rounded-full font-medium text-white"
+        @click="resetFilters"
       >
-        {{ filters.season || 'Season' }}
+        Reset Filters
       </button>
-
-      <div
-        v-if="open === 'season'"
-        class="absolute mt-2 bg-gray-100 rounded-xl shadow-lg w-44 py-2 flex flex-col z-50 border border-gray-200"
-      >
-        <button @click="setSeason('Winter')" class="px-4 py-2 text-left text-gray-700 hover:bg-gray-200 rounded-md transition">
-          Winter
-        </button>
-        <button @click="setSeason('Summer')" class="px-4 py-2 text-left text-gray-700 hover:bg-gray-200 rounded-md transition">
-          Summer
-        </button>
-        <button @click="setSeason('')" class="px-4 py-2 text-left text-red-500 hover:bg-gray-200 rounded-md transition">
-          Clear
-        </button>
-      </div>
     </div>
-
-    <!-- PRICE -->
-    <div class="relative">
-      <button
-        @click="toggleMenu('price')"
-        class="px-6 py-2 bg-gray-100 rounded-xl text-center font-semibold text-gray-700 shadow-sm hover:bg-gray-200 transition"
-      >
-        {{ filters.priceSort || 'Price' }}
-      </button>
-
-      <div
-        v-if="open === 'price'"
-        class="absolute mt-2 bg-gray-100 rounded-xl shadow-lg w-48 py-2 flex flex-col z-50 border border-gray-200"
-      >
-        <button @click="setPrice('High')" class="px-4 py-2 text-left text-gray-700 hover:bg-gray-200 rounded-md transition">
-          High → Low
-        </button>
-        <button @click="setPrice('Low')" class="px-4 py-2 text-left text-gray-700 hover:bg-gray-200 rounded-md transition">
-          Low → High
-        </button>
-        <button @click="setPrice('')" class="px-4 py-2 text-left text-red-500 hover:bg-gray-200 rounded-md transition">
-          Clear
-        </button>
-      </div>
-    </div>
-
-    <!-- DURATION -->
-    <div class="relative">
-      <button
-        @click="toggleMenu('duration')"
-        class="px-6 py-2 bg-gray-100 rounded-xl text-center font-semibold text-gray-700 shadow-sm hover:bg-gray-200 transition"
-      >
-        {{ filters.durationSort || 'Duration' }}
-      </button>
-
-      <div
-        v-if="open === 'duration'"
-        class="absolute mt-2 bg-gray-100 rounded-xl shadow-lg w-48 py-2 flex flex-col z-50 border border-gray-200"
-      >
-        <button @click="setDuration('Long')" class="px-4 py-2 text-left text-gray-700 hover:bg-gray-200 rounded-md transition">
-          Long → Short
-        </button>
-        <button @click="setDuration('Short')" class="px-4 py-2 text-left text-gray-700 hover:bg-gray-200 rounded-md transition">
-          Short → Long
-        </button>
-        <button @click="setDuration('')" class="px-4 py-2 text-left text-red-500 hover:bg-gray-200 rounded-md transition">
-          Clear
-        </button>
-      </div>
-    </div>
-
   </div>
 </template>

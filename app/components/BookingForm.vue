@@ -40,12 +40,17 @@ const emit = defineEmits<{
   submit: [booking: Booking]
 }>()
 
+const selectedAge = ref<AgeCategory>(props.ageCategory || 'Adult 13-64')
+const selectedDuration = computed(() => selectedExcursion.value?.duration || '')
+
+
 const { excursions, loadExcursions } = useExcursions()
 
 // Form state
 const selectedExcursionId = ref<string>('')
-const selectedDate = ref<string>(props.date || '')
-const numberOfPersons = ref<number>(props.noPersons || 1)
+const selectedDate = ref(props.date ?? "")
+const numberOfPersons = ref(props.noPersons ?? 1)
+
 
 // Selected excursion computed
 const selectedExcursion = computed<Excursion | undefined>(() => {
@@ -145,6 +150,36 @@ onMounted(async () => {
   <div class="booking-form">
     <div class="form-section">
       <h2 class="section-title">Excursion Details</h2>
+
+      <div class="flex flex-wrap gap-3 mb-3">
+      <span
+        v-if="selectedDate"
+        class="px-3 py-1 bg-gray-200 rounded-full text-sm text-gray-700 font-medium shadow-sm"
+      >
+        {{ selectedDate }}
+      </span>
+
+      <span
+        v-if="selectedDuration"
+        class="px-3 py-1 bg-gray-200 rounded-full text-sm text-gray-700 font-medium shadow-sm"
+      >
+        {{ selectedDuration }}
+      </span>
+
+      <span
+        v-if="numberOfPersons"
+        class="px-3 py-1 bg-gray-200 rounded-full text-sm text-gray-700 font-medium shadow-sm"
+      >
+        {{ numberOfPersons }} person(s)
+      </span>
+
+      <span
+        v-if="selectedAge"
+        class="px-3 py-1 bg-gray-200 rounded-full text-sm text-gray-700 font-medium shadow-sm"
+      >
+        {{ selectedAge }}
+      </span>
+    </div>
       
       <!-- Excursion Selection -->
       <div class="form-group">

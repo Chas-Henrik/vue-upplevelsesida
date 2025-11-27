@@ -116,6 +116,29 @@ const handleBook = () => {
             </div>
           </div>
 
+          <!-- Selected Filters (Soft Tags) -->
+          <div 
+            v-if="date || duration || ageCategory || noPersons"
+            class="flex flex-wrap gap-2 mb-6 items-center"
+          >
+            <span v-if="date" class="soft-tag">
+              📅 {{ date }}
+            </span>
+
+            <span v-if="duration" class="soft-tag">
+              ⏱️ {{ duration }}
+            </span>
+
+            <span v-if="ageCategory" class="soft-tag">
+              👤 {{ ageCategory }}
+            </span>
+
+            <span v-if="noPersons" class="soft-tag">
+              👥 {{ noPersons }} persons
+            </span>
+          </div>
+
+
           <!-- Book Button -->
           <div class="book-section">
             <button @click="handleBook" class="btn btn-primary btn-large">
@@ -400,6 +423,21 @@ const handleBook = () => {
 .btn-large {
   padding: 1rem 3rem;
   font-size: 1.125rem;
+}
+
+.soft-tag {
+  background: #f1f1f1;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #333;
+  border: 1px solid #e0e0e0;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
 }
 
 @media (max-width: 768px) {
