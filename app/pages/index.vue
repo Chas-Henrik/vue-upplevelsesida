@@ -57,7 +57,21 @@ const handleCardClick = (buttonType: 'readMore' | 'book', excursionId: string) =
   }
 }
 
-// Filter
+onMounted(() => {
+  const currentQuery = route.query
+  const hasFilters = Object.keys(currentQuery).length > 0
+
+  if (!hasFilters) {
+    const saved = sessionStorage.getItem("savedFilters")
+    if (saved) {
+      const restored = JSON.parse(saved)
+      navigateTo({ query: restored }, { replace: true })
+    }
+  }
+})
+
+
+// FILTER SYSTEM
 type FilterOptions = {
   date: string | null
   duration: string | null
@@ -65,51 +79,63 @@ type FilterOptions = {
   noPersons: number | null
 }
 
-const filters = ref<FilterOptions>({
-  date: null,
-  duration: null,
-  ageCategory: null,
-  noPersons: null
-})
-
 function applyFilters(newFilters: FilterOptions) {
   const query: any = {}
 
-  if (newFilters.date) query.date = newFilters.date
+  const todayDate = new Date()
+  todayDate.setHours(0, 0, 0, 0)
+
+  if (newFilters.date) {
+    const selected = new Date(newFilters.date + "T00:00")
+    if (selected >= todayDate) {
+      query.date = newFilters.date
+    }
+  }
+
   if (newFilters.duration) query.duration = newFilters.duration
   if (newFilters.noPersons) query['no-persons'] = newFilters.noPersons
   if (newFilters.ageCategory) query['age-category'] = newFilters.ageCategory
 
+  sessionStorage.setItem("savedFilters", JSON.stringify(query))
+
   navigateTo({ query }, { replace: true })
 }
-
 
 function resetFilter() {
   navigateTo('/', { replace: true })
 }
 
-
-// Final filtered excursions
+// FILTERED EXCURSIONS
 const filteredExcursions = computed(() => {
+  const rawDate = route.query.date as string | undefined
+  let validatedDate: string | undefined = undefined
+
+  if (rawDate) {
+    const selected = new Date(rawDate + "T00:00")
+    const todayDate = new Date()
+    todayDate.setHours(0, 0, 0, 0)
+    if (selected >= todayDate) {
+      validatedDate = rawDate
+    }
+  }
+
   return filterExcursions({
-    date: route.query.date as string | undefined,
-    duration: route.query.duration as string | undefined,
-    noPersons: route.query['no-persons']
-      ? Number(route.query['no-persons'])
-      : undefined,
-    recommendedAge: route.query['age-category'] as any
+    date: validatedDate,
+    duration: duration.value ?? undefined,
+    noPersons: noPersons.value ?? undefined,
+    recommendedAge: ageCategory.value ?? undefined
   })
 })
-
 </script>
 
 <template>
   <div class="home-page">
     <div class="container">
 
-      <!-- Filters -->
-      <ExcursionFilter @update:filters="applyFilters"
-       @reset="resetFilter" />
+      <ExcursionFilter 
+        @update:filters="applyFilters"
+        @reset="resetFilter"
+      />
 
       <!-- Loading -->
       <div v-if="excursionsLoading" class="loading-state">
