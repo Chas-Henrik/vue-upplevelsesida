@@ -2,22 +2,13 @@
 import { useRoute } from "vue-router"
 import { useExcursions } from "~/composables/useExcursions"
 
+
 const emit = defineEmits(["update-filters", "reset"])
 const route = useRoute()
+const { getSortedExcursionDurations } = useExcursions()
 
-const { getExcursionDurations } = useExcursions()
-const availableDurations = computed(() => {
-  return getExcursionDurations().slice().sort((a, b) => {
+const availableDurations = computed(() => getSortedExcursionDurations())
 
-    const aIsDay = a.includes("day")
-    const bIsDay = b.includes("day")
-
-    if (aIsDay && !bIsDay) return 1
-    if (!aIsDay && bIsDay) return -1 
-
-    return parseInt(a) - parseInt(b)
-  })
-})
 
 
 // STATE
@@ -92,6 +83,13 @@ function resetFilters() {
                focus:outline-none focus:ring-2 focus:ring-primary appearance-none"
         style="border-radius: var(--radius-md)"
       />
+
+      <svg 
+    class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-600 pointer-events-none"
+    viewBox="0 0 20 20" fill="currentColor"
+  >
+    <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd" />
+  </svg>
     </div>
 
     <!-- DURATION -->
@@ -103,6 +101,7 @@ function resetFilters() {
         class="px-3 py-2.5 bg-primary/10 text-gray-800 font-semibold
                focus:outline-none focus:ring-2 focus:ring-primary appearance-none"
         style="border-radius: var(--radius-md)"
+
       >
         <option value="">Any</option>
         <option 
@@ -110,7 +109,15 @@ function resetFilters() {
           :key="d" 
           :value="d"
         >{{ d }}</option>
+
       </select>
+
+      <svg 
+    class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-600 pointer-events-none"
+    viewBox="0 0 20 20" fill="currentColor"
+  >
+    <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd" />
+  </svg>
     </div>
 
     <!-- PERSONS -->
@@ -126,6 +133,12 @@ function resetFilters() {
         <option value="">Any</option>
         <option v-for="n in 10" :key="n" :value="n">{{ n }}</option>
       </select>
+      <svg 
+    class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-600 pointer-events-none"
+    viewBox="0 0 20 20" fill="currentColor"
+  >
+    <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd" />
+  </svg>
     </div>
 
     <!-- AGE CATEGORY -->
@@ -143,6 +156,13 @@ function resetFilters() {
         <option value="Adult 13-64">Adult 13-64</option>
         <option value="Senior 65+">Senior 65+</option>
       </select>
+
+      <svg 
+    class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-600 pointer-events-none"
+    viewBox="0 0 20 20" fill="currentColor"
+  >
+    <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd" />
+  </svg>
     </div>
 
     <!-- RESET -->
