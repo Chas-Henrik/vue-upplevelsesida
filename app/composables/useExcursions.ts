@@ -63,7 +63,6 @@ export const useExcursions = () => {
 
   const getSortedExcursionDurations = () => {
     return [...new Set(excursions.value.map(e => e.duration))]
-      .slice()
       .sort((a, b) => {
         const aIsDay = a.includes("day")
         const bIsDay = b.includes("day")
