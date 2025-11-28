@@ -8,6 +8,8 @@ const route = useRoute()
 const { excursionsLoading, excursionsError, filterExcursions } = useExcursions()
 const { articles, articlesLoading, articlesError } = useArticles()
 
+const filterKey = ref(0)
+
 // Extract query params with validation (and silently ignore invalid ones)
 const date = computed(() => {
   const value = route.query.date as string | undefined
@@ -44,6 +46,18 @@ const ageCategory = computed(() => {
     : undefined
 })
 
+// Watch for query changes to reset excursion filters when query parameters are cleared by Home button
+watch(
+  () => route.query,
+  () => {
+    if (Object.keys(route.query).length === 0) {
+      filterKey.value++
+      console.log("Increment filterKey due to empty query, filterKey:", filterKey.value);
+    }
+  }
+)
+
+// Event handler for ExcursionCards
 const handleCardClick = (buttonType: 'readMore' | 'book', excursionId: string) => {
   const queryParams = new URLSearchParams()
   // Build query params
@@ -98,6 +112,7 @@ const filteredExcursions = computed(() =>
     <div class="container">
 
       <ExcursionFilter 
+        :key="filterKey"
         @update-filters="applyFilters"
         @reset="resetFilter"
       />
