@@ -5,7 +5,7 @@ import ExcursionFilter from '~/components/ExcursionFilter.vue'
 import { useExcursions } from '~/composables/useExcursions'
 
 const route = useRoute()
-const { excursions, excursionsLoading, excursionsError, filterExcursions } = useExcursions()
+const { excursionsLoading, excursionsError, filterExcursions } = useExcursions()
 const { articles, articlesLoading, articlesError } = useArticles()
 
 // Extract query params with validation (and silently ignore invalid ones)
