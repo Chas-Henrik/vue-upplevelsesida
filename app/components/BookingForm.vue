@@ -128,11 +128,11 @@ const minDate = computed(() => {
   return today.toISOString().split('T')[0]
 })
 
-// Load excursions on mount
+// Load excursions on mount (as 'backup' if not already loaded)
 onMounted(async () => {
   await loadExcursions()
   
-  // Preselect excursion if provided
+  // Preselect excursion if excursionId provided by props exists and use first excursion otherwise
   if (props.excursionId && excursions.value.some(exc => exc.id === props.excursionId)) {
     selectedExcursionId.value = props.excursionId
   } else if (excursions.value.length > 0 && excursions.value[0]) {
