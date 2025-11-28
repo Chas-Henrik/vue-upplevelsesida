@@ -1,13 +1,14 @@
 <script setup lang="ts">
+
 import type { AgeCategory } from '~/types/excursion'
 import ExcursionFilter from '~/components/ExcursionFilter.vue'
 import { useExcursions } from '~/composables/useExcursions'
 
 const route = useRoute()
-const { excursions, excursionsLoading, excursionsError, filterExcursions  } = useExcursions()
+const { excursions, excursionsLoading, excursionsError, filterExcursions } = useExcursions()
 const { articles, articlesLoading, articlesError } = useArticles()
 
-// Extract query params with validation (and silently ignore invalid ones)
+// Extract query params
 const date = computed(() => {
   const value = route.query.date as string | undefined
   if (!value) return undefined
@@ -20,32 +21,36 @@ const date = computed(() => {
 const duration = computed(() => {
   const value = route.query.duration as string | undefined
   if (!value) return undefined
-  // Validate format: 'xh' (e.g., '4h') or 'x days' (e.g., '2 days')
   const validFormat = /^\d+h$|^\d+ days?$/.test(value)
   return validFormat ? value : undefined
 })
 
 const noPersons = computed(() => {
-  const value = route.query['no-persons']
+  const value = route.query["no-persons"]
   const num = value ? Number(value) : undefined
   return num && num >= 1 && num <= 10 ? num : undefined
 })
 
 const ageCategory = computed(() => {
-  const value = route.query['age-category'] as string
-  const validCategories: AgeCategory[] = ['Child 0-12', 'Adult 13-64', 'Senior 65+']
-  return validCategories.includes(value as AgeCategory) ? value as AgeCategory : undefined
+  const value = route.query["age-category"] as string
+  const validCategories: AgeCategory[] = [
+    "Child 0-12",
+    "Adult 13-64",
+    "Senior 65+"
+  ]
+  return validCategories.includes(value as AgeCategory)
+    ? (value as AgeCategory)
+    : undefined
 })
 
-const handleCardClick = (buttonType: 'readMore' | 'book', excursionId: string) => {
-  // Build query params
+const handleCardClick = (buttonType: "readMore" | "book", excursionId: string) => {
   const queryParams = new URLSearchParams()
-  
-  if (date.value) queryParams.append('date', date.value)
-  if (duration.value) queryParams.append('duration', duration.value)
-  if (noPersons.value) queryParams.append('no-persons', noPersons.value.toString())
-  if (ageCategory.value) queryParams.append('age-category', ageCategory.value)
-  
+
+  if (date.value) queryParams.append("date", date.value)
+  if (duration.value) queryParams.append("duration", duration.value)
+  if (noPersons.value) queryParams.append("no-persons", noPersons.value.toString())
+  if (ageCategory.value) queryParams.append("age-category", ageCategory.value)
+
   const queryString = queryParams.toString()
   
   if (buttonType === 'readMore') {
@@ -57,83 +62,42 @@ const handleCardClick = (buttonType: 'readMore' | 'book', excursionId: string) =
   }
 }
 
-onMounted(() => {
-  const currentQuery = route.query
-  const hasFilters = Object.keys(currentQuery).length > 0
+// APPLY FILTERS
+function applyFilters(filters: any) {
+  const query: Record<string, any> = {}
 
-  if (!hasFilters) {
-    const saved = sessionStorage.getItem("savedFilters")
-    if (saved) {
-      const restored = JSON.parse(saved)
-      navigateTo({ query: restored }, { replace: true })
-    }
-  }
-})
-
-
-// FILTER SYSTEM
-type FilterOptions = {
-  date: string | null
-  duration: string | null
-  ageCategory: AgeCategory | null
-  noPersons: number | null
-}
-
-function applyFilters(newFilters: FilterOptions) {
-  const query: any = {}
-
-  const todayDate = new Date()
-  todayDate.setHours(0, 0, 0, 0)
-
-  if (newFilters.date) {
-    const selected = new Date(newFilters.date + "T00:00")
-    if (selected >= todayDate) {
-      query.date = newFilters.date
-    }
-  }
-
-  if (newFilters.duration) query.duration = newFilters.duration
-  if (newFilters.noPersons) query['no-persons'] = newFilters.noPersons
-  if (newFilters.ageCategory) query['age-category'] = newFilters.ageCategory
+  if (filters.date) query.date = filters.date
+  if (filters.duration) query.duration = filters.duration
+  if (filters.noPersons) query["no-persons"] = filters.noPersons
+  if (filters.ageCategory) query["age-category"] = filters.ageCategory
 
   sessionStorage.setItem("savedFilters", JSON.stringify(query))
-
   navigateTo({ query }, { replace: true })
 }
 
 function resetFilter() {
-  navigateTo('/', { replace: true })
+  sessionStorage.removeItem("savedFilters")
+  navigateTo("/", { replace: true })
 }
 
 // FILTERED EXCURSIONS
-const filteredExcursions = computed(() => {
-  const rawDate = route.query.date as string | undefined
-  let validatedDate: string | undefined = undefined
-
-  if (rawDate) {
-    const selected = new Date(rawDate + "T00:00")
-    const todayDate = new Date()
-    todayDate.setHours(0, 0, 0, 0)
-    if (selected >= todayDate) {
-      validatedDate = rawDate
-    }
-  }
-
-  return filterExcursions({
-    date: validatedDate,
-    duration: duration.value ?? undefined,
-    noPersons: noPersons.value ?? undefined,
-    recommendedAge: ageCategory.value ?? undefined
+const filteredExcursions = computed(() =>
+  filterExcursions({
+    date: date.value,
+    duration: duration.value,
+    noPersons: noPersons.value,
+    recommendedAge: ageCategory.value
   })
-})
+)
 </script>
+
 
 <template>
   <div class="home-page">
     <div class="container">
 
       <ExcursionFilter 
-        @update:filters="applyFilters"
+        @update-filters="applyFilters"
         @reset="resetFilter"
       />
 

@@ -48,8 +48,8 @@ const { excursions, loadExcursions } = useExcursions()
 
 // Form state
 const selectedExcursionId = ref<string>('')
-const selectedDate = ref(props.date ?? "")
-const numberOfPersons = ref(props.noPersons ?? 1)
+const selectedDate = ref<string>(props.date || '')
+const numberOfPersons = ref<number>(props.noPersons || 1)
 
 
 // Selected excursion computed

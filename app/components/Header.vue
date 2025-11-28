@@ -10,7 +10,10 @@ const menuItems = [
   { id: 'home', label: 'Home', url: '/' }
 ]
 
-
+const handleMenuClick = (url: string) => {
+  navigateTo(url)
+  isMobileMenuOpen.value = false // Close menu after navigation
+}
 
 const handleCartClick = () => {
   navigateTo('/cart')

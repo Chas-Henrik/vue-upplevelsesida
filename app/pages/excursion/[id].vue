@@ -130,7 +130,7 @@ const handleBook = () => {
             </span>
 
             <span v-if="ageCategory" class="soft-tag">
-              👤 {{ ageCategory }}
+              🎯 {{ ageCategory }}
             </span>
 
             <span v-if="noPersons" class="soft-tag">
