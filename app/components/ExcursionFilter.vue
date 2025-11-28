@@ -21,7 +21,7 @@ const filters = ref({
 
 // MIN DATE
 const minDate = computed(() => {
-  return new Date().toISOString().split("T")[0]
+  return formatLocalDate(new Date())
 })
 
 // LOAD QUERY INTO UI
