@@ -1,8 +1,11 @@
 <script setup lang="ts">
+
 import type { AgeCategory } from '~/types/excursion'
+import ExcursionFilter from '~/components/ExcursionFilter.vue'
+import { useExcursions } from '~/composables/useExcursions'
 
 const route = useRoute()
-const { excursions, excursionsLoading, excursionsError } = useExcursions()
+const { excursions, excursionsLoading, excursionsError, filterExcursions } = useExcursions()
 const { articles, articlesLoading, articlesError } = useArticles()
 
 // Extract query params with validation (and silently ignore invalid ones)
@@ -17,8 +20,8 @@ const date = computed(() => {
 
 const duration = computed(() => {
   const value = route.query.duration as string | undefined
-  if (!value) return undefined
   // Validate format: 'xh' (e.g., '4h') or 'x days' (e.g., '2 days')
+  if (!value) return undefined
   const validFormat = /^\d+h$|^\d+ days?$/.test(value)
   return validFormat ? value : undefined
 })
@@ -31,19 +34,24 @@ const noPersons = computed(() => {
 
 const ageCategory = computed(() => {
   const value = route.query['age-category'] as string
-  const validCategories: AgeCategory[] = ['Child 0-12', 'Adult 13-64', 'Senior 65+']
-  return validCategories.includes(value as AgeCategory) ? value as AgeCategory : undefined
+  const validCategories: AgeCategory[] = [
+    'Child 0-12',
+    'Adult 13-64',
+    'Senior 65+',
+  ]
+  return validCategories.includes(value as AgeCategory)
+    ? (value as AgeCategory)
+    : undefined
 })
 
 const handleCardClick = (buttonType: 'readMore' | 'book', excursionId: string) => {
-  // Build query params
   const queryParams = new URLSearchParams()
-  
+  // Build query params
   if (date.value) queryParams.append('date', date.value)
   if (duration.value) queryParams.append('duration', duration.value)
   if (noPersons.value) queryParams.append('no-persons', noPersons.value.toString())
   if (ageCategory.value) queryParams.append('age-category', ageCategory.value)
-  
+
   const queryString = queryParams.toString()
   
   if (buttonType === 'readMore') {
@@ -54,11 +62,46 @@ const handleCardClick = (buttonType: 'readMore' | 'book', excursionId: string) =
     navigateTo(url)
   }
 }
+
+// APPLY FILTERS
+function applyFilters(filters: any) {
+  const query: Record<string, any> = {}
+
+  if (filters.date) query.date = filters.date
+  if (filters.duration) query.duration = filters.duration
+  if (filters.noPersons) query["no-persons"] = filters.noPersons
+  if (filters.ageCategory) query["age-category"] = filters.ageCategory
+
+  sessionStorage.setItem("savedFilters", JSON.stringify(query))
+  navigateTo({ query }, { replace: true })
+}
+
+function resetFilter() {
+  sessionStorage.removeItem("savedFilters")
+  navigateTo("/", { replace: true })
+}
+
+// FILTERED EXCURSIONS
+const filteredExcursions = computed(() =>
+  filterExcursions({
+    date: date.value,
+    duration: duration.value,
+    noPersons: noPersons.value,
+    recommendedAge: ageCategory.value
+  })
+)
 </script>
+
 
 <template>
   <div class="home-page">
     <div class="container">
+
+      <ExcursionFilter 
+        @update-filters="applyFilters"
+        @reset="resetFilter"
+      />
+
       <!-- Loading state -->
       <div v-if="excursionsLoading" class="loading-state">
         <p>Loading excursions...</p>
@@ -72,7 +115,7 @@ const handleCardClick = (buttonType: 'readMore' | 'book', excursionId: string) =
       <!-- Excursions grid -->
       <div v-else class="excursions-grid">
         <ExcursionCard 
-          v-for="excursion in excursions" 
+          v-for="excursion in filteredExcursions"
           :key="excursion.id"
           :excursion="excursion"
           @click="handleCardClick"
@@ -102,6 +145,7 @@ const handleCardClick = (buttonType: 'readMore' | 'book', excursionId: string) =
           />
         </div>
       </div>
+
     </div>
   </div>
 </template>
@@ -136,28 +180,23 @@ const handleCardClick = (buttonType: 'readMore' | 'book', excursionId: string) =
   margin: 0 auto;
   padding: 2rem 2rem 4rem;
 }
-
 .excursions-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 2rem;
 }
-
 .loading-state,
 .error-state {
   text-align: center;
   padding: 4rem 2rem;
   font-size: 1.125rem;
 }
-
 .error-state {
   color: #dc2626;
 }
-
 .articles-section {
   margin-top: 4rem;
 }
-
 .section-title {
   font-size: 2.5rem;
   font-weight: 700;
@@ -165,13 +204,11 @@ const handleCardClick = (buttonType: 'readMore' | 'book', excursionId: string) =
   margin: 0 0 2rem 0;
   text-align: center;
 }
-
 .articles-list {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
-
 @media (max-width: 768px) {
   .hero-title {
     font-size: 2rem;

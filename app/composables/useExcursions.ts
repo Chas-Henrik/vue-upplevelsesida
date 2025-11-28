@@ -61,6 +61,19 @@ export const useExcursions = () => {
     })
   }
 
+  const getSortedExcursionDurations = () => {
+    return [...new Set(excursions.value.map(e => e.duration))]
+      .sort((a, b) => {
+        const aIsDay = a.includes("day")
+        const bIsDay = b.includes("day")
+  
+        if (aIsDay && !bIsDay) return 1
+        if (!aIsDay && bIsDay) return -1
+  
+        return parseInt(a) - parseInt(b)
+      })
+  }
+
   const getExcursionDurations = () => {
     const durations = excursions.value.map(excursion => excursion.duration)
     return [...new Set(durations)].sort()
@@ -73,6 +86,7 @@ export const useExcursions = () => {
     loadExcursions,
     getExcursionById,
     filterExcursions,
-    getExcursionDurations
+    getExcursionDurations,
+    getSortedExcursionDurations
   }
 }
