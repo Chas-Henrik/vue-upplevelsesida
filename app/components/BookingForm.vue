@@ -40,17 +40,12 @@ const emit = defineEmits<{
   submit: [booking: Booking]
 }>()
 
-const selectedAge = ref<AgeCategory>(props.ageCategory || 'Adult 13-64')
-const selectedDuration = computed(() => selectedExcursion.value?.duration || '')
-
-
 const { excursions, loadExcursions } = useExcursions()
 
 // Form state
 const selectedExcursionId = ref<string>('')
 const selectedDate = ref<string>(props.date || '')
 const numberOfPersons = ref<number>(props.noPersons || 1)
-
 
 // Selected excursion computed
 const selectedExcursion = computed<Excursion | undefined>(() => {

@@ -8,7 +8,7 @@ const route = useRoute()
 const { excursions, excursionsLoading, excursionsError, filterExcursions } = useExcursions()
 const { articles, articlesLoading, articlesError } = useArticles()
 
-// Extract query params
+// Extract query params with validation (and silently ignore invalid ones)
 const date = computed(() => {
   const value = route.query.date as string | undefined
   if (!value) return undefined
@@ -20,36 +20,37 @@ const date = computed(() => {
 
 const duration = computed(() => {
   const value = route.query.duration as string | undefined
+  // Validate format: 'xh' (e.g., '4h') or 'x days' (e.g., '2 days')
   if (!value) return undefined
   const validFormat = /^\d+h$|^\d+ days?$/.test(value)
   return validFormat ? value : undefined
 })
 
 const noPersons = computed(() => {
-  const value = route.query["no-persons"]
+  const value = route.query['no-persons']
   const num = value ? Number(value) : undefined
   return num && num >= 1 && num <= 10 ? num : undefined
 })
 
 const ageCategory = computed(() => {
-  const value = route.query["age-category"] as string
+  const value = route.query['age-category'] as string
   const validCategories: AgeCategory[] = [
-    "Child 0-12",
-    "Adult 13-64",
-    "Senior 65+"
+    'Child 0-12',
+    'Adult 13-64',
+    'Senior 65+',
   ]
   return validCategories.includes(value as AgeCategory)
     ? (value as AgeCategory)
     : undefined
 })
 
-const handleCardClick = (buttonType: "readMore" | "book", excursionId: string) => {
+const handleCardClick = (buttonType: 'readMore' | 'book', excursionId: string) => {
   const queryParams = new URLSearchParams()
-
-  if (date.value) queryParams.append("date", date.value)
-  if (duration.value) queryParams.append("duration", duration.value)
-  if (noPersons.value) queryParams.append("no-persons", noPersons.value.toString())
-  if (ageCategory.value) queryParams.append("age-category", ageCategory.value)
+  // Build query params
+  if (date.value) queryParams.append('date', date.value)
+  if (duration.value) queryParams.append('duration', duration.value)
+  if (noPersons.value) queryParams.append('no-persons', noPersons.value.toString())
+  if (ageCategory.value) queryParams.append('age-category', ageCategory.value)
 
   const queryString = queryParams.toString()
   
@@ -101,17 +102,17 @@ const filteredExcursions = computed(() =>
         @reset="resetFilter"
       />
 
-      <!-- Loading -->
+      <!-- Loading state -->
       <div v-if="excursionsLoading" class="loading-state">
         <p>Loading excursions...</p>
       </div>
 
-      <!-- Error -->
+      <!-- Error state -->
       <div v-else-if="excursionsError" class="error-state">
         <p>{{ excursionsError }}</p>
       </div>
 
-      <!-- LIST OF FILTERED EXCURSIONS -->
+      <!-- Excursions grid -->
       <div v-else class="excursions-grid">
         <ExcursionCard 
           v-for="excursion in filteredExcursions"
@@ -121,7 +122,7 @@ const filteredExcursions = computed(() =>
         />
       </div>
 
-      <!-- Articles -->
+      <!-- Articles Section -->
       <div class="articles-section">
         <h2 class="section-title">Articles</h2>
         
@@ -130,10 +131,12 @@ const filteredExcursions = computed(() =>
           <p>Loading articles...</p>
         </div>
 
+        <!-- Articles Error state -->
         <div v-else-if="articlesError" class="error-state">
           <p>{{ articlesError }}</p>
         </div>
 
+        <!-- Articles list -->
         <div v-else class="articles-list">
           <Article 
             v-for="article in articles" 
@@ -151,6 +154,27 @@ const filteredExcursions = computed(() =>
 .home-page {
   min-height: 100vh;
 }
+
+.hero {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  color: white;
+  padding: 4rem 2rem;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  opacity: 0.95;
+  margin: 0;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -165,6 +189,7 @@ const filteredExcursions = computed(() =>
 .error-state {
   text-align: center;
   padding: 4rem 2rem;
+  font-size: 1.125rem;
 }
 .error-state {
   color: #dc2626;
@@ -173,14 +198,32 @@ const filteredExcursions = computed(() =>
   margin-top: 4rem;
 }
 .section-title {
-  text-align: center;
   font-size: 2.5rem;
   font-weight: 700;
-  margin-bottom: 2rem;
+  color: var(--color-text);
+  margin: 0 0 2rem 0;
+  text-align: center;
 }
 .articles-list {
   display: flex;
   flex-direction: column;
   gap: 2rem;
+}
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+  
+  .excursions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
 }
 </style>
