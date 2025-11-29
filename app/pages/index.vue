@@ -52,7 +52,6 @@ watch(
   () => {
     if (Object.keys(route.query).length === 0) {
       filterKey.value++
-      console.log("Increment filterKey due to empty query, filterKey:", filterKey.value);
     }
   }
 )
