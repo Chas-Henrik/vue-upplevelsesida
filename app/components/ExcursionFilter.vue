@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { useRoute } from "vue-router"
 import { useExcursions } from "~/composables/useExcursions"
-
+import { VueDatePicker } from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
 
 const emit = defineEmits(["update-filters", "reset"])
 const route = useRoute()
@@ -74,13 +75,15 @@ function resetFilters() {
     <!-- DATE -->
     <div>
       <label class="mr-1 font-semibold">Date</label>
-      <input 
-        type="date"
-        v-model="filters.date"
-        :min="minDate"
-        @change="updateFilters"
+      <VueDatePicker 
         class="px-3 py-2.5 bg-primary/10 text-gray-800 font-semibold
                focus:outline-none focus:ring-2 focus:ring-primary appearance-none"
+        type="date"
+        :formats="{ input: 'yyyy.MM.dd' }"
+        v-model="filters.date"
+        :min-date="minDate"
+        :time-config="{ enableTimePicker: false }"
+        @update:model-value="updateFilters"
         style="border-radius: var(--radius-md)"
       />
 

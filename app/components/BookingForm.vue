@@ -6,6 +6,8 @@ import type { PropType } from 'vue'
 import BookingFieldComponent from './BookingField.vue'
 import { shortCryptoId, formatLocalDate } from '~/utils/helpers'
 import { useExcursions } from "~/composables/useExcursions"
+import { VueDatePicker } from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
 
 const { excursions, loadExcursions, matchesSeason } = useExcursions()
 
@@ -222,13 +224,16 @@ const handleSubmit = () => {
       <div class="form-row">
         <div class="form-group">
           <label for="date" class="form-label">Date</label>
-          <input
+          <VueDatePicker
             id="date"
-            v-model="selectedDate"
             type="date"
-            class="form-input"
-            :min="selectableDates.start"
-            :max="selectableDates.end"
+            class="form-date-picker"
+            :ui="{ input: 'form-date-picker-input' }"
+            :formats="{ input: 'yyyy.MM.dd' }"
+            v-model="selectedDate"
+            :min-date="selectableDates.start"
+            :max-date="selectableDates.end"
+            :time-config="{ enableTimePicker: false }"
             required
           />
         </div>
@@ -358,6 +363,24 @@ const handleSubmit = () => {
   transition: all 0.2s ease;
   background: white;
   height: 3rem;
+}
+
+.form-date-picker{
+  width: 100%;
+  padding: 0;
+  border: 1px solid #d1d5db;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.2s ease;
+  background: white;
+  height: 3rem;
+}
+
+.form-date-picker-input{
+  background-color: turquoise;
+  height: 3rem;
+  font-size: 2rem;
 }
 
 .form-input:focus,

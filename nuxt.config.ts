@@ -24,4 +24,8 @@ export default defineNuxtConfig({
   pinia: {
     storesDirs: ['./app/stores/**'],
   },
+
+  build: {
+    transpile: ['@vuepic/vue-datepicker']
+  }
 })
