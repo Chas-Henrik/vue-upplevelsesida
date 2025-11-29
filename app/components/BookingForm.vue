@@ -226,7 +226,6 @@ const handleSubmit = () => {
           <label for="date" class="form-label">Date</label>
           <VueDatePicker
             id="date"
-            type="date"
             class="form-date-picker"
             :ui="{ input: 'form-date-picker-input' }"
             :formats="{  preview: 'yyyy.MM.dd', input: 'yyyy.MM.dd' }"
@@ -236,7 +235,6 @@ const handleSubmit = () => {
             :min-date="selectableDates.start"
             :max-date="selectableDates.end"
             :time-config="{ enableTimePicker: false }"
-            required
           />
         </div>
 
@@ -369,14 +367,13 @@ const handleSubmit = () => {
 
 .form-date-picker{
   width: 100%;
+  height: 3rem;
   padding: 0;
   border: 1px solid #d1d5db;
   border-radius: var(--radius-md);
   font-size: 1rem;
   font-family: inherit;
-  transition: all 0.2s ease;
   background: white;
-  height: 3rem;
 }
 
 .form-date-picker-input{

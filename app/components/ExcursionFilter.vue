@@ -78,7 +78,6 @@ function resetFilters() {
       <VueDatePicker 
         class="px-3 py-2.5 bg-primary/10 text-gray-800 font-semibold
                focus:outline-none focus:ring-2 focus:ring-primary appearance-none"
-        type="date"
         :formats="{  preview: 'yyyy.MM.dd', input: 'yyyy.MM.dd' }"
         :start-date="minDate"
         focus-start-date
