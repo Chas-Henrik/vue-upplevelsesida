@@ -51,7 +51,7 @@ const numberOfPersons = ref<number>(props.noPersons || 1)
 // Booking fields data storage
 const bookingFieldsData = ref<Map<number, BookingField>>(new Map())
 
-// Load excursions on mount (as 'backup' if not already loaded)
+// Load excursions on mount (as 'backup' if not already loaded by loadExcursions plugin)
 onMounted(async () => {
   await loadExcursions()
   
@@ -108,7 +108,7 @@ const selectableDates = computed(() => {
     }
   }
 
-  // If season already started, start from TODAY
+  // If season already started, start from TODAY (local time)
   const min = formatLocalDate(today > start ? today : start);
   const max = formatLocalDate(end);
 
@@ -181,6 +181,7 @@ const handleFieldChange = (index: number, updatedField: BookingField) => {
 const handleSubmit = () => {
   if (!isFormValid.value || !selectedExcursion.value) return
   
+  // Build Booking object
   const booking: Booking = {
     bookingId: shortCryptoId(),
     excursionId: selectedExcursion.value.id,
