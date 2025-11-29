@@ -377,15 +377,20 @@ const handleSubmit = () => {
   background: white;
 }
 
-/* VueDatePicker Input */
 .form-date-picker-input {
-  height: 100%;
-  padding: 1rem;
-  border: 1px solid #d1d5db;
+  height: calc(3rem - 3px); /* adjust for border */
+  border: none;
   border-radius: var(--radius-md);
   display: block;              /* avoid inline quirks */
   box-sizing: border-box;
-  background-color: cyan;     /* debug */
+}
+
+.form-date-picker :deep(.dp__input) {
+  height: calc(3rem - 3px); /* adjust for border */
+  border: none;
+  border-radius: var(--radius-md);
+  display: block;              /* avoid inline quirks */
+  box-sizing: border-box;
 }
 
 .form-input:focus,
