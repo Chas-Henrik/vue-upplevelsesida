@@ -365,7 +365,8 @@ const handleSubmit = () => {
   height: 3rem;
 }
 
-.form-date-picker{
+/* VueDatePicker outer wrapper: */
+.form-date-picker {
   width: 100%;
   height: 3rem;
   padding: 0;
@@ -376,10 +377,15 @@ const handleSubmit = () => {
   background: white;
 }
 
-.form-date-picker-input{
-  background-color: turquoise;
-  height: 3rem;
-  font-size: 2rem;
+/* VueDatePicker Input */
+.form-date-picker-input {
+  height: 100%;
+  padding: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: var(--radius-md);
+  display: block;              /* avoid inline quirks */
+  box-sizing: border-box;
+  background-color: cyan;     /* debug */
 }
 
 .form-input:focus,
