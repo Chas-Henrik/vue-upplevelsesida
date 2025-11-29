@@ -25,6 +25,7 @@ export const useCartStore = defineStore('cart', () => {
     } else {
       items.value.push(excursion)
     }
+    items.value.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
   }
 
   const removeExcursion = (excursionId: string, date: string) => {
