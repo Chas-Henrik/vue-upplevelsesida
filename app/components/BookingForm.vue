@@ -77,38 +77,34 @@ const selectableDates = computed(() => {
   let start, end;
 
   if (season === "Winter") {
-    const winterStart = new Date(year, 9, 1);      // Oct 1 this year
-    const winterEnd   = new Date(year + 1, 2, 31); // Mar 31 next year
+    const winterStartLastYear = new Date(year -1, 9, 1);      // Oct 1 last year
+    const winterEnd           = new Date(year, 2, 31);        // Mar 31 this year
+    const winterStart         = new Date(year, 9, 1);         // Oct 1 this year
+    const winterEndNextYear   = new Date(year + 1, 2, 31);    // Mar 31 next year
 
-    if (today >= winterStart && today <= winterEnd) {
-      // We are in this winter season
-      start = winterStart;
+    if (today < winterEnd) {
+      // We are in the end of last years winter season
+      start = winterStartLastYear;
       end = winterEnd;
-    } else if (today < winterStart) {
-      // Before winter starts this year
+    } else { 
+      // Before or after winter starts this year
       start = winterStart;
-      end = winterEnd;
-    } else {
-      // After winter ends, next winter
-      start = new Date(year + 1, 9, 1);     // Oct 1 next year
-      end   = new Date(year + 2, 2, 31);    // Mar 31 year after next
+      end = winterEndNextYear;
     }
   } else {
-    const summerStart = new Date(year, 3, 1);   // Apr 1
-    const summerEnd   = new Date(year, 8, 30);  // Sep 30
+    const summerStart         = new Date(year, 3, 1);       // Apr 1 this year
+    const summerEnd           = new Date(year, 8, 30);      // Sep 30 this year
+    const summerStartNextYear = new Date(year + 1, 3, 1);   // Apr 1 next year
+    const summerEndNextYear   = new Date(year + 1, 8, 30);  // Sep 30 next year
 
-    if (today >= summerStart && today <= summerEnd) {
-      // We are in this summer season
+    if (today <= summerEnd) {
+      // We are before or in this summer season
       start = summerStart;
       end = summerEnd;
-    } else if (today < summerStart) {
-      // Before summer starts this year
-      start = summerStart;
-      end = summerEnd;
-    } else {
-      // After summer ends, next summer
-      start = new Date(year + 1, 3, 1);     // Apr 1 next year
-      end   = new Date(year + 1, 8, 30);    // Sep 30 next year
+    } else { 
+      // After summer ends this year
+      start = summerStartNextYear;
+      end = summerEndNextYear;
     }
   }
 
