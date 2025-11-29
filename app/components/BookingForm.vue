@@ -227,7 +227,6 @@ const handleSubmit = () => {
           <VueDatePicker
             id="date"
             class="form-date-picker"
-            :ui="{ input: 'form-date-picker-input' }"
             :formats="{  preview: 'yyyy.MM.dd', input: 'yyyy.MM.dd' }"
             :start-date="selectableDates.start"
             focus-start-date

@@ -73,11 +73,10 @@ function resetFilters() {
   <div class="flex items-center gap-4 flex-wrap mb-5">
 
     <!-- DATE -->
+    <label class="mr-1 font-semibold">Date</label>
     <div>
-      <label class="mr-1 font-semibold">Date</label>
       <VueDatePicker 
-        class="px-3 py-2.5 bg-primary/10 text-gray-800 font-semibold
-               focus:outline-none focus:ring-2 focus:ring-primary appearance-none"
+        class="form-date-picker"
         :formats="{  preview: 'yyyy.MM.dd', input: 'yyyy.MM.dd' }"
         :start-date="minDate"
         focus-start-date
@@ -186,3 +185,37 @@ function resetFilters() {
     </button>
   </div>
 </template>
+
+<style scoped>
+/* VueDatePicker outer wrapper: */
+.form-date-picker {
+  width: 100%;
+  height: 2.5rem;
+  padding: 0;
+  border: 1px solid #d1d5db;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-family: inherit;
+  background: white;
+}
+
+.form-date-picker-input {
+  height: 2.5rem;
+  border: none;
+  border-radius: var(--radius-md);
+  display: block;              /* avoid inline quirks */
+  box-sizing: border-box;
+}
+
+.form-date-picker :deep(.dp__input) {
+  height: 2.5rem;
+  width: 10rem;
+  border: none;
+  border-radius: var(--radius-md);
+  display: block;              /* avoid inline quirks */
+  box-sizing: border-box;
+  font-weight: bold;
+  color: #1e2939;
+  background-color: #E5E6EE;
+}
+</style>
