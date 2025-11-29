@@ -229,7 +229,9 @@ const handleSubmit = () => {
             type="date"
             class="form-date-picker"
             :ui="{ input: 'form-date-picker-input' }"
-            :formats="{ input: 'yyyy.MM.dd' }"
+            :formats="{  preview: 'yyyy.MM.dd', input: 'yyyy.MM.dd' }"
+            :start-date="selectableDates.start"
+            focus-start-date
             v-model="selectedDate"
             :min-date="selectableDates.start"
             :max-date="selectableDates.end"
