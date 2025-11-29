@@ -4,7 +4,10 @@ import type { Booking, BookingField } from '~/types/booking'
 import type { AgeCategory, Excursion } from '~/types/excursion'
 import type { PropType } from 'vue'
 import BookingFieldComponent from './BookingField.vue'
-import { shortCryptoId } from '~/utils/helpers'
+import { shortCryptoId, formatLocalDate } from '~/utils/helpers'
+import { useExcursions } from "~/composables/useExcursions"
+
+const { excursions, loadExcursions, matchesSeason } = useExcursions()
 
 const props = defineProps({
   excursionId: {
@@ -40,20 +43,77 @@ const emit = defineEmits<{
   submit: [booking: Booking]
 }>()
 
-const { excursions, loadExcursions } = useExcursions()
-
 // Form state
 const selectedExcursionId = ref<string>('')
 const selectedDate = ref<string>(props.date || '')
 const numberOfPersons = ref<number>(props.noPersons || 1)
+
+// Booking fields data storage
+const bookingFieldsData = ref<Map<number, BookingField>>(new Map())
+
+// Load excursions on mount (as 'backup' if not already loaded by loadExcursions plugin)
+onMounted(async () => {
+  await loadExcursions()
+  
+  // Preselect excursion if excursionId provided by props exists and use first excursion otherwise
+  if (props.excursionId && excursions.value.some(exc => exc.id === props.excursionId)) {
+    selectedExcursionId.value = props.excursionId
+  } else if (excursions.value.length > 0 && excursions.value[0]) {
+    selectedExcursionId.value = excursions.value[0].id
+  }
+})
 
 // Selected excursion computed
 const selectedExcursion = computed<Excursion | undefined>(() => {
   return excursions.value.find(exc => exc.id === selectedExcursionId.value)
 })
 
-// Booking fields data storage
-const bookingFieldsData = ref<Map<number, BookingField>>(new Map())
+// Compute selectable date range based on selected excursion season & current date
+const selectableDates = computed(() => {
+  const season = selectedExcursion.value?.season;
+  const today = new Date();
+  const year = today.getFullYear();
+
+  let start, end;
+
+  if (season === "Winter") {
+    const winterStartLastYear = new Date(year -1, 9, 1);      // Oct 1 last year
+    const winterEnd           = new Date(year, 2, 31);        // Mar 31 this year
+    const winterStart         = new Date(year, 9, 1);         // Oct 1 this year
+    const winterEndNextYear   = new Date(year + 1, 2, 31);    // Mar 31 next year
+
+    if (today < winterEnd) {
+      // We are in the end of last years winter season
+      start = winterStartLastYear;
+      end = winterEnd;
+    } else { 
+      // Before or after winter starts this year
+      start = winterStart;
+      end = winterEndNextYear;
+    }
+  } else {
+    const summerStart         = new Date(year, 3, 1);       // Apr 1 this year
+    const summerEnd           = new Date(year, 8, 30);      // Sep 30 this year
+    const summerStartNextYear = new Date(year + 1, 3, 1);   // Apr 1 next year
+    const summerEndNextYear   = new Date(year + 1, 8, 30);  // Sep 30 next year
+
+    if (today <= summerEnd) {
+      // We are before or in this summer season
+      start = summerStart;
+      end = summerEnd;
+    } else { 
+      // After summer ends this year
+      start = summerStartNextYear;
+      end = summerEndNextYear;
+    }
+  }
+
+  // If season already started, start from TODAY (local time)
+  const min = formatLocalDate(today > start ? today : start);
+  const max = formatLocalDate(end);
+
+  return { start: min, end: max };
+})
 
 // Computed booking fields based on number of persons
 const bookingFields = computed<BookingField[]>(() => {
@@ -84,11 +144,6 @@ const bookingFields = computed<BookingField[]>(() => {
   return fields
 })
 
-// Handle booking field changes
-const handleFieldChange = (index: number, updatedField: BookingField) => {
-  bookingFieldsData.value.set(index, updatedField)
-}
-
 // Compute total price
 const totalPrice = computed(() => {
   return bookingFields.value.reduce((total, field) => {
@@ -97,7 +152,7 @@ const totalPrice = computed(() => {
   }, 0)
 })
 
-// Form validation
+// Validate form
 const isFormValid = computed(() => {
   return selectedExcursionId.value !== '' &&
          selectedDate.value !== '' &&
@@ -105,10 +160,28 @@ const isFormValid = computed(() => {
          bookingFields.value.every(field => field.name.trim() !== '')
 })
 
+// Clear selected date if selectedExcursion is changed
+watch(selectedExcursion, () => {
+  // Clear selected date if out of season
+  if(!(selectedExcursion.value && matchesSeason(selectedExcursion.value.season, selectedDate.value))) {
+    selectedDate.value = ''
+  }
+  // Adjust number of persons if exceeding maxGroupSize
+  if(selectedExcursion.value && selectedExcursion.value.maxGroupSize) {
+     numberOfPersons.value = numberOfPersons.value > selectedExcursion.value.maxGroupSize ? selectedExcursion.value.maxGroupSize : 1
+  }
+})
+
+// Handle booking field changes
+const handleFieldChange = (index: number, updatedField: BookingField) => {
+  bookingFieldsData.value.set(index, updatedField)
+}
+
 // Submit handler
 const handleSubmit = () => {
   if (!isFormValid.value || !selectedExcursion.value) return
   
+  // Build Booking object
   const booking: Booking = {
     bookingId: shortCryptoId(),
     excursionId: selectedExcursion.value.id,
@@ -122,23 +195,6 @@ const handleSubmit = () => {
   emit('submit', booking)
 }
 
-// Get minimum date (today)
-const minDate = computed(() => {
-  const today = new Date()
-  return today.toISOString().split('T')[0]
-})
-
-// Load excursions on mount
-onMounted(async () => {
-  await loadExcursions()
-  
-  // Preselect excursion if provided
-  if (props.excursionId && excursions.value.some(exc => exc.id === props.excursionId)) {
-    selectedExcursionId.value = props.excursionId
-  } else if (excursions.value.length > 0 && excursions.value[0]) {
-    selectedExcursionId.value = excursions.value[0].id
-  }
-})
 </script>
 
 <template>
@@ -171,7 +227,8 @@ onMounted(async () => {
             v-model="selectedDate"
             type="date"
             class="form-input"
-            :min="minDate"
+            :min="selectableDates.start"
+            :max="selectableDates.end"
             required
           />
         </div>
@@ -198,16 +255,7 @@ onMounted(async () => {
             class="form-select"
             required
           >
-            <option :value="1">1</option>
-            <option :value="2">2</option>
-            <option :value="3">3</option>
-            <option :value="4">4</option>
-            <option :value="5">5</option>
-            <option :value="6">6</option>
-            <option :value="7">7</option>
-            <option :value="8">8</option>
-            <option :value="9">9</option>
-            <option :value="10">10</option>
+            <option v-for="n in selectedExcursion ? selectedExcursion.maxGroupSize : 10" :key="n" :value="n">{{ n }}</option>
           </select>
         </div>
       </div>

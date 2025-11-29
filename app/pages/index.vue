@@ -5,8 +5,10 @@ import ExcursionFilter from '~/components/ExcursionFilter.vue'
 import { useExcursions } from '~/composables/useExcursions'
 
 const route = useRoute()
-const { excursions, excursionsLoading, excursionsError, filterExcursions } = useExcursions()
+const { excursionsLoading, excursionsError, filterExcursions } = useExcursions()
 const { articles, articlesLoading, articlesError } = useArticles()
+
+const filterKey = ref(0)
 
 // Extract query params with validation (and silently ignore invalid ones)
 const date = computed(() => {
@@ -44,6 +46,17 @@ const ageCategory = computed(() => {
     : undefined
 })
 
+// Watch for query changes to reset excursion filters when query parameters are cleared by Home button
+watch(
+  () => route.query,
+  () => {
+    if (Object.keys(route.query).length === 0) {
+      filterKey.value++
+    }
+  }
+)
+
+// Event handler for ExcursionCards
 const handleCardClick = (buttonType: 'readMore' | 'book', excursionId: string) => {
   const queryParams = new URLSearchParams()
   // Build query params
@@ -98,6 +111,7 @@ const filteredExcursions = computed(() =>
     <div class="container">
 
       <ExcursionFilter 
+        :key="filterKey"
         @update-filters="applyFilters"
         @reset="resetFilter"
       />

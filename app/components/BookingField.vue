@@ -36,13 +36,6 @@ const selectedOfferIds = ref<string[]>(
   props.bookingField.selectedOffers.map(offer => offer.id)
 )
 
-// Watch for excursion changes (by watching excursion.id)
-watch(() => props.excursion.id, () => {
-  name.value = props.bookingField.name
-  selectedAgeCategory.value = props.ageCategory || props.bookingField.ageCategory
-  selectedOfferIds.value = props.bookingField.selectedOffers.map(offer => offer.id)
-})
-
 // Available age categories
 const ageCategories: AgeCategory[] = ['Child 0-12', 'Adult 13-64', 'Senior 65+']
 
@@ -60,6 +53,18 @@ const selectedOffers = computed(() => {
     offer => selectedOfferIds.value.includes(offer.id)
   )
 })
+
+// Watch for excursion changes (by watching excursion.id)
+watch(() => props.excursion.id, () => {
+  name.value = props.bookingField.name
+  selectedAgeCategory.value = props.ageCategory || props.bookingField.ageCategory
+  selectedOfferIds.value = props.bookingField.selectedOffers.map(offer => offer.id)
+})
+
+// Watch for changes and emit
+watch([name, selectedAgeCategory, selectedOfferIds], () => {
+  emitChange()
+}, { deep: true })
 
 // Handle offer checkbox toggle
 const toggleOffer = (offerId: string) => {
@@ -82,10 +87,6 @@ const emitChange = () => {
   emit('change', bookingField)
 }
 
-// Watch for changes and emit
-watch([name, selectedAgeCategory, selectedOfferIds], () => {
-  emitChange()
-}, { deep: true })
 </script>
 
 <template>

@@ -43,21 +43,25 @@ export const useExcursions = () => {
     return excursions.value.find(excursion => excursion.id === id)
   }
 
+  const matchesSeason = (season: 'Summer' | 'Winter', date: string) => {
+    const dateObj = new Date(date)
+    const month = dateObj.getMonth() + 1 // getMonth() returns 0-11
+    // April (4) to September (9) = Summer, October (10) to March (3) = Winter
+    const seasonFromDate = (month >= 4 && month <= 9) ? 'Summer' : 'Winter'
+    return season === seasonFromDate
+  }
+
   const filterExcursions = (filters: ExcursionFilters) => {
     return excursions.value.filter(excursion => {
       // Determine season from date
-      let matchesSeason = true
+      let seasonMatches = true
       if (filters.date) {
-        const date = new Date(filters.date)
-        const month = date.getMonth() + 1 // getMonth() returns 0-11
-        // April (4) to September (9) = Summer, October (10) to March (3) = Winter
-        const seasonFromDate = (month >= 4 && month <= 9) ? 'Summer' : 'Winter'
-        matchesSeason = excursion.season === seasonFromDate
+        seasonMatches = matchesSeason(excursion.season, filters.date)
       }
       const matchesRecommendedAge = !filters.recommendedAge || excursion.recommendedAge === filters.recommendedAge
       const matchesDuration = !filters.duration || excursion.duration === filters.duration
       const matchesNoPersons = !filters.noPersons || excursion.maxGroupSize >= filters.noPersons
-      return matchesSeason && matchesRecommendedAge && matchesDuration && matchesNoPersons
+      return seasonMatches && matchesRecommendedAge && matchesDuration && matchesNoPersons
     })
   }
 
@@ -85,6 +89,7 @@ export const useExcursions = () => {
     excursionsError: readonly(error),
     loadExcursions,
     getExcursionById,
+    matchesSeason,
     filterExcursions,
     getExcursionDurations,
     getSortedExcursionDurations
