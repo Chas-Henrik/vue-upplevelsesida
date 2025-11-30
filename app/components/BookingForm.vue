@@ -364,32 +364,24 @@ const handleSubmit = () => {
   height: 3rem;
 }
 
-/* VueDatePicker outer wrapper: */
+/* VueDatePicker outer wrapper */
 .form-date-picker {
   width: 100%;
   height: 3rem;
   padding: 0;
   border: 1px solid #d1d5db;
   border-radius: var(--radius-md);
+}
+
+/* VueDatePicker input box */
+.form-date-picker :deep(.dp__input) {
+  box-sizing: border-box;
+  height: calc(3rem - 3px); /* adjust for border */
+  border: none;
+  border-radius: var(--radius-md);
+  display: block;              /* avoid inline quirks */
   font-size: 1rem;
   font-family: inherit;
-  background: white;
-}
-
-.form-date-picker-input {
-  height: calc(3rem - 3px); /* adjust for border */
-  border: none;
-  border-radius: var(--radius-md);
-  display: block;              /* avoid inline quirks */
-  box-sizing: border-box;
-}
-
-.form-date-picker :deep(.dp__input) {
-  height: calc(3rem - 3px); /* adjust for border */
-  border: none;
-  border-radius: var(--radius-md);
-  display: block;              /* avoid inline quirks */
-  box-sizing: border-box;
 }
 
 .form-input:focus,

@@ -208,34 +208,26 @@ function resetFilters() {
 </template>
 
 <style scoped>
-/* VueDatePicker outer wrapper: */
+
+/* VueDatePicker outer wrapper */
 .form-date-picker {
-  width: 100%;
-  height: 2.5rem;
+  width: 10rem;
+  height: 2.75rem;
   padding: 0;
   border-radius: var(--radius-md);
-  font-size: 1rem;
-  font-family: inherit;
-  background: #E5E6EE;
 }
 
-.form-date-picker-input {
-  height: 2.5rem;
-  border: none;
-  border-radius: var(--radius-md);
-  display: block;              /* avoid inline quirks */
-  box-sizing: border-box;
-}
-
+/* VueDatePicker input box */
 .form-date-picker :deep(.dp__input) {
-  height: 2.5rem;
-  width: 10rem;
+  height: 2.75rem;
   border: none;
   border-radius: var(--radius-md);
   display: block;              /* avoid inline quirks */
   box-sizing: border-box;
   font-weight: bold;
-  color: #1e2939;
-  background-color: #E5E6EE;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--color-gray-800);
+  background-color: color-mix(in oklab, var(--color-primary) 10%, transparent);
 }
 </style>
