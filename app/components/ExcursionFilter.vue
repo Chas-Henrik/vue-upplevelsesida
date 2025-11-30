@@ -117,81 +117,83 @@ function resetFilters() {
     </div>
 
     <!-- DURATION -->
-    <div class="relative">
+    <div class="flex items-center relative">
       <label class="mr-1 font-semibold">Duration</label>
-      <select
-        v-model="filters.duration"
-        @change="updateFilters"
-        class="px-3 pr-10 py-2.5 bg-primary/10 text-gray-800 font-semibold
-               focus:outline-none focus:ring-2 focus:ring-primary appearance-none cursor-pointer"
-        style="border-radius: var(--radius-md)"
-
-      >
-        <option value="">Any</option>
-        <option 
-          v-for="d in availableDurations" 
-          :key="d" 
-          :value="d"
-        >{{ d }}</option>
-
-      </select>
-
-      <div class="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 bg-primary/10 rounded-full flex items-center justify-center pointer-events-none">
-        <svg 
-          class="w-4 h-4 text-gray-600"
-          viewBox="0 0 20 20" fill="currentColor"
-        >
-          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd" />
-        </svg>
-      </div>
+      <div class="flex items-center w-full">
+          <select
+            v-model="filters.duration"
+            @change="updateFilters"
+            class="px-3 pr-10 py-2.5 bg-primary/10 text-gray-800 font-semibold
+                   focus:outline-none focus:ring-2 focus:ring-primary appearance-none cursor-pointer w-full relative z-10 pointer-events-auto"
+            style="border-radius: var(--radius-md)"
+          >
+            <option value="">Any</option>
+            <option 
+              v-for="d in availableDurations" 
+              :key="d" 
+              :value="d"
+            >{{ d }}</option>
+          </select>
+          <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 bg-primary/10 rounded-full flex items-center justify-center">
+            <svg 
+              class="w-4 h-4 text-gray-600"
+              viewBox="0 0 20 20" fill="currentColor"
+            >
+              <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd" />
+            </svg>
+          </span>
+        </div>
     </div>
 
     <!-- PERSONS -->
-    <div class="relative inline-block">
+    <div class="flex items-center relative">
       <label class="mr-1 font-semibold">Persons</label>
-      <select
-        v-model="filters.noPersons"
-        @change="updateFilters"
-        class="px-3 pr-10 py-2.5 bg-primary/10 text-gray-800 font-semibold
-               focus:outline-none focus:ring-2 focus:ring-primary appearance-none cursor-pointer"
-        style="border-radius: var(--radius-md)"
-      >
-        <option value="">Any</option>
-        <option v-for="n in 10" :key="n" :value="n">{{ n }}</option>
-      </select>
-      <div class="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 bg-primary/10 rounded-full flex items-center justify-center pointer-events-none">
-        <svg 
-          class="w-4 h-4 text-gray-600"
-          viewBox="0 0 20 20" fill="currentColor"
-        >
-          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd" />
-        </svg>
-      </div>
+      <div class="flex items-center w-full">
+          <select
+            v-model="filters.noPersons"
+            @change="updateFilters"
+            class="px-3 pr-10 py-2.5 bg-primary/10 text-gray-800 font-semibold
+                   focus:outline-none focus:ring-2 focus:ring-primary appearance-none cursor-pointer w-full relative z-10 pointer-events-auto"
+            style="border-radius: var(--radius-md)"
+          >
+            <option value="">Any</option>
+            <option v-for="n in 10" :key="n" :value="n">{{ n }}</option>
+          </select>
+          <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 bg-primary/10 rounded-full flex items-center justify-center">
+            <svg 
+              class="w-4 h-4 text-gray-600"
+              viewBox="0 0 20 20" fill="currentColor"
+            >
+              <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd" />
+            </svg>
+          </span>
+        </div>
     </div>
 
     <!-- AGE CATEGORY -->
-    <div class="relative">
-      <label class="mr-1 font-semibold">Age Category</label>
-      <select
-        v-model="filters.ageCategory"
-        @change="updateFilters"
-        class="px-3 pr-10 py-2.5 bg-primary/10 text-gray-800 font-semibold
-               focus:outline-none focus:ring-2 focus:ring-primary appearance-none cursor-pointer"
-        style="border-radius: var(--radius-md)"
-      >
-        <option value="">Any</option>
-        <option value="Child 0-12">Child 0-12</option>
-        <option value="Adult 13-64">Adult 13-64</option>
-        <option value="Senior 65+">Senior 65+</option>
-      </select>
-
-      <div class="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 bg-primary/10 rounded-full flex items-center justify-center pointer-events-none">
-        <svg 
-          class="w-4 h-4 text-gray-600"
-          viewBox="0 0 20 20" fill="currentColor"
+    <div class="flex items-center relative min-w-0">
+      <label class="mr-1 font-semibold whitespace-nowrap">Age Category</label>
+      <div class="relative w-full flex items-center min-w-0">
+        <select
+          v-model="filters.ageCategory"
+          @change="updateFilters"
+          class="px-3 pr-10 py-2.5 bg-primary/10 text-gray-800 font-semibold
+                 focus:outline-none focus:ring-2 focus:ring-primary appearance-none cursor-pointer w-full relative z-10 pointer-events-auto"
+          style="border-radius: var(--radius-md)"
         >
-          <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd" />
-        </svg>
+          <option value="">Any</option>
+          <option value="Child 0-12">Child 0-12</option>
+          <option value="Adult 13-64">Adult 13-64</option>
+          <option value="Senior 65+">Senior 65+</option>
+        </select>
+        <span class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 bg-primary/10 rounded-full flex items-center justify-center">
+          <svg 
+            class="w-4 h-4 text-gray-600"
+            viewBox="0 0 20 20" fill="currentColor"
+          >
+            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd" />
+          </svg>
+        </span>
       </div>
     </div>
 
