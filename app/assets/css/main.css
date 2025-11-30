@@ -29,9 +29,6 @@
   --shadow-lg: 0 8px 24px 0 rgba(0, 0, 0, 0.15);
   --shadow-xl: 0 12px 32px 0 rgba(0, 0, 0, 0.2);
 
-  /* Vue DatePicker */
-  --dp-input-wrapper-height: 3rem; /*Input field height*/
-  --dp-input-height: 3rem; /*Input field height*/
 }
 
 /* Custom CSS variables for your app */
