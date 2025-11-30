@@ -25,6 +25,33 @@ const minDate = computed(() => {
   return formatLocalDate(new Date()) // Uses local time and today's date in YYYY-MM-DD format
 })
 
+// MAX DATE: 1 year from now, rounded down to next Sep 30 or Mar 31 (whichever comes first)
+const maxDate = computed(() => {
+  const today = new Date();
+  const oneYearLater = new Date(today.getFullYear() + 1, today.getMonth(), today.getDate());
+
+  // Find the next Mar 31 and Sep 30 after today
+  let nextMar31 = new Date(today.getFullYear(), 2, 31); // Mar 31 this year
+  if (today > nextMar31) {
+    nextMar31 = new Date(today.getFullYear() + 1, 2, 31); // Mar 31 next year
+  }
+  let nextSep30 = new Date(today.getFullYear(), 8, 30); // Sep 30 this year
+  if (today > nextSep30) {
+    nextSep30 = new Date(today.getFullYear() + 1, 8, 30); // Sep 30 next year
+  }
+
+  // Pick the latest of the two that is after today and within one year
+  let candidates = [nextMar31, nextSep30].filter(d => d > today && d <= oneYearLater);
+  let roundedMax;
+  if (candidates.length > 0) {
+    roundedMax = candidates.reduce((a, b) => (a > b ? a : b)); // Keep the latest date
+  } else {
+    // fallback: just use one year from today
+    roundedMax = oneYearLater;
+  }
+  return formatLocalDate(roundedMax);
+});
+
 // LOAD QUERY INTO UI
 onMounted(() => {
   filters.value.date = (route.query.date as string) || ""
@@ -82,6 +109,7 @@ function resetFilters() {
         focus-start-date
         v-model="filters.date"
         :min-date="minDate"
+        :max-date="maxDate"
         :time-config="{ enableTimePicker: false }"
         @update:model-value="updateFilters"
         style="border-radius: var(--radius-md)"
