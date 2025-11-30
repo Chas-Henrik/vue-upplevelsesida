@@ -86,13 +86,6 @@ function resetFilters() {
         @update:model-value="updateFilters"
         style="border-radius: var(--radius-md)"
       />
-
-      <svg 
-    class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-600 pointer-events-none"
-    viewBox="0 0 20 20" fill="currentColor"
-  >
-    <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd" />
-  </svg>
     </div>
 
     <!-- DURATION -->
@@ -102,7 +95,7 @@ function resetFilters() {
         v-model="filters.duration"
         @change="updateFilters"
         class="px-3 pr-10 py-2.5 bg-primary/10 text-gray-800 font-semibold
-               focus:outline-none focus:ring-2 focus:ring-primary appearance-none"
+               focus:outline-none focus:ring-2 focus:ring-primary appearance-none cursor-pointer"
         style="border-radius: var(--radius-md)"
 
       >
@@ -132,7 +125,7 @@ function resetFilters() {
         v-model="filters.noPersons"
         @change="updateFilters"
         class="px-3 pr-10 py-2.5 bg-primary/10 text-gray-800 font-semibold
-               focus:outline-none focus:ring-2 focus:ring-primary appearance-none"
+               focus:outline-none focus:ring-2 focus:ring-primary appearance-none cursor-pointer"
         style="border-radius: var(--radius-md)"
       >
         <option value="">Any</option>
@@ -155,7 +148,7 @@ function resetFilters() {
         v-model="filters.ageCategory"
         @change="updateFilters"
         class="px-3 pr-10 py-2.5 bg-primary/10 text-gray-800 font-semibold
-               focus:outline-none focus:ring-2 focus:ring-primary appearance-none"
+               focus:outline-none focus:ring-2 focus:ring-primary appearance-none cursor-pointer"
         style="border-radius: var(--radius-md)"
       >
         <option value="">Any</option>
@@ -178,7 +171,7 @@ function resetFilters() {
     <button
       @click="resetFilters"
       class="px-4 py-2.5 text-white bg-[var(--color-primary)] font-semibold
-             hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-primary"
+             hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-primary cursor-pointer"
       style="border-radius: var(--radius-md)"
     >
       Reset Filters
@@ -192,11 +185,10 @@ function resetFilters() {
   width: 100%;
   height: 2.5rem;
   padding: 0;
-  border: 1px solid #d1d5db;
   border-radius: var(--radius-md);
   font-size: 1rem;
   font-family: inherit;
-  background: white;
+  background: #E5E6EE;
 }
 
 .form-date-picker-input {
