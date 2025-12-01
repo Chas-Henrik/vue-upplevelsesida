@@ -103,6 +103,7 @@ function resetFilters() {
     <div>
       <VueDatePicker 
         class="form-date-picker"
+        model-type="yyyy-MM-dd"
         :formats="{  preview: 'yyyy.MM.dd', input: 'yyyy.MM.dd' }"
         :start-date="minDate"
         focus-start-date
