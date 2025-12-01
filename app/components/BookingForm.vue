@@ -11,10 +11,6 @@ import { VueDatePicker } from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
 
 // Navigation guard: prompt when leaving with altered form or form field content
-
-// Track if the form is being submitted to bypass navigation guard
-const isSubmitting = ref(false);
-
 onBeforeRouteLeave((to, from, next) => {
   if (isSubmitting.value) {
     next();
@@ -66,6 +62,9 @@ const props = defineProps({
 const emit = defineEmits<{
   submit: [booking: Booking]
 }>()
+
+// Track if the form is being submitted to bypass navigation guard
+const isSubmitting = ref(false);
 
 // Form state
 const selectedExcursionId = ref<string>('')
