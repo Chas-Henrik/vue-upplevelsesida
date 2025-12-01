@@ -35,19 +35,14 @@ const ageCategory = computed(() => {
 const handleSubmit = (booking: Booking) => {
   cartStore.addExcursion(booking)
   
-  // Extract first person's age category
-  const firstPersonAgeCategory = booking.bookingFields[0]?.ageCategory
-  
   // Build query params
   const queryParams = new URLSearchParams({
     date: booking.date,
     duration: booking.duration,
     'no-persons': booking.numberOfPersons.toString()
   })
-  
-  if (firstPersonAgeCategory) {
-    queryParams.append('age-category', firstPersonAgeCategory)
-  }
+
+  // Omit the AgeCategory query param here as you can override the recommended AgeCategory in the BookingForm
   
   router.push(`/?${queryParams.toString()}`)
 }
