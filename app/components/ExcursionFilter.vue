@@ -64,7 +64,6 @@ onMounted(() => {
   emit("update-filters", normalizeFilters())
 })
 
-
 // NORMALIZE FILTERS
 function normalizeFilters() {
   return {
