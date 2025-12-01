@@ -1,11 +1,31 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
+import { onBeforeRouteLeave } from 'vue-router'
 import type { Booking, BookingField } from '~/types/booking'
 import type { AgeCategory, Excursion } from '~/types/excursion'
 import type { PropType } from 'vue'
 import BookingFieldComponent from './BookingField.vue'
 import { shortCryptoId, formatLocalDate } from '~/utils/helpers'
 import { useExcursions } from "~/composables/useExcursions"
+import { VueDatePicker } from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
+
+// Navigation guard: prompt when leaving with altered form or form field content
+onBeforeRouteLeave((to, from, next) => {
+  if (isSubmitting.value) {
+    next();
+    return;
+  }
+  if(isFormUpdated.value) {
+    if (confirm('You will lose your entered information!\n\nAre you sure you want to leave?')) {
+      next();
+    } else {
+      next(false);
+    }
+  } else {
+    next();
+  }
+});
 
 const { excursions, loadExcursions, matchesSeason } = useExcursions()
 
@@ -42,6 +62,9 @@ const props = defineProps({
 const emit = defineEmits<{
   submit: [booking: Booking]
 }>()
+
+// Track if the form is being submitted to bypass navigation guard
+const isSubmitting = ref(false);
 
 // Form state
 const selectedExcursionId = ref<string>('')
@@ -160,6 +183,26 @@ const isFormValid = computed(() => {
          bookingFields.value.every(field => field.name.trim() !== '')
 })
 
+// Check if form or form field content is altered by user
+const isFormUpdated = computed(() => {
+  // Check if any of the form fields differ from initial props
+  if ((props.excursionId || '') !== selectedExcursionId.value) return true;
+  if ((props.date || '') !== selectedDate.value) return true;
+  if ((props.noPersons || 1) !== numberOfPersons.value) return true;
+  if ((props.ageCategory || 'Adult 13-64') !== (bookingFields.value[0]?.ageCategory || 'Adult 13-64')) return true;
+
+  // Check if any booking field (name, ageCategory, selectedOffers) is changed
+  for (let i = 0; i < bookingFields.value.length; i++) {
+    const field = bookingFields.value[i];
+    if (!field) continue;
+    if (field.name.trim() !== '') return true;
+    if (field.selectedOffers && field.selectedOffers.length > 0) return true;
+    if (i > 0 && field.ageCategory !== 'Adult 13-64') return true;
+  }
+  
+  return false;
+});
+
 // Clear selected date if selectedExcursion is changed
 watch(selectedExcursion, () => {
   // Clear selected date if out of season
@@ -168,7 +211,9 @@ watch(selectedExcursion, () => {
   }
   // Adjust number of persons if exceeding maxGroupSize
   if(selectedExcursion.value && selectedExcursion.value.maxGroupSize) {
-     numberOfPersons.value = numberOfPersons.value > selectedExcursion.value.maxGroupSize ? selectedExcursion.value.maxGroupSize : 1
+    if (numberOfPersons.value > selectedExcursion.value.maxGroupSize) {
+      numberOfPersons.value = selectedExcursion.value.maxGroupSize;
+    }
   }
 })
 
@@ -180,7 +225,7 @@ const handleFieldChange = (index: number, updatedField: BookingField) => {
 // Submit handler
 const handleSubmit = () => {
   if (!isFormValid.value || !selectedExcursion.value) return
-  
+  isSubmitting.value = true;
   // Build Booking object
   const booking: Booking = {
     bookingId: shortCryptoId(),
@@ -191,7 +236,6 @@ const handleSubmit = () => {
     numberOfPersons: numberOfPersons.value,
     bookingFields: bookingFields.value
   }
-  
   emit('submit', booking)
 }
 
@@ -222,14 +266,17 @@ const handleSubmit = () => {
       <div class="form-row">
         <div class="form-group">
           <label for="date" class="form-label">Date</label>
-          <input
+          <VueDatePicker
             id="date"
+            class="form-date-picker"
+            model-type="yyyy-MM-dd"
+            :formats="{  preview: 'yyyy.MM.dd', input: 'yyyy.MM.dd' }"
+            :start-date="selectableDates.start"
+            focus-start-date
             v-model="selectedDate"
-            type="date"
-            class="form-input"
-            :min="selectableDates.start"
-            :max="selectableDates.end"
-            required
+            :min-date="selectableDates.start"
+            :max-date="selectableDates.end"
+            :time-config="{ enableTimePicker: false }"
           />
         </div>
 
@@ -358,6 +405,26 @@ const handleSubmit = () => {
   transition: all 0.2s ease;
   background: white;
   height: 3rem;
+}
+
+/* VueDatePicker outer wrapper */
+.form-date-picker {
+  width: 100%;
+  height: 3rem;
+  padding: 0;
+  border: 1px solid #d1d5db;
+  border-radius: var(--radius-md);
+}
+
+/* VueDatePicker input box */
+.form-date-picker :deep(.dp__input) {
+  box-sizing: border-box;
+  height: calc(3rem - 3px); /* adjust for border */
+  border: none;
+  border-radius: var(--radius-md);
+  display: block;              /* avoid inline quirks */
+  font-size: 1rem;
+  font-family: inherit;
 }
 
 .form-input:focus,

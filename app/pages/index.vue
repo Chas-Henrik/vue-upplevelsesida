@@ -79,7 +79,7 @@ const handleCardClick = (buttonType: 'readMore' | 'book', excursionId: string) =
 // APPLY FILTERS
 function applyFilters(filters: any) {
   const query: Record<string, any> = {}
-
+  
   if (filters.date) query.date = filters.date
   if (filters.duration) query.duration = filters.duration
   if (filters.noPersons) query["no-persons"] = filters.noPersons
