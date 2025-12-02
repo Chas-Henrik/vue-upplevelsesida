@@ -161,15 +161,15 @@
 
     {
       "id": "exc-8",
-      "title": "Fjällhäll Wilderness Retreat – 24 Hours",
+      "title": "Fjällhäll Wilderness Retreat – 48 Hours",
       "season": "Summer",
       "prices": [
         { "ageCategory": "Child 0-12", "price": 1295 },
         { "ageCategory": "Adult 13-64", "price": 1795 },
         { "ageCategory": "Senior 65+", "price": 1595 }
       ],
-      "description": "A unique 24-hour nature retreat featuring meditation, forest bathing, and complete relaxation.",
-      "details": "Disconnect from the modern world and reconnect with nature during this transformative 24-hour wilderness retreat. Your experience begins in the late afternoon with a mindful walk to our secluded forest camp, where comfortable glamping tents await. The evening program includes guided forest bathing (Shinrin-yoku), a Japanese practice of mindful presence in nature, followed by a meditation session as the sun sets. Enjoy a nutritious dinner prepared with local, organic ingredients around the campfire. After stargazing and quiet reflection time, retire to your comfortable tent equipped with quality sleeping bags and mats. Wake naturally with the forest, start your day with sunrise yoga, and enjoy a wholesome breakfast. The morning continues with a nature awareness workshop where you'll learn wilderness skills and deepen your connection to the environment. The retreat concludes around noon. Maximum 8 participants ensures personalized attention. Led by certified meditation and yoga instructors. All equipment is included.",
+      "description": "A unique 48-hour nature retreat featuring meditation, forest bathing, and complete relaxation.",
+      "details": "Disconnect from the modern world and reconnect with nature during this transformative 48-hour wilderness retreat. Your experience begins in the late afternoon with a mindful walk to our secluded forest camp, where comfortable glamping tents await. The evening program includes guided forest bathing (Shinrin-yoku), a Japanese practice of mindful presence in nature, followed by a meditation session as the sun sets. Enjoy a nutritious dinner prepared with local, organic ingredients around the campfire. After stargazing and quiet reflection time, retire to your comfortable tent equipped with quality sleeping bags and mats. Wake naturally with the forest, start your day with sunrise yoga, and enjoy a wholesome breakfast. The morning continues with a nature awareness workshop where you'll learn wilderness skills and deepen your connection to the environment. The retreat concludes around noon. Maximum 8 participants ensures personalized attention. Led by certified meditation and yoga instructors. All equipment is included.",
       "recommendedAge": "Adult 13-64",
       "duration": "2 days",
       "maxGroupSize": 8,
