@@ -178,6 +178,179 @@
         { "id": "offer-8b", "title": "Meal Package", "price": 140 },
         { "id": "offer-8c", "title": "Yoga Session", "price": 180 }
       ]
+    },
+
+    {
+      "id": "exc-9",
+      "title": "Ice Fishing & Arctic Cuisine",
+      "season": "Winter",
+      "prices": [
+        { "ageCategory": "Child 0-12", "price": 695 },
+        { "ageCategory": "Adult 13-64", "price": 995 },
+        { "ageCategory": "Senior 65+", "price": 895 }
+      ],
+      "description": "Traditional ice fishing on a frozen lake followed by cooking your catch over an open fire.",
+      "details": "Experience the timeless tradition of ice fishing in the pristine Arctic wilderness. Your guide will lead you to a frozen lake where you'll learn to drill holes through the ice and set up your fishing gear. This peaceful activity allows you to connect with nature while waiting for Arctic char or trout to bite. The experience includes instruction on traditional ice fishing techniques passed down through generations. Once you've caught your fish, gather around a crackling fire in a traditional lavvu (Sami tent) where your guide will teach you to prepare and cook your catch using authentic Nordic methods. The meal is complemented by locally sourced sides and hot beverages. Even if the fish aren't biting, a delicious backup meal is always prepared. This experience offers a perfect blend of outdoor adventure and culinary tradition. All equipment, warm clothing, and food included.",
+      "recommendedAge": "Adult 13-64",
+      "duration": "5h",
+      "maxGroupSize": 6,
+      "offers": [
+        { "id": "offer-9a", "title": "Premium Fishing Gear", "price": 150 },
+        { "id": "offer-9b", "title": "Arctic Delicacy Package", "price": 220 },
+        { "id": "offer-9c", "title": "Thermal Clothing Set", "price": 195 },
+        { "id": "offer-9d", "title": "Fish Smoking Kit", "price": 130 }
+      ]
+    },
+
+    {
+      "id": "exc-10",
+      "title": "Reindeer Sledding & Sami Culture",
+      "season": "Winter",
+      "prices": [
+        { "ageCategory": "Child 0-12", "price": 895 },
+        { "ageCategory": "Adult 13-64", "price": 1395 },
+        { "ageCategory": "Senior 65+", "price": 1195 }
+      ],
+      "description": "Ride with reindeer through snowy landscapes and learn about Sami traditions from local herders.",
+      "details": "Immerse yourself in the indigenous Sami culture with this authentic reindeer sledding experience. Meet a local Sami family who will introduce you to their herd of gentle reindeer. Learn about the deep connection between the Sami people and these magnificent animals that have sustained their way of life for thousands of years. After helping to prepare the reindeer and sleds, embark on a peaceful journey through snow-covered forests and across frozen tundra. The slow, rhythmic pace allows you to fully appreciate the stunning winter landscape. Your hosts will share stories, songs, and traditions while you warm up with hot coffee and traditional baked goods in their lavvu. The experience includes a demonstration of traditional Sami handicrafts and an opportunity to try on authentic Sami clothing. This is more than a tour – it's a cultural exchange that supports the preservation of Sami heritage.",
+      "recommendedAge": "Child 0-12",
+      "duration": "4h",
+      "maxGroupSize": 8,
+      "offers": [
+        { "id": "offer-10a", "title": "Traditional Sami Meal", "price": 185 },
+        { "id": "offer-10b", "title": "Handicraft Workshop", "price": 240 },
+        { "id": "offer-10c", "title": "Cultural Guide Service", "price": 280 },
+        { "id": "offer-10d", "title": "Souvenir Photo Book", "price": 165 }
+      ]
+    },
+
+    {
+      "id": "exc-11",
+      "title": "Snowshoeing & Wildlife Tracking",
+      "season": "Winter",
+      "prices": [
+        { "ageCategory": "Child 0-12", "price": 595 },
+        { "ageCategory": "Adult 13-64", "price": 895 },
+        { "ageCategory": "Senior 65+", "price": 795 }
+      ],
+      "description": "A guided snowshoe hike where you learn to identify and track Arctic wildlife.",
+      "details": "Venture into the silent winter wilderness on snowshoes, the traditional method of traversing deep snow. Your experienced naturalist guide will teach you to read the landscape, identifying tracks and signs left by Arctic wildlife including foxes, hares, moose, and even lynx. Learn fascinating details about how these animals adapt to survive the harsh winter conditions. The route takes you through varied terrain – from dense forests where animal tracks are most visible, to open plateaus offering breathtaking mountain views. Along the way, your guide shares knowledge about winter ecology, survival techniques, and the delicate Arctic ecosystem. The moderate pace ensures everyone can participate comfortably. Hot chocolate and energy snacks are served at a scenic viewpoint. This experience is perfect for nature enthusiasts and families wanting to explore beyond groomed trails. All snowshoe equipment provided, including adjustable poles.",
+      "recommendedAge": "Senior 65+",
+      "duration": "4h",
+      "maxGroupSize": 8,
+      "offers": [
+        { "id": "offer-11a", "title": "Wildlife Photography Guide", "price": 295 },
+        { "id": "offer-11b", "title": "Binoculars Rental", "price": 85 },
+        { "id": "offer-11d", "title": "Extended Trek (6h)", "price": 350 }
+      ]
+    },
+
+    {
+      "id": "exc-12",
+      "title": "Ice Climbing Adventure",
+      "season": "Winter",
+      "prices": [
+        { "ageCategory": "Child 0-12", "price": 1095 },
+        { "ageCategory": "Adult 13-64", "price": 1595 },
+        { "ageCategory": "Senior 65+", "price": 1395 }
+      ],
+      "description": "Scale frozen waterfalls with professional guides in this thrilling ice climbing experience.",
+      "details": "Challenge yourself with the exhilarating sport of ice climbing on Fjällhäll's stunning frozen waterfalls. No previous climbing experience necessary – our certified guides provide comprehensive instruction starting with basic technique on easier ice formations. You'll learn proper crampon and ice axe use, movement techniques, and safety protocols. As your confidence grows, progress to steeper sections that will test your strength and determination. The Fjällhäll region offers some of Scandinavia's best ice climbing, with routes ranging from beginner-friendly 10-meter walls to advanced 30-meter vertical ice pillars. All technical equipment is provided, including helmets, harnesses, crampons, ice axes, and ropes. Small group sizes ensure personalized coaching and maximum climbing time. The experience includes warm breaks with hot drinks and snacks. Physical fitness required. Minimum age 15. An unforgettable adventure for thrill-seekers.",
+      "recommendedAge": "Adult 13-64",
+      "duration": "6h",
+      "maxGroupSize": 4,
+      "offers": [
+        { "id": "offer-12a", "title": "Private Instruction", "price": 495 },
+        { "id": "offer-12b", "title": "Action Camera Package", "price": 275 },
+        { "id": "offer-12c", "title": "Advanced Route Access", "price": 380 },
+        { "id": "offer-12d", "title": "Full Day Extension", "price": 650 }
+      ]
+    },
+
+    {
+      "id": "exc-13",
+      "title": "Midnight Sun Fishing Expedition",
+      "season": "Summer",
+      "prices": [
+        { "ageCategory": "Child 0-12", "price": 795 },
+        { "ageCategory": "Adult 13-64", "price": 1195 },
+        { "ageCategory": "Senior 65+", "price": 1095 }
+      ],
+      "description": "Fish under the midnight sun in pristine mountain streams teeming with trout.",
+      "details": "Experience the magic of fishing in perpetual daylight during the Arctic summer. This evening expedition begins at 8 PM, taking advantage of the midnight sun phenomenon when the sky remains bright throughout the night. Your expert fishing guide leads you to remote mountain streams and lakes where Arctic char and wild trout thrive in crystal-clear waters. Whether you're a seasoned angler or complete beginner, your guide provides instruction tailored to your skill level, teaching fly fishing techniques, lure selection, and how to read the water. The surreal experience of casting under a sky that never darkens creates memories that last a lifetime. The expedition includes all fishing equipment, waders, and a midnight snack served by the waterside. Catch and release is encouraged, though you're welcome to keep fish for dinner (cleaning service available). Returns around 2 AM, though time seems irrelevant under the endless sun.",
+      "recommendedAge": "Adult 13-64",
+      "duration": "6h",
+      "maxGroupSize": 4,
+      "offers": [
+        { "id": "offer-13a", "title": "Premium Fly Rod Set", "price": 285 },
+        { "id": "offer-13b", "title": "Fish Processing Service", "price": 150 },
+        { "id": "offer-13d", "title": "Fishing License (3-day)", "price": 195 }
+      ]
+    },
+
+    {
+      "id": "exc-14",
+      "title": "Via Ferrata Mountain Climbing",
+      "season": "Summer",
+      "prices": [
+        { "ageCategory": "Child 0-12", "price": 995 },
+        { "ageCategory": "Adult 13-64", "price": 1495 },
+        { "ageCategory": "Senior 65+", "price": 1295 }
+      ],
+      "description": "Climb dramatic mountain faces using fixed cables and iron rungs on this secured climbing route.",
+      "details": "Discover the thrill of mountain climbing made accessible through Fjällhäll's spectacular via ferrata (Italian for 'iron road'). This protected climbing route features steel cables, iron rungs, and ladders permanently fixed to the rock face, allowing you to safely ascend dramatic cliffs while enjoying incredible exposure and views. After comprehensive safety training and equipment fitting, you'll clip onto the cable system and begin your vertical journey. The route includes suspension bridges spanning chasms, a thrilling 15-meter vertical ladder section, and narrow ledges with jaw-dropping drops – all perfectly safe when following proper technique. Your guides monitor progress and offer encouragement throughout. The summit rewards you with 360-degree mountain panoramas and a well-earned sense of accomplishment. Moderate fitness and no fear of heights required. Minimum age 12. All safety equipment provided including helmet, harness, and specialized via ferrata lanyards.",
+      "recommendedAge": "Adult 13-64",
+      "duration": "5h",
+      "maxGroupSize": 6,
+      "offers": [
+        { "id": "offer-14a", "title": "Summit Photo Session", "price": 245 },
+        { "id": "offer-14b", "title": "Climbing Gloves", "price": 95 },
+        { "id": "offer-14c", "title": "Energy Meal Pack", "price": 135 },
+        { "id": "offer-14d", "title": "Private Guide", "price": 550 }
+      ]
+    },
+
+    {
+      "id": "exc-15",
+      "title": "Wildflower Meadow Photography Tour",
+      "season": "Summer",
+      "prices": [
+        { "ageCategory": "Child 0-12", "price": 495 },
+        { "ageCategory": "Adult 13-64", "price": 795 },
+        { "ageCategory": "Senior 65+", "price": 695 }
+      ],
+      "description": "Capture the stunning summer alpine meadows with expert photography guidance.",
+      "details": "Join a professional nature photographer for an inspiring tour through Fjällhäll's most spectacular wildflower meadows during peak bloom season. The Arctic summer brings an explosion of color as alpine flowers make the most of the short growing season, creating carpets of purple, yellow, white, and red blooms against dramatic mountain backdrops. Your photographer guide shares technical tips on composition, lighting, macro photography, and landscape techniques while leading you to carefully selected locations. Learn to capture the delicate details of rare Arctic flowers and create stunning panoramic scenes. The pace is leisurely with plenty of time to experiment and get the perfect shot. Suitable for all skill levels from smartphone photographers to DSLR enthusiasts. The tour includes visits to three distinct ecosystems: wetland meadows, alpine heath, and subalpine forest edges, each supporting different flower species. Light refreshments provided. Bring your own camera equipment.",
+      "recommendedAge": "Senior 65+",
+      "duration": "4h",
+      "maxGroupSize": 8,
+      "offers": [
+        { "id": "offer-15b", "title": "Macro Lens Rental", "price": 220 },
+        { "id": "offer-15c", "title": "Botanical Field Guide", "price": 145 },
+        { "id": "offer-15d", "title": "Photo Prints Package", "price": 195 }
+      ]
+    },
+
+    {
+      "id": "exc-16",
+      "title": "Rock Climbing & Rappelling Course",
+      "season": "Summer",
+      "prices": [
+        { "ageCategory": "Child 0-12", "price": 895 },
+        { "ageCategory": "Adult 13-64", "price": 1395 },
+        { "ageCategory": "Senior 65+", "price": 1195 }
+      ],
+      "description": "Learn essential rock climbing skills on stunning granite cliffs with certified instructors.",
+      "details": "Embark on your rock climbing journey with this comprehensive introductory course set on Fjällhäll's world-class granite formations. The day begins with ground school covering knots, belaying techniques, climbing communication, and safety systems. Once you've mastered the basics, it's time to touch rock. Start on beginner-friendly slabs where you'll learn footwork, balance, and body positioning. As skills develop, progress to vertical walls and even slightly overhanging sections. Your instructors provide constant feedback and encouragement, helping you overcome mental barriers and physical challenges. The afternoon includes rappelling (abseiling) instruction – the thrilling technique of descending ropes – starting from lower heights and building to impressive cliff faces. All participants get substantial climbing time with routes carefully selected for their abilities. This course builds confidence, strength, and a solid foundation for future climbing adventures. Maximum instructor-to-student ratio of 1:4 ensures quality learning. All technical gear provided.",
+      "recommendedAge": "Adult 13-64",
+      "duration": "7h",
+      "maxGroupSize": 8,
+      "offers": [
+        { "id": "offer-16a", "title": "Climbing Shoes Rental", "price": 110 },
+        { "id": "offer-16b", "title": "Chalk Bag & Chalk", "price": 75 },
+        { "id": "offer-16c", "title": "Course Certificate", "price": 95 },
+        { "id": "offer-16d", "title": "2-Day Advanced Course", "price": 950 }
+      ]
     }
   ]
 }
