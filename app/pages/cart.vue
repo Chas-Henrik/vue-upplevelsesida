@@ -1,14 +1,16 @@
 <script setup lang="ts">
   import { useCartStore } from '~/stores/cart'
+  import { storeToRefs } from 'pinia'
   import CartItem from '~/components/CartItem.vue'
   import type { Booking } from '~/types'
   
   const cartStore = useCartStore()
+  const { items } = storeToRefs(cartStore)
 
-  const bookings = computed(() => cartStore.items)
+  const bookings = computed(() => items.value)
 
   const total = computed(() => {
-  return cartStore.items.reduce((bookSum, book) => {
+  return items.value.reduce((bookSum, book) => {
     return bookSum + book.bookingFields.reduce((fSum, field) => {
       const offerSum = field.selectedOffers.reduce((oSum, offer) =>
         oSum + offer.price

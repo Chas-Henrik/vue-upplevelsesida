@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useCartStore } from '~/stores/cart'
+import { storeToRefs } from 'pinia'
 
 const cartStore = useCartStore()
+const { itemCount, isEmpty } = storeToRefs(cartStore)
 const isMobileMenuOpen = ref(false)
 
 // Define menu items
@@ -56,9 +58,9 @@ const toggleMobileMenu = () => {
 
       <!-- Shopping Cart -->
       <div class="cart-section">
-        <button @click="handleCartClick" class="cart-btn" :aria-label="cartStore.isEmpty ? 'Empty cart' : `Cart with ${cartStore.itemCount} items`">
+        <button @click="handleCartClick" class="cart-btn" :aria-label="isEmpty ? 'Empty cart' : `Cart with ${itemCount} items`">
           <svg 
-            v-if="cartStore.isEmpty"
+            v-if="isEmpty"
             class="cart-icon"
             viewBox="0 0 64 64"
             xmlns="http://www.w3.org/2000/svg"
@@ -88,7 +90,7 @@ const toggleMobileMenu = () => {
               c0.002,0,0.004,0,0.006,0s0.005,0,0.007,0h5.343l-4.878,17.072l-39.568,1.93c-0.127,0.006-0.249,0.027-0.368,0.056L12.877,20
               H53.993z"/>
           </svg>
-          <span v-if="!cartStore.isEmpty" class="cart-badge">{{ cartStore.itemCount }}</span>
+          <span v-if="!isEmpty" class="cart-badge">{{ itemCount }}</span>
         </button>
       </div>
 
