@@ -5,22 +5,16 @@ import type { AgeCategory, Excursion } from '~/types/excursion'
 import type { PropType } from 'vue'
 
 const props = defineProps({
+  index: {
+    type: Number,
+    required: true
+  },
   excursion: {
     type: Object as PropType<Excursion>,
     required: true
   },
   bookingField: {
     type: Object as PropType<BookingField>,
-    required: true
-  },
-  ageCategory: {
-    type: String as PropType<AgeCategory>,
-    required: false,
-    default: 'Adult 13-64',
-    validator: (value: string) => ['Child 0-12', 'Adult 13-64', 'Senior 65+'].includes(value)
-  },
-  index: {
-    type: Number,
     required: true
   }
 })
@@ -29,9 +23,9 @@ const emit = defineEmits<{
   change: [bookingField: BookingField]
 }>()
 
-// Initialize reactive state from bookingField (use ageCategory prop as override for default)
+// Initialize reactive state from bookingField
 const name = ref(props.bookingField.name)
-const selectedAgeCategory = ref<AgeCategory>(props.ageCategory || props.bookingField.ageCategory)
+const selectedAgeCategory = ref<AgeCategory>(props.bookingField.ageCategory)
 const selectedOfferIds = ref<string[]>(
   props.bookingField.selectedOffers.map(offer => offer.id)
 )
@@ -57,7 +51,7 @@ const selectedOffers = computed(() => {
 // Watch for excursion changes (by watching excursion.id)
 watch(() => props.excursion.id, () => {
   name.value = props.bookingField.name
-  selectedAgeCategory.value = props.ageCategory || props.bookingField.ageCategory
+  selectedAgeCategory.value = props.bookingField.ageCategory
   selectedOfferIds.value = props.bookingField.selectedOffers.map(offer => offer.id)
 })
 

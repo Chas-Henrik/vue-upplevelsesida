@@ -316,7 +316,6 @@ const handleSubmit = () => {
         :key="index"
         :excursion="selectedExcursion"
         :booking-field="field"
-        :age-category="index === 0 ? ageCategory : undefined"
         :index="index"
         @change="(updatedField) => handleFieldChange(index, updatedField)"
       />
