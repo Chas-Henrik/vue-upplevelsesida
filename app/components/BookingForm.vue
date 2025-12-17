@@ -10,23 +10,6 @@ import { useExcursions } from "~/composables/useExcursions"
 import { VueDatePicker } from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
 
-// Navigation guard: prompt when leaving with altered form or form field content
-onBeforeRouteLeave((to, from, next) => {
-  if (isSubmitting.value) {
-    next();
-    return;
-  }
-  if(isFormUpdated.value) {
-    if (confirm('You will lose your entered information!\n\nAre you sure you want to leave?')) {
-      next();
-    } else {
-      next(false);
-    }
-  } else {
-    next();
-  }
-});
-
 const { excursions, loadExcursions, matchesSeason } = useExcursions()
 
 const props = defineProps({
@@ -73,18 +56,6 @@ const numberOfPersons = ref<number>(props.noPersons || 1)
 
 // Booking fields data storage
 const bookingFieldsData = ref<Map<number, BookingField>>(new Map())
-
-// Load excursions on mount (as 'backup' if not already loaded by loadExcursions plugin)
-onMounted(async () => {
-  await loadExcursions()
-  
-  // Preselect excursion if excursionId provided by props exists and use first excursion otherwise
-  if (props.excursionId && excursions.value.some(exc => exc.id === props.excursionId)) {
-    selectedExcursionId.value = props.excursionId
-  } else if (excursions.value.length > 0 && excursions.value[0]) {
-    selectedExcursionId.value = excursions.value[0].id
-  }
-})
 
 // Selected excursion computed
 const selectedExcursion = computed<Excursion | undefined>(() => {
@@ -216,6 +187,35 @@ watch(selectedExcursion, () => {
     }
   }
 })
+
+// Load excursions on mount (as 'backup' if not already loaded by loadExcursions plugin)
+onMounted(async () => {
+  await loadExcursions()
+  
+  // Preselect excursion if excursionId provided by props exists and use first excursion otherwise
+  if (props.excursionId && excursions.value.some(exc => exc.id === props.excursionId)) {
+    selectedExcursionId.value = props.excursionId
+  } else if (excursions.value.length > 0 && excursions.value[0]) {
+    selectedExcursionId.value = excursions.value[0].id
+  }
+})
+
+// Navigation guard: prompt when leaving with altered form or form field content
+onBeforeRouteLeave((_to, _from, next) => {
+  if (isSubmitting.value) {
+    next();
+    return;
+  }
+  if(isFormUpdated.value) {
+    if (confirm('You will lose your entered information!\n\nAre you sure you want to leave?')) {
+      next();
+    } else {
+      next(false);
+    }
+  } else {
+    next();
+  }
+});
 
 // Handle booking field changes
 const handleFieldChange = (index: number, updatedField: BookingField) => {
